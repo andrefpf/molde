@@ -9,7 +9,4 @@ We make available all the `.svg` files for the internally made icons.
 The remaining icons are available in the `.png` format with the quality of about 100 dpi, to make the loading times fast, while keeping some of its quality.
 
 # References
-
-| File name | Font     |
-|-----------|----------|
-| pudim.png   | https://www.pudim.com.br/ |
+https://carbondesignsystem.com/elements/icons/library/
