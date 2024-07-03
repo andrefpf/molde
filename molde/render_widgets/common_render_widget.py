@@ -153,7 +153,7 @@ class CommonRenderWidget(QFrame):
         
         title_property: vtkTextProperty
         title_property = self.scale_bar_actor.GetLegendTitleProperty()
-        title_property.SetFontSize(14)
+        title_property.SetFontSize(12)
         title_property.ShadowOff()
         title_property.ItalicOff()
         title_property.BoldOn()
@@ -217,7 +217,7 @@ class CommonRenderWidget(QFrame):
         self.renderer.AddActor(self.colorbar_actor)
 
     def create_info_text(self):
-        font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
+        font_file = MOLDE_DIR / "fonts/IBMPlexMono-Bold.ttf"
 
         self.info_text_property = vtkTextProperty()
         self.info_text_property.SetFontSize(14)
