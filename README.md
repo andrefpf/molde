@@ -1,5 +1,5 @@
 <div align="center">
-  <img height="90" src="molde/data/logos/mold/mold_horizontal_logo_dark_300dpi.png" alt="Logo" align="center">
+  <img height="90" src="logos/mold_horizontal_logo_dark_300dpi.png" alt="Logo" align="center">
 </div>
 
 # MOLDE
