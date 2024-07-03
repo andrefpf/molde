@@ -1,19 +1,21 @@
-import vtk
+from vtkmodules.vtkRenderingCore import vtkRenderer, vtkActor, vtkPropPicker, vtkAreaPicker, vtkCellPicker
+from vtkmodules.vtkCommonDataModel import vtkPolyData
+from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
 
 
-class CellPropertyAreaPicker(vtk.vtkPropPicker):
-    def __init__(self, property_name: str, desired_actor: vtk.vtkActor) -> None:
+class CellPropertyAreaPicker(vtkPropPicker):
+    def __init__(self, property_name: str, desired_actor: vtkActor) -> None:
         super().__init__()
 
         self.property_name = property_name
         self.desired_actor = desired_actor
         self._picked = set()
 
-        self._cell_picker = vtk.vtkCellPicker()
-        self._area_picker = vtk.vtkAreaPicker()
+        self._cell_picker = vtkCellPicker()
+        self._area_picker = vtkAreaPicker()
         self._cell_picker.SetTolerance(0.005)
 
-    def pick(self, x: float, y: float, z: float, renderer: vtk.vtkRenderer):
+    def pick(self, x: float, y: float, z: float, renderer: vtkRenderer):
         # maybe a behaviour like the one implemented in CellAreaPicker
         # would fit nicely here
         self._picked.clear()
@@ -22,7 +24,7 @@ class CellPropertyAreaPicker(vtk.vtkPropPicker):
         if self.desired_actor != self._cell_picker.GetActor():
             return self.get_picked()
 
-        data: vtk.vtkPolyData = self.desired_actor.GetMapper().GetInput()
+        data: vtkPolyData = self.desired_actor.GetMapper().GetInput()
         if data is None:
             return self.get_picked()
 
@@ -36,17 +38,17 @@ class CellPropertyAreaPicker(vtk.vtkPropPicker):
         return self.get_picked()
 
     def area_pick(
-        self, x0: float, y0: float, x1: float, y1: float, renderer: vtk.vtkRenderer
+        self, x0: float, y0: float, x1: float, y1: float, renderer: vtkRenderer
     ):
         self._picked.clear()
         self._area_picker.AreaPick(x0, y0, x1, y1, renderer)
-        extractor = vtk.vtkExtractSelectedFrustum()
+        extractor = vtkExtractSelectedFrustum()
         extractor.SetFrustum(self._area_picker.GetFrustum())
 
         if self.desired_actor not in self._area_picker.GetProp3Ds():
             return self.get_picked()
 
-        data: vtk.vtkPolyData = self.desired_actor.GetMapper().GetInput()
+        data: vtkPolyData = self.desired_actor.GetMapper().GetInput()
         if data is None:
             return self.get_picked()
 

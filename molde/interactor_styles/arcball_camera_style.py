@@ -1,10 +1,13 @@
 import numpy as np
-import vtk
+
+from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
+from vtkmodules.vtkRenderingCore import vtkPropPicker
+from vtkmodules.vtkCommonTransforms import vtkTransform
 
 from vtkat.actors import RoundPointsActor
 
 
-class ArcballCameraInteractorStyle(vtk.vtkInteractorStyleTrackballCamera):
+class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
     """
     Interactor style that rotates and zooms around the cursor.
     """
@@ -64,7 +67,7 @@ class ArcballCameraInteractorStyle(vtk.vtkInteractorStyleTrackballCamera):
         if renderer is None:
             return
 
-        picker = vtk.vtkPropPicker()
+        picker = vtkPropPicker()
         picker.Pick(cursor[0], cursor[1], 0, renderer)
         pos = picker.GetPickPosition()
 
@@ -179,7 +182,7 @@ class ArcballCameraInteractorStyle(vtk.vtkInteractorStyleTrackballCamera):
         renderer = self.GetDefaultRenderer() or self.GetCurrentRenderer()
         camera = renderer.GetActiveCamera()
 
-        transform_camera = vtk.vtkTransform()
+        transform_camera = vtkTransform()
         transform_camera.Identity()
 
         axis = [

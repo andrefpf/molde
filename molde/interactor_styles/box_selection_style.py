@@ -1,5 +1,6 @@
 import numpy as np
-import vtk
+
+from vtkmodules.vtkCommonCore import vtkUnsignedCharArray
 
 from .arcball_camera_style import ArcballCameraInteractorStyle
 
@@ -11,7 +12,7 @@ class BoxSelectionInteractorStyle(ArcballCameraInteractorStyle):
         self.is_selecting = False
         self._click_position = (0, 0)
         self._mouse_position = (0, 0)
-        self._saved_pixels = vtk.vtkUnsignedCharArray()
+        self._saved_pixels = vtkUnsignedCharArray()
         self.selection_color = (255, 0, 0, 255)
 
     def _left_button_press_event(self, obj, event):
@@ -50,7 +51,7 @@ class BoxSelectionInteractorStyle(ArcballCameraInteractorStyle):
         min_y, max_y = np.clip([min_y, max_y], 0, size[1])
 
         # Copy the saved screen state and draw over it
-        selected_pixels = vtk.vtkUnsignedCharArray()
+        selected_pixels = vtkUnsignedCharArray()
         selected_pixels.DeepCopy(self._saved_pixels)
 
         for x in range(min_x, max_x, 2):

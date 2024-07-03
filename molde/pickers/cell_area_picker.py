@@ -1,18 +1,19 @@
-import vtk
+from vtkmodules.vtkRenderingCore import vtkRenderer, vtkActor, vtkPropPicker, vtkAreaPicker, vtkCellPicker
+from vtkmodules.vtkCommonDataModel import vtkPolyData
+from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
 
-
-class CellAreaPicker(vtk.vtkPropPicker):
+class CellAreaPicker(vtkPropPicker):
     def __init__(self) -> None:
         super().__init__()
         self._picked_cells = []
         self._picked_actors = []
         self._picked = dict()
 
-        self._area_picker = vtk.vtkAreaPicker()
-        self._cell_picker = vtk.vtkCellPicker()
+        self._area_picker = vtkAreaPicker()
+        self._cell_picker = vtkCellPicker()
         self._cell_picker.SetTolerance(0.01)
 
-    def pick(self, x: float, y: float, z: float, renderer: vtk.vtkRenderer):
+    def pick(self, x: float, y: float, z: float, renderer: vtkRenderer):
         self._picked.clear()
         self._cell_picker.Pick(x, y, z, renderer)
         self._picked[self._cell_picker.GetActor()] = [self._cell_picker.GetCellId()]
@@ -26,18 +27,18 @@ class CellAreaPicker(vtk.vtkPropPicker):
         #     self._picked[actor] = selection[:1]
 
     def area_pick(
-        self, x0: float, y0: float, x1: float, y1: float, renderer: vtk.vtkRenderer
+        self, x0: float, y0: float, x1: float, y1: float, renderer: vtkRenderer
     ):
         self._picked.clear()
         self._area_picker.AreaPick(x0, y0, x1, y1, renderer)
-        extractor = vtk.vtkExtractSelectedFrustum()
+        extractor = vtkExtractSelectedFrustum()
         extractor.SetFrustum(self._area_picker.GetFrustum())
 
         for actor in self._area_picker.GetProp3Ds():
-            if not isinstance(actor, vtk.vtkActor):
+            if not isinstance(actor, vtkActor):
                 continue
 
-            data: vtk.vtkPolyData = actor.GetMapper().GetInput()
+            data: vtkPolyData = actor.GetMapper().GetInput()
             if data is None:
                 continue
 

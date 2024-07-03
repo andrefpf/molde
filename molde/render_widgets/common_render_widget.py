@@ -1,13 +1,18 @@
-import vtk
+from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from vtkmodules.util.numpy_support import vtk_to_numpy
+from vtkmodules.vtkCommonCore import vtkLookupTable, VTK_FONT_FILE
+from vtkmodules.vtkRenderingCore import vtkRenderer, vtkWindowToImageFilter, vtkTextActor, vtkTextProperty, vtkLight
+from vtkmodules.vtkRenderingAnnotation import vtkAxesActor, vtkLegendScaleActor, vtkScalarBarActor
+from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget, vtkLogoRepresentation
+from vtkmodules.vtkIOImage import vtkPNGReader
+
 from PIL import Image
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QFrame, QStackedLayout
-from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
-from vtkmodules.util.numpy_support import vtk_to_numpy
 from pathlib import Path
 
-from vtkat import VTKAT_DIR
-from vtkat.interactor_styles import ArcballCameraInteractorStyle
+from molde import MOLDE_DIR
+from molde.interactor_styles import ArcballCameraInteractorStyle
 
 
 class CommonRenderWidget(QFrame):
@@ -25,7 +30,7 @@ class CommonRenderWidget(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.renderer = vtk.vtkRenderer()
+        self.renderer = vtkRenderer()
         self.interactor_style = ArcballCameraInteractorStyle()
         self.render_interactor = QVTKRenderWindowInteractor(self)
 
@@ -79,7 +84,7 @@ class CommonRenderWidget(QFrame):
         self.right_released.emit(x, y)
 
     def get_screenshot(self) -> Image.Image:
-        image_filter = vtk.vtkWindowToImageFilter()
+        image_filter = vtkWindowToImageFilter()
         image_filter.SetInput(self.render_interactor.GetRenderWindow())
         image_filter.Update()
 
@@ -110,7 +115,7 @@ class CommonRenderWidget(QFrame):
             image.save(file)
 
     def create_axes(self):
-        axes_actor = vtk.vtkAxesActor()
+        axes_actor = vtkAxesActor()
         axes_actor.SetTipTypeToSphere()
 
         axes_actor.SetXAxisLabelText(" X")
@@ -129,11 +134,11 @@ class CommonRenderWidget(QFrame):
         z_property = axes_actor.GetZAxisCaptionActor2D().GetCaptionTextProperty()
 
         for text_property in [x_property, y_property, z_property]:
-            text_property: vtk.vtkTextProperty
+            text_property: vtkTextProperty
             text_property.ItalicOff()
             text_property.BoldOn()
 
-        self.axes = vtk.vtkOrientationMarkerWidget()
+        self.axes = vtkOrientationMarkerWidget()
         self.axes.SetViewport(0, 0, 0.18, 0.18)
         self.axes.SetOrientationMarker(axes_actor)
         self.axes.SetInteractor(self.render_interactor)
@@ -141,12 +146,12 @@ class CommonRenderWidget(QFrame):
         self.axes.InteractiveOff()
 
     def create_scale_bar(self):
-        self.scale_bar_actor = vtk.vtkLegendScaleActor()
+        self.scale_bar_actor = vtkLegendScaleActor()
         self.scale_bar_actor.AllAxesOff()
 
-        font_file = VTKAT_DIR / "fonts/LiberationMono-Bold.ttf"
-
-        title_property: vtk.vtkTextProperty
+        font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
+        
+        title_property: vtkTextProperty
         title_property = self.scale_bar_actor.GetLegendTitleProperty()
         title_property.SetFontSize(14)
         title_property.ShadowOff()
@@ -154,10 +159,10 @@ class CommonRenderWidget(QFrame):
         title_property.BoldOn()
         title_property.SetLineOffset(-55)
         title_property.SetVerticalJustificationToTop()
-        title_property.SetFontFamily(vtk.VTK_FONT_FILE)
+        title_property.SetFontFamily(VTK_FONT_FILE)
         title_property.SetFontFile(font_file)
 
-        label_property: vtk.vtkTextProperty
+        label_property: vtkTextProperty
         label_property = self.scale_bar_actor.GetLegendLabelProperty()
         label_property.SetFontSize(12)
         label_property.SetColor((0.8, 0.8, 0.8))
@@ -165,39 +170,39 @@ class CommonRenderWidget(QFrame):
         label_property.ItalicOff()
         label_property.BoldOff()
         label_property.SetLineOffset(-35)
-        label_property.SetFontFamily(vtk.VTK_FONT_FILE)
+        label_property.SetFontFamily(VTK_FONT_FILE)
         label_property.SetFontFile(font_file)
 
         self.renderer.AddActor(self.scale_bar_actor)
 
     def create_color_bar(self, lookup_table=None):
         if lookup_table is None:
-            lookup_table = vtk.vtkLookupTable()
+            lookup_table = vtkLookupTable()
             lookup_table.Build()
 
-        font_file = VTKAT_DIR / "fonts/LiberationMono-Bold.ttf"
+        font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
 
-        colorbar_title = vtk.vtkTextProperty()
+        colorbar_title = vtkTextProperty()
         colorbar_title.ShadowOff()
         colorbar_title.ItalicOff()
         colorbar_title.BoldOn()
         colorbar_title.SetFontSize(13)
         colorbar_title.SetColor((0.8, 0.8, 0.8))
         colorbar_title.SetJustificationToLeft()
-        colorbar_title.SetFontFamily(vtk.VTK_FONT_FILE)
+        colorbar_title.SetFontFamily(VTK_FONT_FILE)
         colorbar_title.SetFontFile(font_file)
 
-        colorbar_label = vtk.vtkTextProperty()
+        colorbar_label = vtkTextProperty()
         colorbar_label.ShadowOff()
         colorbar_label.ItalicOff()
         colorbar_label.BoldOn()
         colorbar_label.SetFontSize(12)
         colorbar_label.SetColor((0.8, 0.8, 0.8))
         colorbar_label.SetJustificationToLeft()
-        colorbar_label.SetFontFamily(vtk.VTK_FONT_FILE)
+        colorbar_label.SetFontFamily(VTK_FONT_FILE)
         colorbar_label.SetFontFile(font_file)
 
-        self.colorbar_actor = vtk.vtkScalarBarActor()
+        self.colorbar_actor = vtkScalarBarActor()
         self.colorbar_actor.SetTitleTextProperty(colorbar_title)
         self.colorbar_actor.SetLabelTextProperty(colorbar_label)
         self.colorbar_actor.SetLabelFormat("%1.0e ")
@@ -212,18 +217,18 @@ class CommonRenderWidget(QFrame):
         self.renderer.AddActor(self.colorbar_actor)
 
     def create_info_text(self):
-        font_file = VTKAT_DIR / "fonts/LiberationMono-Bold.ttf"
+        font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
 
-        self.info_text_property = vtk.vtkTextProperty()
+        self.info_text_property = vtkTextProperty()
         self.info_text_property.SetFontSize(14)
         self.info_text_property.SetVerticalJustificationToTop()
         self.info_text_property.SetColor((0.2, 0.2, 0.2))
         self.info_text_property.SetLineSpacing(1.2)
         self.info_text_property.SetFontFamilyToTimes()
-        self.info_text_property.SetFontFamily(vtk.VTK_FONT_FILE)
+        self.info_text_property.SetFontFamily(VTK_FONT_FILE)
         self.info_text_property.SetFontFile(font_file)
 
-        self.text_actor = vtk.vtkTextActor()
+        self.text_actor = vtkTextActor()
         self.text_actor.SetTextProperty(self.info_text_property)
         self.renderer.AddActor2D(self.text_actor)
 
@@ -231,14 +236,14 @@ class CommonRenderWidget(QFrame):
         coord.SetCoordinateSystemToNormalizedViewport()
         coord.SetValue(0.01, 0.95)
 
-    def create_logo(self, path: str | Path) -> vtk.vtkLogoRepresentation:
+    def create_logo(self, path: str | Path) -> vtkLogoRepresentation:
         path = Path(path)
 
-        image_reader = vtk.vtkPNGReader()
+        image_reader = vtkPNGReader()
         image_reader.SetFileName(path)
         image_reader.Update()
 
-        logo = vtk.vtkLogoRepresentation()
+        logo = vtkLogoRepresentation()
         logo.SetImage(image_reader.GetOutput())
         logo.ProportionalResizeOn()
         logo.GetImageProperty().SetOpacity(0.9)
@@ -249,7 +254,7 @@ class CommonRenderWidget(QFrame):
         return logo
 
     def create_camera_light(self, offset_x=0, offset_y=0):
-        light = vtk.vtkLight()
+        light = vtkLight()
         light.SetLightTypeToCameraLight()
         light.SetPosition(offset_x, offset_y, 1)
         self.renderer.AddLight(light)
@@ -324,7 +329,7 @@ class CommonRenderWidget(QFrame):
     def copy_camera_from(self, other):
         if isinstance(other, CommonRenderWidget):
             other_camera = other.renderer.GetActiveCamera() 
-        elif isinstance(other, vtk.vtkRenderer):
+        elif isinstance(other, vtkRenderer):
             other_camera = other.GetActiveCamera() 
         else:
             return

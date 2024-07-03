@@ -1,7 +1,8 @@
-import vtk
+from vtkmodules.vtkCommonDataModel import vtkPolyData, VTK_VERTEX
+from vtkmodules.vtkCommonCore import vtkPoints
 
 
-class VerticesData(vtk.vtkPolyData):
+class VerticesData(vtkPolyData):
     """
     This class describes a polydata composed by a set of points.
     """
@@ -13,11 +14,11 @@ class VerticesData(vtk.vtkPolyData):
         self.build()
 
     def build(self):
-        points = vtk.vtkPoints()
+        points = vtkPoints()
         self.Allocate(len(self.points_list))
 
         for i, (x, y, z) in enumerate(self.points_list):
             points.InsertNextPoint(x, y, z)
-            self.InsertNextCell(vtk.VTK_VERTEX, 1, [i])
+            self.InsertNextCell(VTK_VERTEX, 1, [i])
 
         self.SetPoints(points)
