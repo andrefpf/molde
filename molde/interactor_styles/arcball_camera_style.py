@@ -1,10 +1,8 @@
 import numpy as np
-
+from vtkat.actors import RoundPointsActor
+from vtkmodules.vtkCommonTransforms import vtkTransform
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 from vtkmodules.vtkRenderingCore import vtkPropPicker
-from vtkmodules.vtkCommonTransforms import vtkTransform
-
-from vtkat.actors import RoundPointsActor
 
 
 class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):

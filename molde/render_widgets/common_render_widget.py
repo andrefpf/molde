@@ -1,15 +1,28 @@
-from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
-from vtkmodules.util.numpy_support import vtk_to_numpy
-from vtkmodules.vtkCommonCore import vtkLookupTable, VTK_FONT_FILE
-from vtkmodules.vtkRenderingCore import vtkRenderer, vtkWindowToImageFilter, vtkTextActor, vtkTextProperty, vtkLight
-from vtkmodules.vtkRenderingAnnotation import vtkAxesActor, vtkLegendScaleActor, vtkScalarBarActor
-from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget, vtkLogoRepresentation
-from vtkmodules.vtkIOImage import vtkPNGReader
+from pathlib import Path
 
 from PIL import Image
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QFrame, QStackedLayout
-from pathlib import Path
+from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from vtkmodules.util.numpy_support import vtk_to_numpy
+from vtkmodules.vtkCommonCore import VTK_FONT_FILE, vtkLookupTable
+from vtkmodules.vtkInteractionWidgets import (
+    vtkLogoRepresentation,
+    vtkOrientationMarkerWidget,
+)
+from vtkmodules.vtkIOImage import vtkPNGReader
+from vtkmodules.vtkRenderingAnnotation import (
+    vtkAxesActor,
+    vtkLegendScaleActor,
+    vtkScalarBarActor,
+)
+from vtkmodules.vtkRenderingCore import (
+    vtkLight,
+    vtkRenderer,
+    vtkTextActor,
+    vtkTextProperty,
+    vtkWindowToImageFilter,
+)
 
 from molde import MOLDE_DIR
 from molde.interactor_styles import ArcballCameraInteractorStyle
@@ -127,7 +140,7 @@ class CommonRenderWidget(QFrame):
         axes_actor.GetZAxisShaftProperty().LightingOff()
         axes_actor.GetXAxisTipProperty().LightingOff()
         axes_actor.GetYAxisTipProperty().LightingOff()
-        axes_actor.GetZAxisTipProperty().LightingOff()     
+        axes_actor.GetZAxisTipProperty().LightingOff()
 
         x_property = axes_actor.GetXAxisCaptionActor2D().GetCaptionTextProperty()
         y_property = axes_actor.GetYAxisCaptionActor2D().GetCaptionTextProperty()
@@ -150,7 +163,7 @@ class CommonRenderWidget(QFrame):
         self.scale_bar_actor.AllAxesOff()
 
         font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
-        
+
         title_property: vtkTextProperty
         title_property = self.scale_bar_actor.GetLegendTitleProperty()
         title_property.SetFontSize(12)
@@ -328,9 +341,9 @@ class CommonRenderWidget(QFrame):
 
     def copy_camera_from(self, other):
         if isinstance(other, CommonRenderWidget):
-            other_camera = other.renderer.GetActiveCamera() 
+            other_camera = other.renderer.GetActiveCamera()
         elif isinstance(other, vtkRenderer):
-            other_camera = other.GetActiveCamera() 
+            other_camera = other.GetActiveCamera()
         else:
             return
 

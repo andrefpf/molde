@@ -1,5 +1,4 @@
 import numpy as np
-
 from vtkmodules.vtkCommonCore import vtkUnsignedCharArray
 
 from .arcball_camera_style import ArcballCameraInteractorStyle

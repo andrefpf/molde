@@ -20,7 +20,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
     def start_animation(self, fps=None, frames=None):
         if isinstance(fps, int | float):
             self._animation_fps = fps
-        
+
         if isinstance(frames, int):
             self._animation_total_frames = frames
 
@@ -37,7 +37,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
             return
 
         self.playing_animation = False
-    
+
     def toggle_animation(self):
         if self.playing_animation:
             self.stop_animation()

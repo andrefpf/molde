@@ -1,5 +1,6 @@
-from vtkmodules.vtkCommonDataModel import vtkPolyData, VTK_LINE
 from vtkmodules.vtkCommonCore import vtkPoints
+from vtkmodules.vtkCommonDataModel import VTK_LINE, vtkPolyData
+
 
 class LinesData(vtkPolyData):
     def __init__(self, lines_list) -> None:

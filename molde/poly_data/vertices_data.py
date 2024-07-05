@@ -1,5 +1,5 @@
-from vtkmodules.vtkCommonDataModel import vtkPolyData, VTK_VERTEX
 from vtkmodules.vtkCommonCore import vtkPoints
+from vtkmodules.vtkCommonDataModel import VTK_VERTEX, vtkPolyData
 
 
 class VerticesData(vtkPolyData):

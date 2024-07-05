@@ -1,6 +1,13 @@
-from vtkmodules.vtkRenderingCore import vtkRenderer, vtkActor, vtkPropPicker, vtkAreaPicker, vtkCellPicker
 from vtkmodules.vtkCommonDataModel import vtkPolyData
 from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkAreaPicker,
+    vtkCellPicker,
+    vtkPropPicker,
+    vtkRenderer,
+)
+
 
 class CellAreaPicker(vtkPropPicker):
     def __init__(self) -> None:

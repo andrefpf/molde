@@ -1,6 +1,12 @@
-from vtkmodules.vtkRenderingCore import vtkRenderer, vtkActor, vtkPropPicker, vtkAreaPicker, vtkCellPicker
 from vtkmodules.vtkCommonDataModel import vtkPolyData
 from vtkmodules.vtkFiltersGeneral import vtkExtractSelectedFrustum
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkAreaPicker,
+    vtkCellPicker,
+    vtkPropPicker,
+    vtkRenderer,
+)
 
 
 class CellPropertyAreaPicker(vtkPropPicker):
@@ -55,7 +61,7 @@ class CellPropertyAreaPicker(vtkPropPicker):
         property_array = data.GetCellData().GetArray(self.property_name)
         if property_array is None:
             return self.get_picked()
-    
+
         if property_array.GetNumberOfValues() < data.GetNumberOfCells():
             return self.get_picked()
 

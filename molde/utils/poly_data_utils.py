@@ -1,5 +1,5 @@
-from vtkmodules.vtkCommonDataModel import vtkPolyData
 from vtkmodules.vtkCommonCore import vtkUnsignedCharArray, vtkUnsignedIntArray
+from vtkmodules.vtkCommonDataModel import vtkPolyData
 
 
 def set_polydata_colors(data: vtkPolyData, color: tuple):
@@ -14,9 +14,7 @@ def set_polydata_colors(data: vtkPolyData, color: tuple):
     data.GetCellData().SetScalars(cell_colors)
 
 
-def set_polydata_property(
-    data: vtkPolyData, property_data: int, property_name: str
-):
+def set_polydata_property(data: vtkPolyData, property_data: int, property_name: str):
     n_cells = data.GetNumberOfCells()
     cell_identifier = vtkUnsignedIntArray()
     cell_identifier.SetName(property_name)

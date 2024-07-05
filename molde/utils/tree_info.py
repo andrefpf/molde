@@ -1,6 +1,5 @@
 from collections import namedtuple
 
-
 TreeItem = namedtuple("TreeItem", ["name", "data", "unity"])
 SEPARATOR = TreeItem("", "", "")
 
@@ -25,7 +24,7 @@ class TreeInfo:
             if item != SEPARATOR:
                 break
             extra_separators += 1
-        return self.items[:len(self.items) - extra_separators]
+        return self.items[: len(self.items) - extra_separators]
 
     def __str__(self):
         title = self.name.upper()
