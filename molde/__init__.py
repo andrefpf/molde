@@ -1,4 +1,4 @@
-from .colors import Colors
+from .colors import Color
 
 
 from pathlib import Path
