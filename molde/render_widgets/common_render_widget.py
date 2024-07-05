@@ -223,7 +223,7 @@ class CommonRenderWidget(QFrame):
         self.info_text_property.SetFontSize(14)
         self.info_text_property.SetVerticalJustificationToTop()
         self.info_text_property.SetColor((0.2, 0.2, 0.2))
-        self.info_text_property.SetLineSpacing(1.2)
+        self.info_text_property.SetLineSpacing(1.4)
         self.info_text_property.SetFontFamilyToTimes()
         self.info_text_property.SetFontFamily(VTK_FONT_FILE)
         self.info_text_property.SetFontFile(font_file)
