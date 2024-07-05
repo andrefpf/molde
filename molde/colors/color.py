@@ -9,7 +9,7 @@ class Color:
     a: int = 255
 
     @classmethod
-    def from_rgba(cls, r, g, b, a=255):
+    def from_rgba(cls, r:int, g:int, b:int, a:int=255):
         r = int(np.clip(r, 0, 255))
         g = int(np.clip(g, 0, 255))
         b = int(np.clip(b, 0, 255))
