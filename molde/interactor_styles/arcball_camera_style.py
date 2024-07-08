@@ -1,5 +1,5 @@
 import numpy as np
-from vtkat.actors import RoundPointsActor
+from molde.actors import RoundPointsActor
 from vtkmodules.vtkCommonTransforms import vtkTransform
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 from vtkmodules.vtkRenderingCore import vtkPropPicker
