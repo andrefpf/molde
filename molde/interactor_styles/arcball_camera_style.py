@@ -1,8 +1,9 @@
 import numpy as np
-from molde.actors import RoundPointsActor
 from vtkmodules.vtkCommonTransforms import vtkTransform
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 from vtkmodules.vtkRenderingCore import vtkPropPicker
+
+from molde.actors import RoundPointsActor
 
 
 class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
