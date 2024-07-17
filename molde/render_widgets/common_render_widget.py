@@ -247,7 +247,7 @@ class CommonRenderWidget(QFrame):
 
         coord = self.text_actor.GetPositionCoordinate()
         coord.SetCoordinateSystemToNormalizedViewport()
-        coord.SetValue(0.01, 0.95)
+        coord.SetValue(0.01, 0.97)
 
     def create_logo(self, path: str | Path) -> vtkLogoRepresentation:
         path = Path(path)
