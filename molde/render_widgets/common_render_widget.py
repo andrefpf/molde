@@ -18,8 +18,10 @@ from vtkmodules.vtkRenderingAnnotation import (
 )
 from vtkmodules.vtkRenderingCore import (
     vtkLight,
+    vtkActor,
     vtkRenderer,
     vtkTextActor,
+    vtkInteractorStyle,
     vtkTextProperty,
     vtkWindowToImageFilter,
 )
@@ -50,6 +52,7 @@ class CommonRenderWidget(QFrame):
         self.render_interactor.Initialize()
         self.render_interactor.GetRenderWindow().AddRenderer(self.renderer)
         self.render_interactor.SetInteractorStyle(self.interactor_style)
+
         self.renderer.ResetCamera()
 
         self.render_interactor.AddObserver(
@@ -69,11 +72,44 @@ class CommonRenderWidget(QFrame):
         layout.addWidget(self.render_interactor)
         self.setLayout(layout)
 
+        self._widget_actors = list()
+
         self.create_info_text()
         self.set_theme("dark")
 
     def update_plot(self):
         raise NotImplementedError("The function update_plot was not implemented")
+
+    def add_actors(self, *actors: vtkActor):
+        for actor in actors:
+            self.renderer.AddActor(actor)
+            if actor not in self._widget_actors:
+                self._widget_actors.append(actor)
+
+    def remove_actors(self, *actors: vtkActor):
+        for actor in actors:
+            self.renderer.RemoveActor(actor)
+            try:
+                self._widget_actors.remove(actor)
+            except ValueError:
+                continue
+
+    def remove_all_actors(self):
+        self.remove_actors(self.get_widget_actors())
+    
+    def remove_all_props(self):
+        self.renderer.RemoveAllViewProps()
+
+    def get_widget_actors(self):
+        return [i for i in self._widget_actors]
+
+
+    def set_interactor_style(self, interactor_style: vtkInteractorStyle):
+        self.interactor_style = interactor_style
+        self.render_interactor.SetInteractorStyle(interactor_style)
+
+    def get_interactor_style(self) -> vtkInteractorStyle:
+        return self.render_interactor.GetInteractorStyle()
 
     def update(self):
         ren_win = self.render_interactor.GetRenderWindow()
