@@ -95,7 +95,7 @@ class CommonRenderWidget(QFrame):
                 continue
 
     def remove_all_actors(self):
-        self.remove_actors(self.get_widget_actors())
+        self.remove_actors(*self.get_widget_actors())
     
     def remove_all_props(self):
         self.renderer.RemoveAllViewProps()
