@@ -1,4 +1,5 @@
 from pathlib import Path
+from threading import Lock
 
 from PIL import Image
 from PyQt5.QtCore import pyqtSignal
@@ -56,16 +57,20 @@ class CommonRenderWidget(QFrame):
         self.renderer.ResetCamera()
 
         self.render_interactor.AddObserver(
-            "LeftButtonPressEvent", self.left_click_press_event
+            "LeftButtonPressEvent",
+            self.left_click_press_event
         )
         self.render_interactor.AddObserver(
-            "LeftButtonReleaseEvent", self.left_click_release_event
+            "LeftButtonReleaseEvent",
+            self.left_click_release_event
         )
         self.render_interactor.AddObserver(
-            "RightButtonPressEvent", self.right_click_press_event
+            "RightButtonPressEvent",
+            self.right_click_press_event
         )
         self.render_interactor.AddObserver(
-            "RightButtonReleaseEvent", self.right_click_release_event
+            "RightButtonReleaseEvent",
+            self.right_click_release_event
         )
 
         layout = QStackedLayout()
@@ -73,6 +78,7 @@ class CommonRenderWidget(QFrame):
         self.setLayout(layout)
 
         self._widget_actors = list()
+        self.update_lock = Lock()
 
         self.create_info_text()
         self.set_theme("dark")
@@ -103,7 +109,6 @@ class CommonRenderWidget(QFrame):
     def get_widget_actors(self):
         return [i for i in self._widget_actors]
 
-
     def set_interactor_style(self, interactor_style: vtkInteractorStyle):
         self.interactor_style = interactor_style
         self.render_interactor.SetInteractorStyle(interactor_style)
@@ -112,6 +117,9 @@ class CommonRenderWidget(QFrame):
         return self.render_interactor.GetInteractorStyle()
 
     def update(self):
+        if self.update_lock.locked():
+            return
+
         ren_win = self.render_interactor.GetRenderWindow()
         if ren_win is not None:
             ren_win.Render()
