@@ -1,4 +1,5 @@
 from pathlib import Path
+from threading import Lock
 
 from PIL import Image
 from PyQt5.QtCore import pyqtSignal
@@ -18,8 +19,10 @@ from vtkmodules.vtkRenderingAnnotation import (
 )
 from vtkmodules.vtkRenderingCore import (
     vtkLight,
+    vtkActor,
     vtkRenderer,
     vtkTextActor,
+    vtkInteractorStyle,
     vtkTextProperty,
     vtkWindowToImageFilter,
 )
@@ -50,24 +53,32 @@ class CommonRenderWidget(QFrame):
         self.render_interactor.Initialize()
         self.render_interactor.GetRenderWindow().AddRenderer(self.renderer)
         self.render_interactor.SetInteractorStyle(self.interactor_style)
+
         self.renderer.ResetCamera()
 
         self.render_interactor.AddObserver(
-            "LeftButtonPressEvent", self.left_click_press_event
+            "LeftButtonPressEvent",
+            self.left_click_press_event
         )
         self.render_interactor.AddObserver(
-            "LeftButtonReleaseEvent", self.left_click_release_event
+            "LeftButtonReleaseEvent",
+            self.left_click_release_event
         )
         self.render_interactor.AddObserver(
-            "RightButtonPressEvent", self.right_click_press_event
+            "RightButtonPressEvent",
+            self.right_click_press_event
         )
         self.render_interactor.AddObserver(
-            "RightButtonReleaseEvent", self.right_click_release_event
+            "RightButtonReleaseEvent",
+            self.right_click_release_event
         )
 
         layout = QStackedLayout()
         layout.addWidget(self.render_interactor)
         self.setLayout(layout)
+
+        self._widget_actors = list()
+        self.update_lock = Lock()
 
         self.create_info_text()
         self.set_theme("dark")
@@ -75,7 +86,40 @@ class CommonRenderWidget(QFrame):
     def update_plot(self):
         raise NotImplementedError("The function update_plot was not implemented")
 
+    def add_actors(self, *actors: vtkActor):
+        for actor in actors:
+            self.renderer.AddActor(actor)
+            if actor not in self._widget_actors:
+                self._widget_actors.append(actor)
+
+    def remove_actors(self, *actors: vtkActor):
+        for actor in actors:
+            self.renderer.RemoveActor(actor)
+            try:
+                self._widget_actors.remove(actor)
+            except ValueError:
+                continue
+
+    def remove_all_actors(self):
+        self.remove_actors(*self.get_widget_actors())
+    
+    def remove_all_props(self):
+        self.renderer.RemoveAllViewProps()
+
+    def get_widget_actors(self):
+        return [i for i in self._widget_actors]
+
+    def set_interactor_style(self, interactor_style: vtkInteractorStyle):
+        self.interactor_style = interactor_style
+        self.render_interactor.SetInteractorStyle(interactor_style)
+
+    def get_interactor_style(self) -> vtkInteractorStyle:
+        return self.render_interactor.GetInteractorStyle()
+
     def update(self):
+        if self.update_lock.locked():
+            return
+
         ren_win = self.render_interactor.GetRenderWindow()
         if ren_win is not None:
             ren_win.Render()
@@ -247,7 +291,7 @@ class CommonRenderWidget(QFrame):
 
         coord = self.text_actor.GetPositionCoordinate()
         coord.SetCoordinateSystemToNormalizedViewport()
-        coord.SetValue(0.01, 0.97)
+        coord.SetValue(0.01, 0.98)
 
     def create_logo(self, path: str | Path) -> vtkLogoRepresentation:
         path = Path(path)

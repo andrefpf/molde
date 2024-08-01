@@ -1,7 +1,7 @@
-import vtk
+from vtkmodules.vtkRenderingCore import vtkActor
 
 
-class GhostActor(vtk.vtkActor):
+class GhostActor(vtkActor):
     def make_ghost(self):
         self.GetProperty().LightingOff()
         offset = -66000

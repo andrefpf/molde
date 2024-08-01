@@ -1,9 +1,9 @@
-import vtk
+from vtkmodules.vtkRenderingCore import vtkActor, vtkPolyDataMapper
 
 from molde.poly_data import VerticesData
 
 
-class SquarePointsActor(vtk.vtkActor):
+class SquarePointsActor(vtkActor):
     def __init__(self, points_list) -> None:
         super().__init__()
         self.points_list = points_list
@@ -11,7 +11,7 @@ class SquarePointsActor(vtk.vtkActor):
 
     def build(self):
         data = VerticesData(self.points_list)
-        mapper = vtk.vtkPolyDataMapper()
+        mapper = vtkPolyDataMapper()
         mapper.SetInputData(data)
         self.SetMapper(mapper)
 

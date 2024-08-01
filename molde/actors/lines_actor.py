@@ -1,9 +1,9 @@
-import vtk
+from vtkmodules.vtkRenderingCore import vtkActor, vtkPolyDataMapper
 
 from molde.poly_data import LinesData
 
 
-class LinesActor(vtk.vtkActor):
+class LinesActor(vtkActor):
     def __init__(self, lines_list) -> None:
         super().__init__()
         self.lines_list = lines_list
@@ -12,7 +12,7 @@ class LinesActor(vtk.vtkActor):
 
     def build(self):
         data = LinesData(self.lines_list)
-        mapper = vtk.vtkPolyDataMapper()
+        mapper = vtkPolyDataMapper()
         mapper.SetInputData(data)
         self.SetMapper(mapper)
         self.GetProperty().SetLineWidth(3)
