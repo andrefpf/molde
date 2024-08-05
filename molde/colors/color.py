@@ -62,9 +62,9 @@ class Color:
             return cls(r, g, b, a)
         raise ValueError("Invalid hex color format")
 
-    #@classmethod
-    # def from_qcolor(cls, color: QColor):
-    #     return cls(color.red(), color.green(), color.blue(), color.alpha())
+    @classmethod
+    def from_qcolor(cls, color: QColor):
+        return cls(color.red(), color.green(), color.blue(), color.alpha())
 
     def to_rgb(self) -> tuple[int, int, int]:
         return (self.r, self.g, self.b)
@@ -84,9 +84,8 @@ class Color:
     def to_hexa(self) -> str:
         return (f'#{self.r:02X}{self.g:02X}{self.b:02X}{self.a:02X}')
 
-    #def to_qt(self) -> QColor:
-        #return QColor(self.r, self.g, self.b, self.a)
+    def to_qt(self) -> QColor:
+        return QColor(self.r, self.g, self.b, self.a)
 
-
-color1 = Color.from_hex("#FD0034")
-print(color1.to_rgb())
+color = Color.from_name("blue10")
+print(color.to_hex())
