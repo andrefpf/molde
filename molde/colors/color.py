@@ -3,8 +3,8 @@ import numpy as np
 
 class Color:
     color_names = {
-        "blue10": (0, 36, 81), 
-        "green70": (0, 179, 0),
+        "blue10": "#002451", 
+        "green70": "#002451",
         #...
     }
     
@@ -17,8 +17,8 @@ class Color:
     @classmethod
     def from_name(cls, name: str):
         if name in cls.color_names:
-            r, g, b = cls.color_names[name]
-            return cls(r, g, b)
+            hex_color = cls.color_names[name]
+            return cls.from_hex(hex_color)
         raise ValueError("Unknown color name")
 
     @classmethod
@@ -87,5 +87,5 @@ class Color:
     def to_qt(self) -> QColor:
         return QColor(self.r, self.g, self.b, self.a)
 
-color = Color.from_name("blue10")
-print(color.to_hex())
+color = Color.from_name("green70")
+print(color.to_rgb())
