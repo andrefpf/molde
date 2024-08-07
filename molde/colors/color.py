@@ -192,5 +192,3 @@ class Color:
     def to_qt(self) -> QColor:
         return QColor(self.r, self.g, self.b, self.a)
 
-color = Color.from_name("green70")
-print(color.to_rgb())
