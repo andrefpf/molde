@@ -1,6 +1,5 @@
 from threading import Lock
 from time import time
-from moviepy.editor import ImageSequenceClip
 import numpy as np
 from pathlib import Path
 
@@ -80,6 +79,8 @@ class AnimatedRenderWidget(CommonRenderWidget):
         )
 
     def generate_video(self, path, n_loops=20):
+        from moviepy.editor import ImageSequenceClip
+        
         images = list()
 
         for i in range(self._animation_total_frames):
