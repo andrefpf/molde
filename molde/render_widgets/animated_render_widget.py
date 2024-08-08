@@ -1,5 +1,8 @@
 from threading import Lock
 from time import time
+from moviepy.editor import ImageSequenceClip
+import numpy as np
+from pathlib import Path
 
 from .common_render_widget import CommonRenderWidget
 
@@ -75,3 +78,21 @@ class AnimatedRenderWidget(CommonRenderWidget):
         raise NotImplementedError(
             'The function "update_animation" was not implemented!'
         )
+
+    def generate_video(self, path, n_loops=20):
+        images = list()
+
+        for i in range(self._animation_total_frames):
+            self.update_animation(i)
+            screenshot = self.get_screenshot().resize([1920, 1080])
+            images.append(screenshot)
+        
+        frames = [np.array(img) for img in images]
+        
+        clip = ImageSequenceClip(frames, self._animation_fps)
+    
+        if Path(path).suffix == ".mp4":
+            clip = clip.loop(duration= clip.duration * n_loops)
+            clip.write_videofile(path)
+        else:
+            clip.write_gif(path)
