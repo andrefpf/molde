@@ -11,21 +11,21 @@ class Color:
         self.a = a
 
     @classmethod
-    def from_name(cls, name: str):
+    def from_name(cls, name: str) -> "Color":
         if name in color_names:
             hex_color = color_names[name]
             return cls.from_hex(hex_color)
         raise ValueError("Unknown color name")
 
     @classmethod
-    def from_rgb(cls, r: int, g: int, b: int):
+    def from_rgb(cls, r: int, g: int, b: int) -> "Color":
         r = int(np.clip(r, 0, 255))
         g = int(np.clip(g, 0, 255))
         b = int(np.clip(b, 0, 255))
         return cls(r, g, b)
 
     @classmethod
-    def from_rgba(cls, r: int, g: int, b: int, a: int=255):
+    def from_rgba(cls, r: int, g: int, b: int, a: int=255) -> "Color":
         r = int(np.clip(r, 0, 255))
         g = int(np.clip(g, 0, 255))
         b = int(np.clip(b, 0, 255))
@@ -33,14 +33,14 @@ class Color:
         return cls(r, g, b, a)
 
     @classmethod
-    def from_rgb_f(cls, r: float, g: float, b: float):
+    def from_rgb_f(cls, r: float, g: float, b: float) -> "Color":
         r = float(np.clip(r, 0, 1))
         g = float(np.clip(g, 0, 1))
         b = float(np.clip(b, 0, 1))
         return cls(int(r * 255), int(g * 255), int(b * 255))
 
     @classmethod
-    def from_rgba_f(cls, r: float, g: float, b: float, a: float):
+    def from_rgba_f(cls, r: float, g: float, b: float, a: float) -> "Color":
         r = float(np.clip(r, 0, 1))
         g = float(np.clip(g, 0, 1))
         b = float(np.clip(b, 0, 1))
@@ -48,7 +48,7 @@ class Color:
         return cls(int(r * 255), int(g * 255), int(b * 255), int(a * 255))
 
     @classmethod
-    def from_hex(cls, color: str):
+    def from_hex(cls, color: str) -> "Color":
         color = color.lstrip('#')
         if len(color) == 6:
             r, g, b = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)
@@ -59,7 +59,7 @@ class Color:
         raise ValueError("Invalid hex color format")
 
     @classmethod
-    def from_qcolor(cls, color: QColor):
+    def from_qcolor(cls, color: QColor) -> "Color":
         return cls(color.red(), color.green(), color.blue(), color.alpha())
 
     def to_rgb(self) -> tuple[int, int, int]:
