@@ -1,5 +1,6 @@
 from pathlib import Path
 from threading import Lock
+from typing import Literal
 
 from PIL import Image
 from PyQt5.QtCore import pyqtSignal
@@ -28,6 +29,7 @@ from vtkmodules.vtkRenderingCore import (
 )
 
 from molde import MOLDE_DIR
+from molde.colors import Color
 from molde.interactor_styles import ArcballCameraInteractorStyle
 
 
@@ -43,7 +45,7 @@ class CommonRenderWidget(QFrame):
     right_clicked = pyqtSignal(int, int)
     right_released = pyqtSignal(int, int)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, *, theme="dark"):
         super().__init__(parent)
 
         self.renderer = vtkRenderer()
@@ -77,11 +79,12 @@ class CommonRenderWidget(QFrame):
         layout.addWidget(self.render_interactor)
         self.setLayout(layout)
 
+        self._current_theme = theme
         self._widget_actors = list()
         self.update_lock = Lock()
 
         self.create_info_text()
-        self.set_theme("dark")
+        self.set_theme(self._current_theme)
 
     def update_plot(self):
         raise NotImplementedError("The function update_plot was not implemented")
@@ -205,6 +208,7 @@ class CommonRenderWidget(QFrame):
     def create_scale_bar(self):
         self.scale_bar_actor = vtkLegendScaleActor()
         self.scale_bar_actor.AllAxesOff()
+        self.renderer.AddActor(self.scale_bar_actor)
 
         font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
 
@@ -230,7 +234,8 @@ class CommonRenderWidget(QFrame):
         label_property.SetFontFamily(VTK_FONT_FILE)
         label_property.SetFontFile(font_file)
 
-        self.renderer.AddActor(self.scale_bar_actor)
+        # set the text color based on current theme
+        self.set_theme(self._current_theme)
 
     def create_color_bar(self, lookup_table=None):
         if lookup_table is None:
@@ -239,29 +244,7 @@ class CommonRenderWidget(QFrame):
 
         font_file = MOLDE_DIR / "fonts/IBMPlexMono-Regular.ttf"
 
-        colorbar_title = vtkTextProperty()
-        colorbar_title.ShadowOff()
-        colorbar_title.ItalicOff()
-        colorbar_title.BoldOn()
-        colorbar_title.SetFontSize(13)
-        colorbar_title.SetColor((0.8, 0.8, 0.8))
-        colorbar_title.SetJustificationToLeft()
-        colorbar_title.SetFontFamily(VTK_FONT_FILE)
-        colorbar_title.SetFontFile(font_file)
-
-        colorbar_label = vtkTextProperty()
-        colorbar_label.ShadowOff()
-        colorbar_label.ItalicOff()
-        colorbar_label.BoldOn()
-        colorbar_label.SetFontSize(12)
-        colorbar_label.SetColor((0.8, 0.8, 0.8))
-        colorbar_label.SetJustificationToLeft()
-        colorbar_label.SetFontFamily(VTK_FONT_FILE)
-        colorbar_label.SetFontFile(font_file)
-
         self.colorbar_actor = vtkScalarBarActor()
-        self.colorbar_actor.SetTitleTextProperty(colorbar_title)
-        self.colorbar_actor.SetLabelTextProperty(colorbar_label)
         self.colorbar_actor.SetLabelFormat("%1.0e ")
         self.colorbar_actor.SetLookupTable(lookup_table)
         self.colorbar_actor.SetWidth(0.02)
@@ -273,25 +256,48 @@ class CommonRenderWidget(QFrame):
         self.colorbar_actor.SetTextPositionToPrecedeScalarBar()
         self.renderer.AddActor(self.colorbar_actor)
 
+        colorbar_title: vtkTextProperty = self.colorbar_actor.GetTitleTextProperty()
+        colorbar_title.ShadowOff()
+        colorbar_title.ItalicOff()
+        colorbar_title.BoldOn()
+        colorbar_title.SetFontSize(13)
+        colorbar_title.SetJustificationToLeft()
+        colorbar_title.SetFontFamily(VTK_FONT_FILE)
+        colorbar_title.SetFontFile(font_file)
+
+        colorbar_label:vtkTextProperty = self.colorbar_actor.GetLabelTextProperty()
+        colorbar_label.ShadowOff()
+        colorbar_label.ItalicOff()
+        colorbar_label.BoldOn()
+        colorbar_label.SetFontSize(12)
+        colorbar_label.SetJustificationToLeft()
+        colorbar_label.SetFontFamily(VTK_FONT_FILE)
+        colorbar_label.SetFontFile(font_file)
+
+        # set the text color based on current theme
+        self.set_theme(self._current_theme)
+
     def create_info_text(self):
         font_file = MOLDE_DIR / "fonts/IBMPlexMono-Bold.ttf"
 
-        self.info_text_property = vtkTextProperty()
-        self.info_text_property.SetFontSize(14)
-        self.info_text_property.SetVerticalJustificationToTop()
-        self.info_text_property.SetColor((0.2, 0.2, 0.2))
-        self.info_text_property.SetLineSpacing(1.3)
-        self.info_text_property.SetFontFamilyToTimes()
-        self.info_text_property.SetFontFamily(VTK_FONT_FILE)
-        self.info_text_property.SetFontFile(font_file)
-
         self.text_actor = vtkTextActor()
-        self.text_actor.SetTextProperty(self.info_text_property)
         self.renderer.AddActor2D(self.text_actor)
+
+        info_text_property = self.text_actor.GetTextProperty()
+        info_text_property.SetFontSize(14)
+        info_text_property.SetVerticalJustificationToTop()
+        info_text_property.SetColor((0.2, 0.2, 0.2))
+        info_text_property.SetLineSpacing(1.3)
+        info_text_property.SetFontFamilyToTimes()
+        info_text_property.SetFontFamily(VTK_FONT_FILE)
+        info_text_property.SetFontFile(font_file)
 
         coord = self.text_actor.GetPositionCoordinate()
         coord.SetCoordinateSystemToNormalizedViewport()
         coord.SetValue(0.01, 0.98)
+
+        # set the text color based on current theme
+        self.set_theme(self._current_theme)
 
     def create_logo(self, path: str | Path) -> vtkLogoRepresentation:
         path = Path(path)
@@ -319,19 +325,48 @@ class CommonRenderWidget(QFrame):
     def set_info_text(self, text):
         self.text_actor.SetInput(text)
 
-    def set_theme(self, theme):
+    def set_theme(self, theme: Literal["dark", "light", "custom"], **kwargs):
+        self._current_theme = theme
+
         if theme == "dark":
-            self.renderer.GradientBackgroundOn()
-            self.renderer.SetBackground(0.06, 0.08, 0.12)
-            self.renderer.SetBackground2(0.7, 0.7, 0.75)
+            bkg_1 = Color("#0F141E")
+            bkg_2 = Color("373B44")
+            font_color = Color("#CCCCCC")
 
         elif theme == "light":
-            self.renderer.GradientBackgroundOn()
-            self.renderer.SetBackground(0.5, 0.5, 0.65)
-            self.renderer.SetBackground2(1, 1, 1)
+            bkg_1 = Color("#8092A6")
+            bkg_2 = Color("#EEF2F3")
+            font_color = Color("#111111")
+
+        elif theme == "custom":
+            bkg_1 = kwargs.get("bkg_1")
+            bkg_2 = kwargs.get("bkg_2")
+            font_color = kwargs.get("font_color")
+
+            if bkg_1 is None:
+                raise ValueError('Missing value "bkg_1"')
+            if bkg_2 is None:
+                raise ValueError('Missing value "bkg_2"')
+            if font_color is None:
+                raise ValueError('Missing value "font_color"')
 
         else:
-            NotImplemented
+            return
+
+        self.renderer.GradientBackgroundOn()
+        self.renderer.SetBackground(bkg_1.to_rgb_f())
+        self.renderer.SetBackground2(bkg_2.to_rgb_f())
+
+        if hasattr(self, "text_actor"):
+            self.text_actor.GetTextProperty().SetColor(font_color.to_rgb_f())
+
+        if hasattr(self, "colorbar_actor"):
+            self.colorbar_actor.GetTitleTextProperty().SetColor(font_color.to_rgb_f())
+            self.colorbar_actor.GetLabelTextProperty().SetColor(font_color.to_rgb_f())
+
+        if hasattr(self, "scale_bar_actor"):
+            self.scale_bar_actor.GetLegendTitleProperty().SetColor(font_color.to_rgb_f())
+            self.scale_bar_actor.GetLegendLabelProperty().SetColor(font_color.to_rgb_f())
 
     #
     def set_custom_view(self, position, view_up):
