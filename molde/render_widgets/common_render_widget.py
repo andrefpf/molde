@@ -329,8 +329,8 @@ class CommonRenderWidget(QFrame):
         self._current_theme = theme
 
         if theme == "dark":
-            bkg_1 = Color("#0F141E")
-            bkg_2 = Color("373B44")
+            bkg_1 = Color("#0b0f17")
+            bkg_2 = Color("#3e424d")
             font_color = Color("#CCCCCC")
 
         elif theme == "light":
