@@ -1,66 +1,100 @@
+import typing
 from PyQt5.QtGui import QColor
 import numpy as np
 from .color_names import color_names
 
 
-class Color: 
-    def __init__(self, r=0, g=0, b=0, a=255):
-        self.r = r
-        self.g = g
-        self.b = b
-        self.a = a
+class Color:
+    r: int
+    g: int
+    b: int
+    a: int
 
-    @classmethod
-    def from_name(cls, name: str) -> "Color":
-        if name in color_names:
-            hex_color = color_names[name]
-            return cls.from_hex(hex_color)
-        raise ValueError("Unknown color name")
+    @typing.overload
+    def __init__(self, r: int, g: int, b: int, a: int = 255):
+        '''
+        Initialize Colors with RGB or RGBA integer values ranging from 0 to 255.
+        '''
+    
+    @typing.overload
+    def __init__(self, r: float, g: float, b: float, a: float = 1.0):
+        '''
+        Initialize Colors with RGB or RGBA floating values ranging from 0.0 to 1.0.
+        '''
+    
+    @typing.overload
+    def __init__(self, hexa: str):
+        '''
+        Initialize colors from hex values.
+        The valid formats incluce RGB (#FF0000 for example)
+        and RGBA (#FF0000FF for example)
+        '''
 
-    @classmethod
-    def from_rgb(cls, r: int, g: int, b: int) -> "Color":
-        r = int(np.clip(r, 0, 255))
-        g = int(np.clip(g, 0, 255))
-        b = int(np.clip(b, 0, 255))
-        return cls(r, g, b)
+    @typing.overload
+    def __init__(self, qcolor: QColor):
+        '''
+        Initialize the color class with an instance of QColor
+        '''
 
-    @classmethod
-    def from_rgba(cls, r: int, g: int, b: int, a: int=255) -> "Color":
-        r = int(np.clip(r, 0, 255))
-        g = int(np.clip(g, 0, 255))
-        b = int(np.clip(b, 0, 255))
-        a = int(np.clip(a, 0, 255))
-        return cls(r, g, b, a)
+    def __init__(self, *args):
 
-    @classmethod
-    def from_rgb_f(cls, r: float, g: float, b: float) -> "Color":
-        r = float(np.clip(r, 0, 1))
-        g = float(np.clip(g, 0, 1))
-        b = float(np.clip(b, 0, 1))
-        return cls(int(r * 255), int(g * 255), int(b * 255))
+        all_int = all([isinstance(i, int) for i in args])
+        all_float = all([isinstance(i, float) for i in args])
 
-    @classmethod
-    def from_rgba_f(cls, r: float, g: float, b: float, a: float) -> "Color":
-        r = float(np.clip(r, 0, 1))
-        g = float(np.clip(g, 0, 1))
-        b = float(np.clip(b, 0, 1))
-        a = float(np.clip(a, 0, 1))
-        return cls(int(r * 255), int(g * 255), int(b * 255), int(a * 255))
+        if len(args) == 0:
+            self.from_rgba(0, 0, 0, 255)
 
-    @classmethod
-    def from_hex(cls, color: str) -> "Color":
+        elif len(args) == 1:
+            self.from_hex(*args)
+
+        elif len(args) in [3, 4] and all_int:
+            self.from_rgba(*args)
+
+        elif len(args) in [3, 4] and all_float:
+            self.from_rgba_f(*args)
+
+        else:
+            raise ValueError("Invalid input values")
+
+    def from_rgb(self, r: int, g: int, b: int) -> "Color":
+        return self.from_rgba(r, g, b)
+
+    def from_rgba(self, r: int, g: int, b: int, a: int=255) -> "Color":
+        self.r = int(np.clip(r, 0, 255))
+        self.g = int(np.clip(g, 0, 255))
+        self.b = int(np.clip(b, 0, 255))
+        self.a = int(np.clip(a, 0, 255))
+        return self
+
+    def from_rgb_f(self, r: float, g: float, b: float) -> "Color":
+        return self.from_rgba_f(r, g, b)
+
+    def from_rgba_f(self, r: float, g: float, b: float, a: float) -> "Color":
+        return self.from_rgba(
+            int(r * 255),
+            int(g * 255),
+            int(b * 255),
+            int(a * 255),
+        )
+
+    def from_hex(self, color: str) -> "Color":
         color = color.lstrip('#')
         if len(color) == 6:
             r, g, b = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)
-            return cls(r, g, b)
+            return self.from_rgb(r, g, b)
         elif len(color) == 8:
             r, g, b, a = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16), int(color[6:8], 16)
-            return cls(r, g, b, a)
+            return self.from_rgba(r, g, b, a)
         raise ValueError("Invalid hex color format")
 
-    @classmethod
-    def from_qcolor(cls, color: QColor) -> "Color":
-        return cls(color.red(), color.green(), color.blue(), color.alpha())
+    def from_name(self, name: str) -> "Color":
+        if name in color_names:
+            hex_color = color_names[name]
+            return self.from_hex(hex_color)
+        raise ValueError("Unknown color name")
+
+    def from_qcolor(self, color: QColor) -> "Color":
+        return self.from_rgba(color.red(), color.green(), color.blue(), color.alpha())
 
     def to_rgb(self) -> tuple[int, int, int]:
         return (self.r, self.g, self.b)
