@@ -69,7 +69,7 @@ class Color:
     def from_rgb_f(self, r: float, g: float, b: float) -> "Color":
         return self.from_rgba_f(r, g, b)
 
-    def from_rgba_f(self, r: float, g: float, b: float, a: float) -> "Color":
+    def from_rgba_f(self, r: float, g: float, b: float, a: float = 1) -> "Color":
         return self.from_rgba(
             int(r * 255),
             int(g * 255),
