@@ -96,7 +96,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
         
         clip = ImageSequenceClip(frames, self._animation_fps)
         clip = clip.loop(duration = clip.duration * n_loops)
-        clip.write_videofile(path)
+        clip.write_videofile(str(path), preset="veryfast", logger=None)
 
     def save_animation(self, path: str | Path):
         '''
