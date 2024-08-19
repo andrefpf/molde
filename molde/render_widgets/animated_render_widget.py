@@ -85,12 +85,19 @@ class AnimatedRenderWidget(CommonRenderWidget):
         Supported formats are MP4, AVI, OGV, and WEBM.
         '''
         from moviepy.editor import ImageSequenceClip
-        
+
+        # Stop animation to prevent conflicts
+        previous_state = self.playing_animation
+        self.stop_animation()
+
         images = list()
         for i in range(self._animation_total_frames):
             self.update_animation(i)
             screenshot = self.get_screenshot().resize([1920, 1080])
             images.append(screenshot)
+
+        # recover the playing animation status
+        self.playing_animation = previous_state
         
         frames = [np.array(img) for img in images]
         
@@ -111,6 +118,10 @@ class AnimatedRenderWidget(CommonRenderWidget):
         path = Path(path)
         is_gif = path.suffix == ".gif"
 
+        # Stop animation to prevent conflicts
+        previous_state = self.playing_animation
+        self.stop_animation()
+
         images:list[Image.Image] = list()
         for i in range(self._animation_total_frames):
             self.update_animation(i)
@@ -118,6 +129,9 @@ class AnimatedRenderWidget(CommonRenderWidget):
             if is_gif:
                 screenshot = screenshot.quantize(method=Image.Quantize.FASTOCTREE, kmeans=2)
             images.append(screenshot)
+
+        # recover the playing animation status
+        self.playing_animation = previous_state
 
         images[0].save(
             path,
