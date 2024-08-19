@@ -3,6 +3,7 @@ from time import time
 import numpy as np
 from pathlib import Path
 from PIL import Image
+import logging
 
 from .common_render_widget import CommonRenderWidget
 
@@ -90,17 +91,18 @@ class AnimatedRenderWidget(CommonRenderWidget):
         previous_state = self.playing_animation
         self.stop_animation()
 
+        logging.info("Generating video frames...")
         images = list()
         for i in range(self._animation_total_frames):
             self.update_animation(i)
             screenshot = self.get_screenshot().resize([1920, 1080])
             images.append(screenshot)
+        frames = [np.array(img) for img in images]
 
         # recover the playing animation status
         self.playing_animation = previous_state
         
-        frames = [np.array(img) for img in images]
-        
+        logging.info("Saving video to file...")
         clip = ImageSequenceClip(frames, self._animation_fps)
         clip = clip.loop(duration = clip.duration * n_loops)
         clip.write_videofile(str(path), preset="veryfast", logger=None)
@@ -122,6 +124,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
         previous_state = self.playing_animation
         self.stop_animation()
 
+        logging.info("Generating animation frames...")
         images:list[Image.Image] = list()
         for i in range(self._animation_total_frames):
             self.update_animation(i)
@@ -133,6 +136,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
         # recover the playing animation status
         self.playing_animation = previous_state
 
+        logging.info("Saving animation to file...")
         images[0].save(
             path,
             save_all=True,
