@@ -73,7 +73,10 @@ LO LO LO LO
 LOCO</string>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>Checkable</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
           <property name="autoExclusive">
            <bool>false</bool>
