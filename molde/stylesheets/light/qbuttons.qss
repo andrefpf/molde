@@ -6,7 +6,7 @@ QPushButton {
 }
 
 QPushButton::hover {
-    background-color: #0051A2;
+    background-color: @primary-lighter;
 }
 
 QRadioButton {

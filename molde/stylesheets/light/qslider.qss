@@ -33,7 +33,7 @@ QSlider::sub-page:vertical {
 
 QSlider::handle:hover,
 QSlider::handle:pressed {
-    background: #0051A2;
+    background: @primary-lighter;
 }
 
 QSlider::handle:horizontal {

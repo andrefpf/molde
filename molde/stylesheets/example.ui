@@ -138,7 +138,7 @@ LOCO</string>
       <enum>QFrame::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Plain</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -216,7 +216,7 @@ LOCO</string>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">

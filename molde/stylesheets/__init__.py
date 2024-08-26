@@ -46,7 +46,10 @@ def get_stylesheet(theme:Literal["light", "dark"] = "light", *, extra_style=""):
     stylesheet = "\n\n".join(all_stylesheets)
 
     # Replace variables by correspondent data
-    for name, data in get_variables(theme).items():
+    variable_size = lambda x: len(x[0])
+    variables_mapping = sorted(get_variables(theme).items(), 
+                               key=variable_size, reverse=True)
+    for name, data in variables_mapping:
         stylesheet = stylesheet.replace(name, data)
 
     return stylesheet
