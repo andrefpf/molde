@@ -1,0 +1,37 @@
+QPushButton {
+    background-color: #0069D0;
+    border: solid;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+QPushButton::hover {
+    background-color: #0051A2;
+}
+
+QRadioButton {
+    color: #24252E;
+}
+
+QRadioButton::indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;  
+    border: 2px solid #0069D0;  
+    background-color: #F0F0F5;  
+}
+
+QRadioButton::indicator:checked {
+    background-color: #0069D0;  
+    border: 2px solid #0069D0;  
+}
+
+QRadioButton::indicator:hover {
+    background-color: #0069D0; 
+}
+
+QCheckBox {
+    color: #24252E;
+}
+
+

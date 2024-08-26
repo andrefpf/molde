@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>868</width>
+    <width>869</width>
     <height>551</height>
    </rect>
   </property>
@@ -47,9 +47,9 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="change_theme_button">
           <property name="text">
-           <string>PushButton</string>
+           <string>Change Theme</string>
           </property>
           <property name="checkable">
            <bool>true</bool>

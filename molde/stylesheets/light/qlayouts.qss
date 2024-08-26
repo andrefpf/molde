@@ -1,0 +1,4 @@
+QFrame {
+    border: 1px solid #AAAAB9;
+    border-radius: 5px;
+}

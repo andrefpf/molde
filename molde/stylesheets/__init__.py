@@ -20,6 +20,7 @@ def get_stylesheet(theme=Literal["light", "dark"], *, extra_style=""):
     return stylesheet
 
 def set_theme(theme=Literal["light", "dark"], *, extra_style=""):
+
     app: QApplication | None = QApplication.instance()
     if app is None:
         print("Ops")
