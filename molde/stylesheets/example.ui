@@ -107,6 +107,9 @@ LOCO</string>
           <property name="text">
            <string>I am just the warning</string>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
           <property name="status" stdset="0">
            <string>warning</string>
           </property>

@@ -21,32 +21,32 @@ QPushButton::disabled {
 
 QPushButton[status=danger] {
     font: bold;
-    background-color: red;
+    background-color: @danger-color;
 }
 
 QPushButton[status=danger]::hover {
     font: bold;
-    background-color: darkred;
+    background-color: @danger-color-lighter;
 }
 
 QPushButton[status=danger]::checked {
     font: bold;
-    background-color: darkred;
+    background-color: @danger-color-darker;
 }
 
 QPushButton[status=warning] {
     font: bold;
-    background-color: yellow;
+    background-color: @warning-color;
 }
 
 QPushButton[status=warning]::hover {
     font: bold;
-    background-color: green;
+    background-color: @warning-color-lighter;
 }
 
 QPushButton[status=warning]::checked {
     font: bold;
-    background-color: green;
+    background-color: @warning-color-darker;
 }
 
 QRadioButton::indicator {
