@@ -1,8 +1,8 @@
 QLineEdit, QDoubleSpinBox, QSpinBox, QComboBox {
     background-color: @background-variant;
-    border: 1px solid "#AAAAB9";
+    border: 1px solid #515162;
     border-radius: 5px;
-    color: #24252E;
+    color: @font-color;
     padding: 5px 5px;
 }
 
@@ -10,3 +10,6 @@ QFrame {
     border: 1px solid @border-color;
     border-radius: 5px;
 }
+
+
+

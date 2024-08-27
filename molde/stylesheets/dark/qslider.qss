@@ -17,13 +17,13 @@ QSlider::groove:vertical {
 QSlider::sub-page:horizontal,
 QSlider::add-page:vertical,
 QSlider::handle {
-    background: @primary;
+    background: #0069D0;
 }
 
 QSlider::sub-page:horizontal:disabled,
 QSlider::add-page:vertical:disabled,
 QSlider::handle:disabled {
-    background: @on-primary;
+    background: white;
 }
 
 QSlider::add-page:horizontal,
@@ -41,6 +41,7 @@ QSlider::handle:horizontal {
     height: 8px;
     margin: -6px 0;
     border-radius: 8px;
+    background-color: @primary;
 }
 
 QSlider::handle:vertical {
@@ -48,4 +49,6 @@ QSlider::handle:vertical {
     height: 16px;
     margin: 0 -6px;
     border-radius: 8px;
+background-color: @primary;
+
 }

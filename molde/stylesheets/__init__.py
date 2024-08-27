@@ -13,31 +13,36 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@primary": "#0069D0",
             "@primary-darker": "#0051A2",
             "@primary-lighter": "#007AF0",
+
             "@background": "#F0F0F5",
-            "@background-variant": "#F0F0F5",
+            "@background-variant": "#D3D4DD",
             "@on-background": "#000000",
             "@on-primary": "#FFFFFF",
+
+            "@font-color": "#24252E",
+            "@border-color": "#AAAAB9",
         })
 
     elif theme == "dark":
         variables.update({
-            "@primary": "#0069D0",
-            "@primary-darker": "#0051A2",
+            "@primary": "#84AAFF",
+            "@primary-darker": "red",
             "@primary-lighter": "#007AF0",
 
-            "@background": "#000000",
-            "@background-variant": "#F0F0F5",
+            "@background": "#24252E",
+            "@background-variant": "#3A3A47",
             "@on-background": "#FFFFFF",
             "@on-primary": "#FFFFFF",
+
+            "@font-color": "#F0F0F5",
+            "@border-color": "#515162",
         })
 
     return variables
 
 def get_stylesheet(theme:Literal["light", "dark"] = "light", *, extra_style=""):
-    qss_dir = MOLDE_DIR / "stylesheets/light"
+    qss_dir = MOLDE_DIR / "stylesheets/" / theme
 
-    if theme == "dark":
-        return ""
 
     all_stylesheets = []
     for path in qss_dir.glob("*.qss"):

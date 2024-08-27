@@ -1,9 +1,9 @@
 QProgressBar {
-    border: 2px solid #AAAAB9;
+    border: 2px solid grey;
     border-radius: 5px;
     text-align: center;
-    background-color: #D3D4DD;
-    color: #24252E;
+    background-color: @background-variant;
+    color: @font-color;
 }
 QProgressBar::chunk {
     background-color: @primary;
