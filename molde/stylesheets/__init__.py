@@ -38,7 +38,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@input-color": color_names.GRAY90.to_hex(),
 
             "@disabled-background": color_names.GRAY80.to_hex(),
-            "@disabled-color": "#a3a0a0",
+            "@disabled-color": color_names.GRAY70.to_hex(),
         })
 
     elif theme == "dark":
@@ -65,7 +65,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@input-color": color_names.GRAY20.to_hex(),
 
             "@disabled-background": "#1c1d25",
-            "@disabled-color": "#474646",
+            "@disabled-color": color_names.GRAY40.to_hex(),
         })
 
     return variables
