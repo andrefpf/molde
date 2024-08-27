@@ -19,6 +19,36 @@ QPushButton::disabled {
     color: @disabled-color;
 }
 
+QPushButton[status=danger] {
+    font: bold;
+    background-color: red;
+}
+
+QPushButton[status=danger]::hover {
+    font: bold;
+    background-color: darkred;
+}
+
+QPushButton[status=danger]::checked {
+    font: bold;
+    background-color: darkred;
+}
+
+QPushButton[status=warning] {
+    font: bold;
+    background-color: yellow;
+}
+
+QPushButton[status=warning]::hover {
+    font: bold;
+    background-color: green;
+}
+
+QPushButton[status=warning]::checked {
+    font: bold;
+    background-color: green;
+}
+
 QRadioButton::indicator {
     width: 10px;
     height: 10px;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>869</width>
-    <height>551</height>
+    <width>867</width>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,12 +87,28 @@ LOCO</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="danger">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="text">
-           <string>PushButton</string>
+           <string>I AM THE DANGER</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="status" stdset="0">
+           <string>danger</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="text">
+           <string>I am just the warning</string>
+          </property>
+          <property name="status" stdset="0">
+           <string>warning</string>
           </property>
          </widget>
         </item>
@@ -276,15 +292,12 @@ LOCO</string>
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
+    <widget class="QDialogButtonBox" name="button_box">
      <property name="enabled">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-     <property name="status" stdset="0">
-      <string>danger</string>
      </property>
     </widget>
    </item>
