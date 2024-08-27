@@ -1,5 +1,0 @@
-QWidget {
-    font-family: sans-serif;
-    background-color: @background;
-    color: @font-color;
-}

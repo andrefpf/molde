@@ -10,8 +10,8 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary": "#0069D0",
             "@primary-darker": "#0051A2",
+            "@primary": "#0069D0",
             "@primary-lighter": "#007AF0",
 
             "@background": "#F0F0F5",
@@ -19,30 +19,37 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@on-background": "#000000",
             "@on-primary": "#FFFFFF",
 
-            "@font-color": "#24252E",
             "@border-color": "#AAAAB9",
+
+            "@disabled-background": "#D3D4DD",
+            "@disabled-color": "#a3a0a0",
+
+            "@input-color": "#F0F0F5",
         })
 
     elif theme == "dark":
         variables.update({
-            "@primary": "#84AAFF",
-            "@primary-darker": "red",
-            "@primary-lighter": "#007AF0",
+            "@primary-darker": "#007AF0",
+            "@primary": "#498FFF",
+            "@primary-lighter": "#84AAFF",
 
             "@background": "#24252E",
             "@background-variant": "#3A3A47",
             "@on-background": "#FFFFFF",
             "@on-primary": "#FFFFFF",
 
-            "@font-color": "#F0F0F5",
             "@border-color": "#515162",
+
+            "@disabled-background": "#1c1d25",
+            "@disabled-color": "#474646",
+
+            "@input-color": "#3A3A47",
         })
 
     return variables
 
 def get_stylesheet(theme:Literal["light", "dark"] = "light", *, extra_style=""):
-    qss_dir = MOLDE_DIR / "stylesheets/" / theme
-
+    qss_dir = MOLDE_DIR / "stylesheets/"
 
     all_stylesheets = []
     for path in qss_dir.glob("*.qss"):

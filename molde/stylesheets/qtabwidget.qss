@@ -6,7 +6,6 @@ QTabWidget::pane {
 
 QTabBar::tab {
     background: @background-variant;
-    color: @font-color;
     padding: 10px;
     border: 1px solid @border-color;
 }

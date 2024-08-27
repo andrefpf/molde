@@ -23,7 +23,7 @@ QSlider::handle {
 QSlider::sub-page:horizontal:disabled,
 QSlider::add-page:vertical:disabled,
 QSlider::handle:disabled {
-    background: @on-primary;
+    background: @disabled-background;
 }
 
 QSlider::add-page:horizontal,
@@ -49,3 +49,5 @@ QSlider::handle:vertical {
     margin: 0 -6px;
     border-radius: 8px;
 }
+
+

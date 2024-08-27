@@ -37,6 +37,9 @@
         </item>
         <item>
          <widget class="QRadioButton" name="radioButton_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>RadioButton</string>
           </property>
@@ -85,6 +88,9 @@ LOCO</string>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>PushButton</string>
           </property>
@@ -150,10 +156,18 @@ LOCO</string>
          <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox"/>
+         <widget class="QSpinBox" name="spinBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBox"/>
+         <widget class="QComboBox" name="comboBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -164,6 +178,12 @@ LOCO</string>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QSlider" name="horizontalSlider">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -171,6 +191,9 @@ LOCO</string>
         </item>
         <item>
          <widget class="QSlider" name="horizontalSlider_3">
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -178,6 +201,9 @@ LOCO</string>
         </item>
         <item>
          <widget class="QSlider" name="horizontalSlider_2">
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -189,6 +215,9 @@ LOCO</string>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QSlider" name="verticalSlider_2">
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -196,6 +225,9 @@ LOCO</string>
         </item>
         <item>
          <widget class="QSlider" name="verticalSlider_3">
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -203,6 +235,9 @@ LOCO</string>
         </item>
         <item>
          <widget class="QSlider" name="verticalSlider">
+          <property name="value">
+           <number>50</number>
+          </property>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -242,8 +277,14 @@ LOCO</string>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="status" stdset="0">
+      <string>danger</string>
      </property>
     </widget>
    </item>
