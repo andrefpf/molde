@@ -1,6 +1,7 @@
 from typing import Literal
 from PyQt5.QtWidgets import QApplication, QWidget
 from molde import MOLDE_DIR
+from molde.colors import Color, color_names
 
 
 def set_qproperty(widget: QWidget, **kwargs):
@@ -15,51 +16,53 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary-darker": "#0051A2",
-            "@primary": "#0069D0",
-            "@primary-lighter": "#007AF0",
+            "@primary-lighter": color_names.BLUE50.to_hex(),
+            "@primary": color_names.BLUE40.to_hex(),
+            "@primary-darker": color_names.BLUE30.to_hex(),
 
-            "@danger-color-darker": "#A4151E",
-            "@danger-color": "#D01E29",
-            "@danger-color-lighter": "#F02532",
+            "@danger-color-lighter": color_names.RED50.to_hex(),
+            "@danger-color": color_names.RED40.to_hex(),
+            "@danger-color-darker": color_names.RED30.to_hex(),
 
-            "@warning-color-darker": "#684F00",
-            "@warning-color": "#866600",
-            "@warning-color-lighter": "#9B7700",
+            "@warning-color-lighter": color_names.YELLOW50.to_hex(),
+            "@warning-color": color_names.YELLOW40.to_hex(),
+            "@warning-color-darker": color_names.YELLOW30.to_hex(),
 
-            "@background": "#F0F0F5",
-            "@background-variant": "#D3D4DD",
-            "@on-background": "#000000",
-            "@on-primary": "#FFFFFF",
+            "@background": color_names.GRAY90.to_hex(),
+            "@background-variant": color_names.GRAY80.to_hex(),
 
-            "@border-color": "#AAAAB9",
-            "@input-color": "#F0F0F5",
+            "@on-primary": color_names.WHITE.to_hex(),
+            "@on-background": color_names.BLACK.to_hex(),
 
-            "@disabled-background": "#D3D4DD",
+            "@border-color": color_names.GRAY70.to_hex(),
+            "@input-color": color_names.GRAY90.to_hex(),
+
+            "@disabled-background": color_names.GRAY80.to_hex(),
             "@disabled-color": "#a3a0a0",
         })
 
     elif theme == "dark":
         variables.update({
-            "@primary-darker": "#007AF0",
-            "@primary": "#498FFF",
-            "@primary-lighter": "#84AAFF",
+            "@primary-lighter": color_names.BLUE70.to_hex(),
+            "@primary": color_names.BLUE60.to_hex(),
+            "@primary-darker": color_names.BLUE50.to_hex(),
 
-            "@danger-color-darker": "#A4151E",
-            "@danger-color": "#D01E29",
-            "@danger-color-lighter": "#F02532",
+            "@danger-color-lighter": color_names.RED50.to_hex(),
+            "@danger-color": color_names.RED40.to_hex(),
+            "@danger-color-darker": color_names.RED30.to_hex(),
 
-            "@warning-color-darker": "#684F00",
-            "@warning-color": "#866600",
-            "@warning-color-lighter": "#9B7700",
+            "@warning-color-lighter": color_names.YELLOW50.to_hex(),
+            "@warning-color": color_names.YELLOW40.to_hex(),
+            "@warning-color-darker": color_names.YELLOW30.to_hex(),
 
-            "@background": "#24252E",
-            "@background-variant": "#3A3A47",
-            "@on-background": "#FFFFFF",
-            "@on-primary": "#FFFFFF",
+            "@background": color_names.GRAY10.to_hex(),
+            "@background-variant": color_names.GRAY20.to_hex(),
 
-            "@border-color": "#515162",
-            "@input-color": "#3A3A47",
+            "@on-background": color_names.WHITE.to_hex(),
+            "@on-primary": color_names.WHITE.to_hex(),
+
+            "@border-color": color_names.GRAY30.to_hex(),
+            "@input-color": color_names.GRAY20.to_hex(),
 
             "@disabled-background": "#1c1d25",
             "@disabled-color": "#474646",
