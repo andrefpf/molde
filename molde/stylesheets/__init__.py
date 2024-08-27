@@ -1,7 +1,12 @@
 from typing import Literal
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QWidget
 from molde import MOLDE_DIR
 
+
+def set_qproperty(widget: QWidget, **kwargs):
+    for key, val in kwargs.items():
+        widget.setProperty(key, val)
+    widget.style().polish(widget)
 
 def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
     variables = {
