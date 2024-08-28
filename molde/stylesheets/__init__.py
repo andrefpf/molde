@@ -16,56 +16,56 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary-lighter": color_names.BLUE5.to_hex(),
-            "@primary": color_names.BLUE4.to_hex(),
-            "@primary-darker": color_names.BLUE3.to_hex(),
+            "@primary-lighter": color_names.BLUE_5.to_hex(),
+            "@primary": color_names.BLUE_4.to_hex(),
+            "@primary-darker": color_names.BLUE_3.to_hex(),
 
-            "@danger-color-lighter": color_names.RED5.to_hex(),
-            "@danger-color": color_names.RED4.to_hex(),
-            "@danger-color-darker": color_names.RED3.to_hex(),
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color": color_names.RED_4.to_hex(),
+            "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW5.to_hex(),
-            "@warning-color": color_names.YELLOW4.to_hex(),
-            "@warning-color-darker": color_names.YELLOW3.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color": color_names.YELLOW_4.to_hex(),
+            "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
-            "@background": color_names.GRAY9.to_hex(),
-            "@background-variant": color_names.GRAY8.to_hex(),
+            "@background": color_names.GRAY_9.to_hex(),
+            "@background-variant": color_names.GRAY_8.to_hex(),
 
             "@on-primary": color_names.WHITE.to_hex(),
             "@on-background": color_names.BLACK.to_hex(),
 
-            "@border-color": color_names.GRAY7.to_hex(),
-            "@input-color": color_names.GRAY9.to_hex(),
+            "@border-color": color_names.GRAY_7.to_hex(),
+            "@input-color": color_names.GRAY_9.to_hex(),
 
-            "@disabled-background": color_names.GRAY8.to_hex(),
-            "@disabled-color": color_names.GRAY7.to_hex(),
+            "@disabled-background": color_names.GRAY_8.to_hex(),
+            "@disabled-color": color_names.GRAY_7.to_hex(),
         })
 
     elif theme == "dark":
         variables.update({
-            "@primary-lighter": color_names.BLUE7.to_hex(),
-            "@primary": color_names.BLUE6.to_hex(),
-            "@primary-darker": color_names.BLUE5.to_hex(),
+            "@primary-lighter": color_names.BLUE_7.to_hex(),
+            "@primary": color_names.BLUE_6.to_hex(),
+            "@primary-darker": color_names.BLUE_5.to_hex(),
 
-            "@danger-color-lighter": color_names.RED5.to_hex(),
-            "@danger-color": color_names.RED4.to_hex(),
-            "@danger-color-darker": color_names.RED3.to_hex(),
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color": color_names.RED_4.to_hex(),
+            "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW5.to_hex(),
-            "@warning-color": color_names.YELLOW4.to_hex(),
-            "@warning-color-darker": color_names.YELLOW3.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color": color_names.YELLOW_4.to_hex(),
+            "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
-            "@background": color_names.GRAY1.to_hex(),
-            "@background-variant": color_names.GRAY2.to_hex(),
+            "@background": color_names.GRAY_1.to_hex(),
+            "@background-variant": color_names.GRAY_2.to_hex(),
 
             "@on-background": color_names.WHITE.to_hex(),
             "@on-primary": color_names.WHITE.to_hex(),
 
-            "@border-color": color_names.GRAY3.to_hex(),
-            "@input-color": color_names.GRAY2.to_hex(),
+            "@border-color": color_names.GRAY_3.to_hex(),
+            "@input-color": color_names.GRAY_2.to_hex(),
 
-            "@disabled-background": color_names.GRAY0.to_hex(),
-            "@disabled-color": color_names.GRAY4.to_hex(),
+            "@disabled-background": color_names.GRAY_0.to_hex(),
+            "@disabled-color": color_names.GRAY_4.to_hex(),
         })
 
     return variables
