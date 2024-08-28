@@ -12,7 +12,9 @@ This is heavily inspired by [Carbon Design System](https://carbondesignsystem.co
 # Colors 
 Bold Design System have great color palletes.
 We can use the same.
-They are available [here](https://bold.bridge.ufsc.br/pt/design-guidelines/color).
+They are available [here](molde/colors/index.html).
+
+If they are not, use the ones from [Bold](https://bold.bridge.ufsc.br/pt/design-guidelines/color).
 
 # Icons 
 A lot of free to use icons, from Material Design, are available [here](https://fonts.google.com/icons).
