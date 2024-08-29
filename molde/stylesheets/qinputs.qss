@@ -20,9 +20,6 @@ QDoubleSpinBox::up-button {
 
 QSpinBox::up-button:hover,
 QDoubleSpinBox::up-button:hover {
-    background-image: url("@arrow-up-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: @hover-arrow-color;
 }
 
@@ -31,7 +28,7 @@ QDoubleSpinBox::up-button:disabled {
     background-image: url("@arrow-up-disabled-image-icon");
     background-repeat: no-repeat;
     background-position: center;
-    background-color: @hover-arrow-color;
+    background-color: @disabled-background;
 }
 
 QSpinBox::down-button,
@@ -43,9 +40,6 @@ QDoubleSpinBox::down-button {
 
 QSpinBox::down-button:hover,
 QDoubleSpinBox::down-button:hover {
-    background-image: url("@arrow-down-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: @hover-arrow-color;
 }
 
@@ -54,25 +48,21 @@ QDoubleSpinBox::down-button:disabled {
     background-image: url("@arrow-down-disabled-image-icon");
     background-repeat: no-repeat;
     background-position: center;
-    background-color: @hover-arrow-color;
+    background-color: @disabled-background;
 }
 
-QComboBox::down-arrow {
+
+QComboBox::drop-down:button {
     background-image: url("@arrow-down-image-icon");
     background-repeat: no-repeat;
     background-position: center;
+    background-color: @input-color;
+    border-radius: @border-radius;
 }
 
-QComboBox::down-arrow:hover {
-    background-image: url("@arrow-down-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
+QComboBox::drop-down:hover {
     background-color: @hover-arrow-color;
 }
 
-QComboBox::down-arrow:disabled {
-    background-image: url("@arrow-down-disabled-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: @hover-arrow-color;
-}
+
+

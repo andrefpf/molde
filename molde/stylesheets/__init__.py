@@ -41,7 +41,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-background": color_names.GRAY_8.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),
 
-            "@hover-arrow-color":  color_names.GRAY_8.to_hex(),
+            "@hover-arrow-color":  color_names.GRAY_9.to_hex(),
             "@arrow-up-image-icon": "molde/stylesheets/arrow_up_light_theme.svg",
             "@arrow-down-image-icon": "molde/stylesheets/arrow_down_light_theme.svg",
             "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
@@ -77,7 +77,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-background": color_names.GRAY_0.to_hex(),
             "@disabled-color": color_names.GRAY_4.to_hex(),
 
-            "@hover-arrow-color": color_names.GRAY_1.to_hex(),
+            "@hover-arrow-color": color_names.GRAY_2.to_hex(),
             "@arrow-up-image-icon": "molde/stylesheets/arrow_up_dark_theme.svg",
             "@arrow-down-image-icon": "molde/stylesheets/arrow_down_dark_theme.svg",
             "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
