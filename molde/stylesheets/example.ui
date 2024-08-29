@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>867</width>
-    <height>544</height>
+    <width>869</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,10 +27,19 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QRadioButton" name="radioButton">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="text">
            <string>RadioButton</string>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
           <property name="checked">
+           <bool>false</bool>
+          </property>
+          <property name="autoExclusive">
            <bool>true</bool>
           </property>
          </widget>
@@ -82,19 +91,6 @@ LOCO</string>
            <bool>true</bool>
           </property>
           <property name="autoExclusive">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="danger">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>I AM THE DANGER</string>
-          </property>
-          <property name="checkable">
            <bool>true</bool>
           </property>
           <property name="status" stdset="0">
@@ -104,11 +100,11 @@ LOCO</string>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>I am just the warning</string>
-          </property>
-          <property name="checkable">
+          <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>PushButton</string>
           </property>
           <property name="status" stdset="0">
            <string>warning</string>
@@ -121,6 +117,9 @@ LOCO</string>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QCheckBox" name="checkBox_3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>CheckBox</string>
           </property>
@@ -184,7 +183,7 @@ LOCO</string>
         <item>
          <widget class="QComboBox" name="comboBox">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -295,12 +294,15 @@ LOCO</string>
     </widget>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="button_box">
+    <widget class="QDialogButtonBox" name="buttonBox">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="danger" stdset="0">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
