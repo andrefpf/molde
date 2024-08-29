@@ -176,7 +176,6 @@ class CommonRenderWidget(QFrame):
 
     def create_axes(self):
         axes_actor = vtkAxesActor()
-        axes_actor.SetTipTypeToSphere()
 
         axes_actor.SetXAxisLabelText(" X")
         axes_actor.SetYAxisLabelText(" Y")
