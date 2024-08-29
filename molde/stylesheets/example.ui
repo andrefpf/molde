@@ -279,7 +279,7 @@ LOCO</string>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -299,7 +299,11 @@ LOCO</string>
       <attribute name="title">
        <string>Tab 2</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_5"/>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="CommonRenderWidget" name="render_widget" native="true"/>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
@@ -318,6 +322,14 @@ LOCO</string>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CommonRenderWidget</class>
+   <extends>QWidget</extends>
+   <header>molde.render_widgets.common_render_widget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

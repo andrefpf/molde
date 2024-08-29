@@ -321,6 +321,11 @@ class CommonRenderWidget(QFrame):
         light.SetPosition(offset_x, offset_y, 1)
         self.renderer.AddLight(light)
 
+    def set_colorbar_unit(self, text):
+        if not hasattr(self, "colorbar_actor"):
+            return
+        self.colorbar_actor.SetTitle(text)
+
     def set_info_text(self, text):
         self.text_actor.SetInput(text)
 
