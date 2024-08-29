@@ -25,6 +25,11 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-color": "#a3a0a0",
 
             "@input-color": "#F0F0F5",
+
+            "@hover-arrow-color": "#D3D4DD",
+            "@arrow-up-image-icon": "molde/stylesheets/arrow_up_light_theme.svg",
+            "@arrow-down-image-icon": "molde/stylesheets/arrow_down_light_theme.svg",
+            "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
         })
 
     elif theme == "dark":
@@ -44,6 +49,11 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-color": "#474646",
 
             "@input-color": "#3A3A47",
+
+            "@hover-arrow-color": "#24252E",
+            "@arrow-up-image-icon": "molde/stylesheets/arrow_up_dark_theme.svg",
+            "@arrow-down-image-icon": "molde/stylesheets/arrow_down_dark_theme.svg",
+            "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
         })
 
     return variables

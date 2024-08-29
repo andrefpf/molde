@@ -19,6 +19,10 @@ QPushButton::disabled {
     color: @disabled-color;
 }
 
+QPushButton[danger=true] {
+    background: red;
+}
+
 QRadioButton::indicator {
     width: 10px;
     height: 10px;

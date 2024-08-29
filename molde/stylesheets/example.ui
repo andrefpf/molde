@@ -27,6 +27,9 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QRadioButton" name="radioButton">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="text">
            <string>RadioButton</string>
           </property>
@@ -55,7 +58,7 @@
            <string>Change Theme</string>
           </property>
           <property name="checkable">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="autoExclusive">
            <bool>false</bool>
@@ -102,6 +105,9 @@ LOCO</string>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
          <widget class="QCheckBox" name="checkBox_3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="text">
            <string>CheckBox</string>
           </property>
@@ -165,7 +171,7 @@ LOCO</string>
         <item>
          <widget class="QComboBox" name="comboBox">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -283,8 +289,8 @@ LOCO</string>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
-     <property name="status" stdset="0">
-      <string>danger</string>
+     <property name="danger" stdset="0">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
