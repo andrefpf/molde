@@ -1,7 +1,13 @@
 from typing import Literal
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QWidget
 from molde import MOLDE_DIR
+from molde.colors import color_names
 
+
+def set_qproperty(widget: QWidget, **kwargs):
+    for key, val in kwargs.items():
+        widget.setProperty(key, val)
+    widget.style().polish(widget)
 
 def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
     variables = {
@@ -10,50 +16,74 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary-darker": "#0051A2",
-            "@primary": "#0069D0",
-            "@primary-lighter": "#007AF0",
+            "@primary-lighter": color_names.BLUE_5.to_hex(),
+            "@primary": color_names.BLUE_4.to_hex(),
+            "@primary-darker": color_names.BLUE_3.to_hex(),
 
-            "@background": "#F0F0F5",
-            "@background-variant": "#D3D4DD",
-            "@on-background": "#000000",
-            "@on-primary": "#FFFFFF",
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color": color_names.RED_4.to_hex(),
+            "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@border-color": "#AAAAB9",
+            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color": color_names.YELLOW_4.to_hex(),
+            "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
-            "@disabled-background": "#D3D4DD",
-            "@disabled-color": "#a3a0a0",
+            "@background": color_names.GRAY_9.to_hex(),
+            "@background-variant": color_names.GRAY_8.to_hex(),
 
             "@input-color": "#F0F0F5",
+            "@on-primary": color_names.WHITE.to_hex(),
+            "@on-background": color_names.BLACK.to_hex(),
 
-            "@hover-arrow-color": "#D3D4DD",
+            "@border-color": color_names.GRAY_7.to_hex(),
+            "@input-color": color_names.GRAY_9.to_hex(),
+
+            "@disabled-background": color_names.GRAY_8.to_hex(),
+            "@disabled-color": color_names.GRAY_7.to_hex(),
+
+            "@hover-arrow-color":  color_names.GRAY_8.to_hex(),
             "@arrow-up-image-icon": "molde/stylesheets/arrow_up_light_theme.svg",
             "@arrow-down-image-icon": "molde/stylesheets/arrow_down_light_theme.svg",
             "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
+            "@arrow-up-disabled-image-icon": "molde/stylesheets/arrow_up_dark_theme.svg",
+            "@arrow-down-disabled-image-icon": "molde/stylesheets/arrow_down_dark_theme.svg",
         })
 
     elif theme == "dark":
         variables.update({
-            "@primary-darker": "#007AF0",
-            "@primary": "#498FFF",
-            "@primary-lighter": "#84AAFF",
+            "@primary-lighter": color_names.BLUE_7.to_hex(),
+            "@primary": color_names.BLUE_6.to_hex(),
+            "@primary-darker": color_names.BLUE_5.to_hex(),
 
-            "@background": "#24252E",
-            "@background-variant": "#3A3A47",
-            "@on-background": "#FFFFFF",
-            "@on-primary": "#FFFFFF",
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color": color_names.RED_4.to_hex(),
+            "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@border-color": "#515162",
+            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color": color_names.YELLOW_4.to_hex(),
+            "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
-            "@disabled-background": "#1c1d25",
-            "@disabled-color": "#474646",
+            "@background": color_names.GRAY_1.to_hex(),
+            "@background-variant": color_names.GRAY_2.to_hex(),
 
             "@input-color": "#3A3A47",
 
-            "@hover-arrow-color": "#24252E",
+            "@on-background": color_names.WHITE.to_hex(),
+            "@on-primary": color_names.WHITE.to_hex(),
+
+            "@border-color": color_names.GRAY_3.to_hex(),
+            "@input-color": color_names.GRAY_2.to_hex(),
+
+            "@disabled-background": color_names.GRAY_0.to_hex(),
+            "@disabled-color": color_names.GRAY_4.to_hex(),
+
+            "@hover-arrow-color": color_names.GRAY_1.to_hex(),
             "@arrow-up-image-icon": "molde/stylesheets/arrow_up_dark_theme.svg",
             "@arrow-down-image-icon": "molde/stylesheets/arrow_down_dark_theme.svg",
             "@check-box-image-icon": "molde/stylesheets/check_box_image.svg",
+            "@arrow-up-disabled-image-icon": "molde/stylesheets/arrow_up_light_theme.svg",
+            "@arrow-down-disabled-image-icon": "molde/stylesheets/arrow_down_light_theme.svg",
+            
         })
 
     return variables

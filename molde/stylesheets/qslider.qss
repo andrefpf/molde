@@ -1,5 +1,9 @@
-QSlider {
-    padding: 2px 0;
+QSlider:horizontal {
+    padding: 4px 0;
+}
+
+QSlider:vertical {
+    padding: 0 4px;
 }
 
 QSlider::groove {

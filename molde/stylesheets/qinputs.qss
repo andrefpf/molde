@@ -13,43 +13,65 @@ QSpinBox::disabled {
 
 QSpinBox::up-button,
 QDoubleSpinBox::up-button {
-    background-image: url(@arrow-up-image-icon);
+    background-image: url("@arrow-up-image-icon");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 QSpinBox::up-button:hover,
 QDoubleSpinBox::up-button:hover {
-    background-image: url(@arrow-up-image-icon);
+    background-image: url("@arrow-up-image-icon");
     background-repeat: no-repeat;
     background-position: center;
     background-color: @hover-arrow-color;
 }
 
+QSpinBox::up-button:disabled,
+QDoubleSpinBox::up-button:disabled {
+    background-image: url("@arrow-up-disabled-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: @hover-arrow-color;
+}
 
 QSpinBox::down-button,
 QDoubleSpinBox::down-button {
-    background-image: url(@arrow-down-image-icon);
+    background-image: url("@arrow-down-image-icon");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 QSpinBox::down-button:hover,
 QDoubleSpinBox::down-button:hover {
-    background-image: url(@arrow-down-image-icon);
+    background-image: url("@arrow-down-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: @hover-arrow-color;
+}
+
+QSpinBox::down-button:disabled,
+QDoubleSpinBox::down-button:disabled {
+    background-image: url("@arrow-down-disabled-image-icon");
     background-repeat: no-repeat;
     background-position: center;
     background-color: @hover-arrow-color;
 }
 
 QComboBox::down-arrow {
-    background-image: url(@arrow-down-image-icon);;
+    background-image: url("@arrow-down-image-icon");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 QComboBox::down-arrow:hover {
-    background-image: url(@arrow-down-image-icon);;
+    background-image: url("@arrow-down-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: @hover-arrow-color;
+}
+
+QComboBox::down-arrow:disabled {
+    background-image: url("@arrow-down-disabled-image-icon");
     background-repeat: no-repeat;
     background-position: center;
     background-color: @hover-arrow-color;

@@ -1,7 +1,6 @@
 import typing
 from PyQt5.QtGui import QColor
 import numpy as np
-from .color_names import color_names
 
 
 class Color:
@@ -35,6 +34,12 @@ class Color:
         '''
         Initialize the color class with an instance of QColor
         '''
+    
+    @typing.overload
+    def __init__(self):
+        '''
+        Initialize an empty black color
+        '''
 
     def __init__(self, *args):
 
@@ -44,8 +49,11 @@ class Color:
         if len(args) == 0:
             self.from_rgba(0, 0, 0, 255)
 
-        elif len(args) == 1:
+        elif len(args) == 1 and isinstance(args[0], str):
             self.from_hex(*args)
+        
+        elif len(args) == 1 and isinstance(args[0], QColor):
+            self.from_qcolor(*args)
 
         elif len(args) in [3, 4] and all_int:
             self.from_rgba(*args)
@@ -86,12 +94,6 @@ class Color:
             r, g, b, a = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16), int(color[6:8], 16)
             return self.from_rgba(r, g, b, a)
         raise ValueError("Invalid hex color format")
-
-    def from_name(self, name: str) -> "Color":
-        if name in color_names:
-            hex_color = color_names[name]
-            return self.from_hex(hex_color)
-        raise ValueError("Unknown color name")
 
     def from_qcolor(self, color: QColor) -> "Color":
         return self.from_rgba(color.red(), color.green(), color.blue(), color.alpha())

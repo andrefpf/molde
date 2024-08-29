@@ -33,7 +33,13 @@
           <property name="text">
            <string>RadioButton</string>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
           <property name="checked">
+           <bool>false</bool>
+          </property>
+          <property name="autoExclusive">
            <bool>true</bool>
           </property>
          </widget>
@@ -85,17 +91,23 @@ LOCO</string>
            <bool>true</bool>
           </property>
           <property name="autoExclusive">
-           <bool>false</bool>
+           <bool>true</bool>
+          </property>
+          <property name="status" stdset="0">
+           <string>danger</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="pushButton_2">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="text">
            <string>PushButton</string>
+          </property>
+          <property name="status" stdset="0">
+           <string>warning</string>
           </property>
          </widget>
         </item>
