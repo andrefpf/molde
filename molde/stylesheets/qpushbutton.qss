@@ -19,17 +19,20 @@ QPushButton::disabled {
     color: @disabled-color;
 }
 
-QPushButton[status=main] {
+QPushButton[status=main], 
+QPushButton::default {
     font: bold;
     background-color: @primary;
     color: @on-primary;
 }
 
-QPushButton[status=main]::hover {
+QPushButton[status=main]::hover,
+QPushButton::default:hover {
     background-color: @primary-lighter;
 }
 
-QPushButton[status=main]::checked {
+QPushButton[status=main]::checked,
+QPushButton::default:checked {
     background-color: @primary-darker;
 }
 
