@@ -5,6 +5,7 @@ QLineEdit, QDoubleSpinBox, QSpinBox, QComboBox {
     padding: 5px 5px;
 }
 
+QLineEdit::disabled,
 QSpinBox::disabled {
     background-color: @disabled-background;
     border: 0px;

@@ -75,6 +75,9 @@
           <property name="flat">
            <bool>false</bool>
           </property>
+          <property name="status" stdset="0">
+           <string>main</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -91,7 +94,7 @@ LOCO</string>
            <bool>true</bool>
           </property>
           <property name="autoExclusive">
-           <bool>true</bool>
+           <bool>false</bool>
           </property>
           <property name="status" stdset="0">
            <string>danger</string>
@@ -167,6 +170,16 @@ LOCO</string>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="lineEdit_2">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>sapoooooooooooooooooooooooooooooooooooooo</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QLineEdit" name="lineEdit"/>
         </item>
