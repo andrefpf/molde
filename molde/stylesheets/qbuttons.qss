@@ -1,0 +1,79 @@
+QPushButton {
+    color: @on-primary;
+    background-color: @primary;
+    border: solid;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+QPushButton::hover {
+    background-color: @primary-lighter;
+}
+
+QPushButton::checked {
+    background-color: @primary-darker;
+}
+
+QPushButton::disabled {
+    background: @disabled-background;
+    color: @disabled-color;
+}
+
+QPushButton[status=danger] {
+    font: bold;
+    background-color: @danger-color;
+}
+
+QPushButton[status=danger]::hover {
+    font: bold;
+    background-color: @danger-color-lighter;
+}
+
+QPushButton[status=danger]::checked {
+    font: bold;
+    background-color: @danger-color-darker;
+}
+
+QPushButton[status=warning] {
+    font: bold;
+    background-color: @warning-color;
+}
+
+QPushButton[status=warning]::hover {
+    font: bold;
+    background-color: @warning-color-lighter;
+}
+
+QPushButton[status=warning]::checked {
+    font: bold;
+    background-color: @warning-color-darker;
+}
+
+QRadioButton::indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;  
+    border: 2px solid @primary;  
+    background-color: @background;  
+}
+
+QRadioButton::indicator:checked {
+    background-color: @primary;  
+    border: 2px solid @primary;  
+}
+
+QRadioButton::indicator:hover {
+    background-color: @primary; 
+}
+
+QRadioButton::indicator:disabled {
+    background: @disabled-background;
+    border-color: @disabled-background;
+}
+
+QRadioButton::disabled {
+    color: @disabled-color;
+}
+
+
+

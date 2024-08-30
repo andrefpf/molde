@@ -172,7 +172,6 @@ class CommonRenderWidget(QFrame):
 
     def create_axes(self):
         axes_actor = vtkAxesActor()
-        axes_actor.SetTipTypeToSphere()
 
         axes_actor.SetXAxisLabelText(" X")
         axes_actor.SetYAxisLabelText(" Y")
@@ -317,6 +316,11 @@ class CommonRenderWidget(QFrame):
         light.SetLightTypeToCameraLight()
         light.SetPosition(offset_x, offset_y, 1)
         self.renderer.AddLight(light)
+
+    def set_colorbar_unit(self, text):
+        if not hasattr(self, "colorbar_actor"):
+            return
+        self.colorbar_actor.SetTitle(text)
 
     def set_info_text(self, text):
         self.text_actor.SetInput(text)
