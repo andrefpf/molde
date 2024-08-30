@@ -159,17 +159,13 @@ class CommonRenderWidget(QFrame):
 
     def get_thumbnail(self):
         image = self.get_screenshot()
-        size = min(image.width, image.height)
-        box = (
-            (image.width - size) // 2,
-            (image.height - size) // 2,
-            (image.width + size) // 2,
-            (image.height + size) // 2,
-        )
-        image = image.crop(box=box).resize(size=(512, 512))
-        return image
+        return image.thumbnail((512, 512))
 
-    def save_png(self, path):
+    def save_image(self, path: str | Path):
+        '''
+        Saves the render as an image.
+        Supported formats are JPEG, JPG, PNG, BMP, ICO, TIFF, PPM and others.
+        '''
         image = self.get_screenshot()
         with open(path, "w") as file:
             image.save(file)

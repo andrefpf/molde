@@ -3,18 +3,14 @@
 </div>
 
 # MOLDE
-**M**OPT **L**ightweight **D**esign **E**nvironment (MOLDE) is a library created to standardize and make easier the creation and maintainance of internal products of the Multidisciplinary Optimization Group (MOPT).
+**M**OPT **L**ightweight **De**esign (MOLDE) is a library created to standardize and make easier the creation and maintainance of internal products of the Multidisciplinary Optimization Group (MOPT).
 
 Here are the colors, icons, fonts and common interface components, that may be usefull for multiple MOPT projects.
 
 This is heavily inspired by [Carbon Design System](https://carbondesignsystem.com/), [Atlassian Design System](https://atlassian.design/), [Fast Design System](https://www.fast.design/), [Material Design](https://m3.material.io/) and [Bold Design System](https://bold.bridge.ufsc.br/pt/).
 
 # Colors 
-Bold Design System have great color palletes.
-We can use the same.
-They are available [here](molde/colors/index.html).
-
-If they are not, use the ones from [Bold](https://bold.bridge.ufsc.br/pt/design-guidelines/color).
+The color palettes are available [here](https://andrefpf.github.io/molde/).
 
 # Icons 
 A lot of free to use icons, from Material Design, are available [here](https://fonts.google.com/icons).

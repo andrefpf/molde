@@ -2,6 +2,8 @@ from threading import Lock
 from time import time
 import numpy as np
 from pathlib import Path
+from PIL import Image
+import logging
 
 from .common_render_widget import CommonRenderWidget
 
@@ -78,22 +80,69 @@ class AnimatedRenderWidget(CommonRenderWidget):
             'The function "update_animation" was not implemented!'
         )
 
-    def generate_video(self, path, n_loops=20):
+    def save_video(self, path: str | Path, n_loops=20):
+        '''
+        Saves a video of multiple cycles of the current animation.
+        Supported formats are MP4, AVI, OGV, and WEBM.
+        '''
         from moviepy.editor import ImageSequenceClip
-        
-        images = list()
 
+        # Stop animation to prevent conflicts
+        previous_state = self.playing_animation
+        self.stop_animation()
+
+        logging.info("Generating video frames...")
+        images = list()
         for i in range(self._animation_total_frames):
             self.update_animation(i)
             screenshot = self.get_screenshot().resize([1920, 1080])
             images.append(screenshot)
-        
         frames = [np.array(img) for img in images]
+
+        # recover the playing animation status
+        self.playing_animation = previous_state
         
+        logging.info("Saving video to file...")
         clip = ImageSequenceClip(frames, self._animation_fps)
-    
-        if Path(path).suffix == ".mp4":
-            clip = clip.loop(duration= clip.duration * n_loops)
-            clip.write_videofile(path)
-        else:
-            clip.write_gif(path)
+        clip = clip.loop(duration = clip.duration * n_loops)
+        clip.write_videofile(str(path), preset="veryfast", logger=None)
+
+    def save_animation(self, path: str | Path):
+        '''
+        Saves an animated image file of a animation cycle.
+        Supported formats are WEBP and GIF.
+
+        We strongly recomend you to use webp, because of the reduced
+        file size and the superior visual quality.
+        Despite that, gifs are usefull sometimes because of its popularity.
+        '''
+
+        path = Path(path)
+        is_gif = path.suffix == ".gif"
+
+        # Stop animation to prevent conflicts
+        previous_state = self.playing_animation
+        self.stop_animation()
+
+        logging.info("Generating animation frames...")
+        images:list[Image.Image] = list()
+        for i in range(self._animation_total_frames):
+            self.update_animation(i)
+            screenshot = self.get_screenshot().convert("RGB").resize([1280, 720])
+            if is_gif:
+                screenshot = screenshot.quantize(method=Image.Quantize.FASTOCTREE, kmeans=2)
+            images.append(screenshot)
+
+        # recover the playing animation status
+        self.playing_animation = previous_state
+
+        logging.info("Saving animation to file...")
+        images[0].save(
+            path,
+            save_all=True,
+            append_images=images[1:],
+            optimize=False,
+            duration=self._animation_total_frames / self._animation_fps,
+            loop=0,
+            quality=90
+        )
