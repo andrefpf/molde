@@ -61,6 +61,13 @@ QPushButton[status=warning]::checked {
     background-color: @warning-color-darker;
 }
 
+QPushButton[status=main]::disabled,
+QPushButton[status=warning]::disabled,
+QPushButton[status=danger]::disabled {
+    background-color: @disabled-background;
+    color: @disabled-color;
+}
+
 
 
 
