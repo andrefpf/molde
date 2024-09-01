@@ -10,7 +10,8 @@ QPushButton::hover {
     background-color: @background-variant;
 }
 
-QPushButton::checked {
+QPushButton::checked,
+QPushButton::pressed {
     background-color: @primary-darker;
 }
 
@@ -31,8 +32,10 @@ QPushButton::default:hover {
     background-color: @primary-lighter;
 }
 
-QPushButton[status=main]::checked,
-QPushButton::default:checked {
+QPushButton[status=main]::checked, 
+QPushButton[status=main]::pressed,
+QPushButton::default:checked,
+QPushButton::default:pressed {
     background-color: @primary-darker;
 }
 
@@ -46,7 +49,8 @@ QPushButton[status=danger]::hover {
     background-color: @danger-color-lighter;
 }
 
-QPushButton[status=danger]::checked {
+QPushButton[status=danger]::checked,
+QPushButton[status=danger]::pressed {
     background-color: @danger-color-darker;
 }
 
@@ -60,7 +64,8 @@ QPushButton[status=warning]::hover {
     background-color: @warning-color-lighter;
 }
 
-QPushButton[status=warning]::checked {
+QPushButton[status=warning]::checked,
+QPushButton[status=warning]::pressed {
     background-color: @warning-color-darker;
 }
 
@@ -71,7 +76,6 @@ QPushButton[status=danger]::disabled {
     color: @disabled-color;
 }
 
-
-
-
-
+QDialogButtonBox {
+    dialogbuttonbox-buttons-have-icons: 0;
+}

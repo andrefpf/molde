@@ -1,5 +1,5 @@
 import os, sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import uic
 from time import time
 
@@ -8,10 +8,10 @@ from molde import stylesheets
 from molde.render_widgets.common_render_widget import CommonRenderWidget
 
 
-class Example(QWidget):
+class Example(QMainWindow):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        uic.loadUi(MOLDE_DIR / "stylesheets/example.ui", self)
+        uic.loadUi(MOLDE_DIR / "stylesheets/mainwindow.ui", self)
         self.current_theme = "light"
 
         self.change_theme_button.clicked.connect(self.change_theme)
