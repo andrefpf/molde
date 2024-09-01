@@ -1,0 +1,9 @@
+QToolButton:hover,
+QToolButton::menu-button:hover {
+    background: red;
+}
+
+/* Não tô vendo diferença aqui, mas no windows deve aparecer */
+QMenuBar::item:hover {
+    background-color: red;
+}
