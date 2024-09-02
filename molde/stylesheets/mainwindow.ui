@@ -322,6 +322,9 @@ LOCO</string>
           <property name="text">
            <string>TextLabel</string>
           </property>
+          <property name="status" stdset="0">
+           <string>project-path</string>
+          </property>
          </widget>
         </item>
         <item>

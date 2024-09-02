@@ -1,3 +1,4 @@
-QFrame {
-   border: 1px solid @border-color;
+QFrame[status=project-path] {
+    border: 1px solid @border-color;
+    padding: 0;
 }
