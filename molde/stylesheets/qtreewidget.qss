@@ -1,0 +1,15 @@
+QTreeView {
+    background-color: @background;
+    alternate-background-color: @background-variant;
+}
+
+QTreeView::branch:!selected:hover,
+QTreeView::item:!selected:hover {
+    background-color: @background-variant;
+}
+
+QTreeView::item:selected {
+    background-color: @primary-lighter;
+    border: 1px solid @border-color;
+    color: @on-background;
+}

@@ -328,6 +328,43 @@ LOCO</string>
          </widget>
         </item>
         <item>
+         <widget class="QTreeWidget" name="treeWidget">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text">
+            <string>Frequency</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>100</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>200</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>300</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>400</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>500</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
          <widget class="QTableWidget" name="tableWidget">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
