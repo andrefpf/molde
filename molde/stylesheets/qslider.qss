@@ -54,4 +54,8 @@ QSlider::handle:vertical {
     border-radius: 8px;
 }
 
+QSlider::disabled {
+    background-color: @background;
+}
+
 

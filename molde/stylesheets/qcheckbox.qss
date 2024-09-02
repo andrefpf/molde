@@ -6,6 +6,7 @@ QCheckBox::indicator:checked {
 }
 
 QCheckBox::disabled {
+    background-color: @background;
     color: @disabled-color;
 }
 

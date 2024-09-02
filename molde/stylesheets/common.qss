@@ -3,3 +3,8 @@ QWidget {
     background-color: @background;
     color: @on-background;
 }
+
+QWidget::disabled {
+    background-color: @disabled-background;
+    color: @disabled-color;
+}

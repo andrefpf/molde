@@ -21,5 +21,7 @@ QRadioButton::indicator:disabled {
 }
 
 QRadioButton::disabled {
+    background-color: @background;
     color: @disabled-color;
+    
 }

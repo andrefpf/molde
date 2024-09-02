@@ -1,0 +1,4 @@
+QToolBar {
+    border: none;
+    border-top: 1px solid @border-color;
+}
