@@ -1,5 +1,5 @@
 import os, sys
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget, QApplication, QMessageBox
 from PyQt5 import uic
 from time import time
 
@@ -22,7 +22,6 @@ class Example(QWidget):
         self.render_widget.set_info_text("Hola\nque\ntal?")
         self.show()
 
-    
     def change_theme(self):
         if self.current_theme == "light":
             self.current_theme = "dark"
@@ -31,6 +30,16 @@ class Example(QWidget):
         
         self.render_widget.set_theme(self.current_theme)
         stylesheets.set_theme(self.current_theme)
+    
+    def closeEvent(self, event):
+        close = QMessageBox.question(
+            self, 
+            "QUIT", 
+            "Would you like to close the application?", 
+            QMessageBox.Yes | QMessageBox.No
+        )
+        QApplication.quit()
+
 
 if __name__ == "__main__":
     # Make the window scale evenly for every monitor
