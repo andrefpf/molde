@@ -1,10 +1,13 @@
-QToolButton:hover,
-QToolButton::menu-button:hover {
-    background: @background-variant;
+ QToolButton{
     border: none;
 }
 
-QMenuBar::item:hover {
+QToolButton:hover,
+QToolButton::menu-button:hover {
+    background: @background-variant;
+}
+
+QToolButton::checked {
     background-color: @background-variant;
 }
 
