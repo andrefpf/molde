@@ -9,3 +9,7 @@ QWidget::disabled {
     background-color: @disabled-background;
     color: @disabled-color;
 }
+
+QLabel {
+    border-color: @border-color;
+}
