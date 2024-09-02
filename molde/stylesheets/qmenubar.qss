@@ -1,0 +1,8 @@
+QMenuBar {
+    border: none;
+    border-bottom: 1px solid @border-color;
+}
+
+QMenuBar::item:selected {
+    background-color: @background-variant;
+}

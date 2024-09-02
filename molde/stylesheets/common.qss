@@ -10,6 +10,3 @@ QWidget::disabled {
     color: @disabled-color;
 }
 
-QLabel {
-    border-color: @border-color;
-}

@@ -1,4 +1,19 @@
 QToolBar {
-    border: none;
-    border-top: 1px solid @border-color;
+    padding: 1px;
+    margin: 1px;
 }
+
+QToolBar::separator {
+    background-color: @background-variant;
+}
+
+QToolBar::separator:horizontal {
+    width: 2px;
+    margin: 0 6px;
+}
+
+QToolBar::separator:vertical {
+    height: 2px;
+    margin: 6px 0;
+}
+
