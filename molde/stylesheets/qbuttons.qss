@@ -49,6 +49,10 @@ QPushButton[status=warning]::checked {
     background-color: @warning-color-darker;
 }
 
+QRadioButton {
+    padding: 5px 10px;
+}
+
 QRadioButton::indicator {
     width: 10px;
     height: 10px;
