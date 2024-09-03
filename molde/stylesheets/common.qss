@@ -2,4 +2,11 @@ QWidget {
     font-family: sans-serif;
     background-color: @background;
     color: @on-background;
+    padding: 5px 10px;
+}
+
+QWidget:focus {
+    outline: 0;
+    border: 2px solid @primary-darker;
+    border-radius: @border-radius;
 }

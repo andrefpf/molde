@@ -18,3 +18,13 @@ QTabBar::tab:selected {
 QTabBar::tab:hover {
     background: @border-color;  
 }
+
+QTabBar::tab:focus {
+    border: 2px solid @primary-darker;
+    border-bottom: 3px solid @primary-darker;
+    /* background-color: @primary; */
+}
+
+QTabWidget::pane:focus {
+    background-color: red;
+}
