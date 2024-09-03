@@ -5,6 +5,7 @@ QTableWidget::item {
 
 QTableWidget::item:selected {
     background-color: @primary;
+    color: @on-primary;
 }
 
 QHeaderView::section {

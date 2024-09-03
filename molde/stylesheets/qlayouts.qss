@@ -1,4 +1,4 @@
-QFrame[status=project-path] {
+QFrame[frameShadow="16"] {
     border: 1px solid @border-color;
     padding: 0;
 }
