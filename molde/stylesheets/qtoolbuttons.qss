@@ -1,12 +1,12 @@
  QToolButton{
+    padding: 4px;
     border: none;
+    spacing: 2px;
 }
 
 QToolButton:hover,
-QToolButton::menu-button:hover {
-    background: @background-variant;
-}
-
+QToolButton::menu-button:hover,
 QToolButton::checked {
-    background-color: @background-variant;
+    background: @background-variant;
+    border-radius: @border-radius;
 }
