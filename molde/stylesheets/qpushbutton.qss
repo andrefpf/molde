@@ -3,7 +3,8 @@ QPushButton {
     background-color: @background;
     border: 1px solid @border-color;
     border-radius: 5px;
-    padding: 5px 15px;
+    text-align: center;
+    padding: 4px 8px;
 }
 
 QPushButton::hover {
@@ -81,5 +82,5 @@ QDialogButtonBox {
 }
 
 QPushButton:focus {
-    padding: 5px 10px; /* danger: don't delete this  */
+    padding: 5px 5px; /* danger: don't delete this  */
 }
