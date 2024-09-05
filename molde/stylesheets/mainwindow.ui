@@ -315,9 +315,19 @@ LOCO</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QLabel" name="label">
           <property name="frameShape">
            <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
           </property>
           <property name="text">
            <string>TextLabel</string>

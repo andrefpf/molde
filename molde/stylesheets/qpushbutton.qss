@@ -79,3 +79,7 @@ QPushButton[status=danger]::disabled {
 QDialogButtonBox {
     dialogbuttonbox-buttons-have-icons: 0;
 }
+
+QPushButton:focus {
+    padding: 5px 10px; /* danger: don't delete this  */
+}
