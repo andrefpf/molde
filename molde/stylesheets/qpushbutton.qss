@@ -82,5 +82,5 @@ QDialogButtonBox {
 }
 
 QPushButton:focus {
-    padding: 5px 5px; /* danger: don't delete this  */
+    padding: 4px 5px; /* danger: don't delete this  */
 }
