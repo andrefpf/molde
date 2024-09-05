@@ -81,6 +81,6 @@ QDialogButtonBox {
     dialogbuttonbox-buttons-have-icons: 0;
 }
 
-QPushButton:focus {
-    padding: 4px 5px; /* danger: don't delete this  */
+QDialogButtonBox QPushButton {
+    min-width: 65px;
 }

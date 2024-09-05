@@ -3,6 +3,10 @@ QMenuBar {
     border-bottom: 1px solid @border-color;
 }
 
+QMenuBar::item {
+    padding: 4px;
+}
+
 QMenuBar::item:selected {
     background-color: @background-variant;
 }
