@@ -23,7 +23,6 @@ QPushButton::disabled {
 
 QPushButton[status=main], 
 QPushButton::default {
-    font: bold;
     background-color: @primary;
     color: @on-primary;
 }
@@ -41,7 +40,6 @@ QPushButton::default:pressed {
 }
 
 QPushButton[status=danger] {
-    font: bold;
     background-color: @danger-color;
     color: @on-primary;
 }
@@ -56,7 +54,6 @@ QPushButton[status=danger]::pressed {
 }
 
 QPushButton[status=warning] {
-    font: bold;
     background-color: @warning-color;
     color: @on-primary;
 }

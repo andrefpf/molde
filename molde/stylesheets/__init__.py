@@ -69,7 +69,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@input-color": "#3A3A47",
 
             "@on-background": color_names.WHITE.to_hex(),
-            "@on-primary": color_names.WHITE.to_hex(),
+            "@on-primary": color_names.GRAY_1.to_hex(),
 
             "@border-color": color_names.GRAY_3.to_hex(),
             "@input-color": color_names.GRAY_2.to_hex(),
