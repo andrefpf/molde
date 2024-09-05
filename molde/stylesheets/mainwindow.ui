@@ -566,6 +566,9 @@ LOCO</string>
    </property>
   </action>
   <action name="actionPepe">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normaloff>arrow_up_light_theme.svg</normaloff>arrow_up_light_theme.svg</iconset>
@@ -575,6 +578,9 @@ LOCO</string>
    </property>
   </action>
   <action name="actionRoni">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset>
      <normaloff>arrow_down_dark_theme.svg</normaloff>arrow_down_dark_theme.svg</iconset>
