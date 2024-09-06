@@ -88,6 +88,7 @@ QPushButton[status=warning]::disabled,
 QPushButton[status=danger]::disabled {
     background-color: @disabled-background;
     color: @disabled-color;
+    border: none;
 }
 
 QDialogButtonBox {
