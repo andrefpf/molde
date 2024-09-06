@@ -1,6 +1,9 @@
+QTableWidget:focus {
+    border: none;
+}
 
 QTableWidget::item {
-    background-color: @background;
+    background-color: transparent;
 }
 
 QTableWidget::item:selected {
