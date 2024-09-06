@@ -1,5 +1,6 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem
+from PyQt5.QtGui import QColor
 from PyQt5 import uic
 from time import time
 
@@ -22,6 +23,10 @@ class Example(QMainWindow):
         self.render_widget.set_info_text("Hola\nque\ntal?")
         self.linedit = QLineEdit()
         self.toolbar_2.addWidget(self.linedit)
+
+        item = QTableWidgetItem("fr")
+        item.setBackground(QColor("#FF0000"))  
+        self.tableWidget.setItem(0, 0, item) 
         self.show()
 
     def change_theme(self):
