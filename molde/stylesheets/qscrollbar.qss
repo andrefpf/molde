@@ -1,4 +1,5 @@
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
     background: none; 
     background-color: @background-variant;
 }
@@ -11,6 +12,18 @@ QScrollBar::up-arrow {
 
 QScrollBar::down-arrow {
     background-image: url("@arrow-down-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+QScrollBar::left-arrow {
+    background-image: url("@arrow-left-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+QScrollBar::right-arrow {
+    background-image: url("@arrow-right-image-icon");
     background-repeat: no-repeat;
     background-position: center;
 }
