@@ -1,0 +1,16 @@
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none; 
+    background-color: @background-variant;
+}
+
+QScrollBar::up-arrow {
+    background-image: url("@arrow-up-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+QScrollBar::down-arrow {
+    background-image: url("@arrow-down-image-icon");
+    background-repeat: no-repeat;
+    background-position: center;
+}

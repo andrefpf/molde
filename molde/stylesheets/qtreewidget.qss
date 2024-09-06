@@ -14,20 +14,3 @@ QTreeView::item:selected {
     border: 1px solid @border-color;
     color: @on-primary;
 }
-
-QTreeView QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
-    background: none; 
-    background-color: @background-variant;
-}
-
-QTreeView QScrollBar::up-arrow {
-    background-image: url("@arrow-up-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-QTreeView QScrollBar::down-arrow {
-    background-image: url("@arrow-down-image-icon");
-    background-repeat: no-repeat;
-    background-position: center;
-}
