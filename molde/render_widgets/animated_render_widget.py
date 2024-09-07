@@ -78,7 +78,7 @@ class AnimatedRenderWidget(CommonRenderWidget):
             self.stop_animation()
             return
 
-        self._animation_current_cycle -= 1
+        self._animation_current_cycle += 1
         with self._animation_lock:
             self._animation_frame = (
                 self._animation_frame + 1
