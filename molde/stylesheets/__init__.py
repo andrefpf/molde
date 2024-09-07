@@ -44,6 +44,8 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@hover-arrow-color":  color_names.GRAY_9.to_hex(),
             "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
             "@arrow-down-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_light_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_light_theme.svg").replace("\\", "/"),
             "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
             "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
             "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
@@ -69,7 +71,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@input-color": "#3A3A47",
 
             "@on-background": color_names.WHITE.to_hex(),
-            "@on-primary": color_names.WHITE.to_hex(),
+            "@on-primary": color_names.GRAY_1.to_hex(),
 
             "@border-color": color_names.GRAY_3.to_hex(),
             "@input-color": color_names.GRAY_2.to_hex(),
@@ -80,6 +82,8 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@hover-arrow-color": color_names.GRAY_2.to_hex(),
             "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
             "@arrow-down-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_dark_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_dark_theme.svg").replace("\\", "/"),
             "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
             "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
             "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),

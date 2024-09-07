@@ -1,0 +1,9 @@
+QFrame[frameShape="0"] {
+    border: none;
+}
+
+QFrame[frameShape="1"],
+QFrame[frameShape="2"] {
+    border: 1px solid @border-color;
+    padding: 0;
+}

@@ -49,7 +49,7 @@ GRAY_4 = Color("#696979")
 GRAY_3 = Color("#515162")
 GRAY_2 = Color("#3A3A47")
 GRAY_1 = Color("#24252E")
-GRAY_0 = Color("#161A1D")
+GRAY_0 = Color("#1F2028")
 GRAY = GRAY_4
 
 ORANGE_9 = Color("#FFF3EB")

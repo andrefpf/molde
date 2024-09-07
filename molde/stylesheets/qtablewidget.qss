@@ -1,10 +1,14 @@
+QTableWidget:focus {
+    border: none;
+}
 
 QTableWidget::item {
-    background-color: @background;
+    background-color: none;
 }
 
 QTableWidget::item:selected {
     background-color: @primary;
+    color: @on-primary;
 }
 
 QHeaderView::section {

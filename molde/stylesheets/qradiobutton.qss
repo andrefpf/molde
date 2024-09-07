@@ -1,3 +1,7 @@
+QRadioButton {
+    padding: 5px 10px;
+}
+
 QRadioButton::indicator {
     width: 10px;
     height: 10px;
@@ -21,5 +25,7 @@ QRadioButton::indicator:disabled {
 }
 
 QRadioButton::disabled {
+    background-color: @background;
     color: @disabled-color;
+    
 }

@@ -1,5 +1,6 @@
 import os, sys
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem
+from PyQt5.QtGui import QColor
 from PyQt5 import uic
 from time import time
 
@@ -20,9 +21,14 @@ class Example(QMainWindow):
         self.render_widget.create_scale_bar()
         self.render_widget.create_color_bar()
         self.render_widget.set_info_text("Hola\nque\ntal?")
+        self.linedit = QLineEdit()
+        self.toolbar_2.addWidget(self.linedit)
+
+        item = QTableWidgetItem("fr")
+        item.setBackground(QColor("#FF0000"))  
+        self.tableWidget.setItem(0, 0, item) 
         self.show()
 
-    
     def change_theme(self):
         if self.current_theme == "light":
             self.current_theme = "dark"
@@ -31,6 +37,16 @@ class Example(QMainWindow):
         
         self.render_widget.set_theme(self.current_theme)
         stylesheets.set_theme(self.current_theme)
+    
+    def closeEvent(self, event):
+        close = QMessageBox.question(
+            self, 
+            "QUIT", 
+            "Would you like to close the application?", 
+            QMessageBox.Yes | QMessageBox.No
+        )
+        QApplication.quit()
+
 
 if __name__ == "__main__":
     # Make the window scale evenly for every monitor
