@@ -18,15 +18,21 @@ class AnimatedRenderWidget(CommonRenderWidget):
         self._animation_last_time = 0
         self._animation_total_frames = 30
         self._animation_fps = 30
+        self._animation_cycles = 0
+        self._animation_current_cycle = 0
         self._animation_timer = self.render_interactor.CreateRepeatingTimer(500)
         self.render_interactor.AddObserver("TimerEvent", self._animation_callback)
 
-    def start_animation(self, fps=None, frames=None):
+    def start_animation(self, fps=None, frames=None, cycles=None):
         if isinstance(fps, int | float):
             self._animation_fps = fps
 
         if isinstance(frames, int):
             self._animation_total_frames = frames
+
+        if isinstance(cycles, int):
+            self._animation_cycles = cycles
+            self._animation_current_cycle = 0
 
         if self.playing_animation:
             return
@@ -68,6 +74,11 @@ class AnimatedRenderWidget(CommonRenderWidget):
         if (dt) < 1 / self._animation_fps:
             return
 
+        if (self._animation_cycles != 0) and (self._animation_current_cycle < self._animation_cycles):
+            self.stop_animation()
+            return
+
+        self._animation_current_cycle -= 1
         with self._animation_lock:
             self._animation_frame = (
                 self._animation_frame + 1
