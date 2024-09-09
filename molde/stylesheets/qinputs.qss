@@ -66,3 +66,8 @@ QComboBox::drop-down:button {
 QComboBox::drop-down:hover {
     background-color: @hover-arrow-color;
 }
+
+QSpinBox,
+QDoubleSpinBox {
+    border: 2px solid @background;
+}
