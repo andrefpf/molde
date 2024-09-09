@@ -66,15 +66,13 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
             "@background": color_names.GRAY_1.to_hex(),
-            "@background-variant": color_names.GRAY_2.to_hex(),
-
-            "@input-color": "#3A3A47",
+            "@background-variant": color_names.GRAY_3.to_hex(),
 
             "@on-background": color_names.WHITE.to_hex(),
             "@on-primary": color_names.GRAY_1.to_hex(),
 
-            "@border-color": color_names.GRAY_3.to_hex(),
-            "@input-color": color_names.GRAY_2.to_hex(),
+            "@border-color": color_names.GRAY_2.to_hex(),
+            "@input-color": color_names.GRAY_3.to_hex(),
 
             "@disabled-background": color_names.GRAY_0.to_hex(),
             "@disabled-color": color_names.GRAY_4.to_hex(),
