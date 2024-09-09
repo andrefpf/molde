@@ -41,7 +41,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-background": color_names.GRAY_8.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),
 
-            "@hover-arrow-color":  color_names.GRAY_9.to_hex(),
+            "@hover-arrow-color":  color_names.GRAY_8.to_hex(),
             "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
             "@arrow-down-image-icon": str(MOLDE_DIR/ "icons/arrow_down_light_theme.svg").replace("\\", "/"),
             "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_light_theme.svg").replace("\\", "/"),
@@ -79,7 +79,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-background": color_names.GRAY_0.to_hex(),
             "@disabled-color": color_names.GRAY_4.to_hex(),
 
-            "@hover-arrow-color": color_names.GRAY_2.to_hex(),
+            "@hover-arrow-color": color_names.GRAY_1.to_hex(),
             "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
             "@arrow-down-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
             "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_dark_theme.svg").replace("\\", "/"),
