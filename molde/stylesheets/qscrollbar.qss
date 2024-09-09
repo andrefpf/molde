@@ -2,6 +2,7 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical,
 QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
     background: none; 
     background-color: @background-variant;
+    border: 2px solid @border-color;
 }
 
 QScrollBar::up-arrow {
