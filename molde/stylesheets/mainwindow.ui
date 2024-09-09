@@ -315,25 +315,16 @@ LOCO</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButton_4">
           <property name="text">
-           <string/>
+           <string>Animate</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="frameShape">
-           <enum>QFrame::Box</enum>
+          <property name="icon">
+           <iconset>
+            <normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</iconset>
           </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="status" stdset="0">
-           <string>project-path</string>
+          <property name="default">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

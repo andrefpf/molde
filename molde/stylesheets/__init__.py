@@ -42,13 +42,13 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-color": color_names.GRAY_7.to_hex(),
 
             "@hover-arrow-color":  color_names.GRAY_9.to_hex(),
-            "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
-            "@arrow-down-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),
-            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_light_theme.svg").replace("\\", "/"),
-            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_light_theme.svg").replace("\\", "/"),
-            "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-image-icon": str(MOLDE_DIR/ "icons/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_light_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_light_theme.svg").replace("\\", "/"),
+            "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
         })
 
     elif theme == "dark":
@@ -57,7 +57,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@primary": color_names.BLUE_6.to_hex(),
             "@primary-darker": color_names.BLUE_5.to_hex(),
 
-            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color-lighter": color_names.RED_7.to_hex(),
             "@danger-color": color_names.RED_4.to_hex(),
             "@danger-color-darker": color_names.RED_3.to_hex(),
 
@@ -80,13 +80,13 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-color": color_names.GRAY_4.to_hex(),
 
             "@hover-arrow-color": color_names.GRAY_2.to_hex(),
-            "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
-            "@arrow-down-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
-            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_dark_theme.svg").replace("\\", "/"),
-            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_dark_theme.svg").replace("\\", "/"),
-            "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
+            "@arrow-down-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_dark_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_dark_theme.svg").replace("\\", "/"),
+            "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_light_theme.svg").replace("\\", "/"),
             
         })
 
