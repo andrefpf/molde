@@ -4,6 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["André Fernandes <fpf.andre@gmail.com>"]
 readme = "README.md"
+include = [
+    {path="molde/fonts", format=["sdist", "wheel"]},
+]
+
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.12"
