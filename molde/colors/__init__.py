@@ -1,2 +1,2 @@
 from .color import Color
-from . import color_names
+from .color_names import *
