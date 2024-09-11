@@ -209,7 +209,7 @@ class CommonRenderWidget(QFrame):
 
         title_property: vtkTextProperty
         title_property = self.scale_bar_actor.GetLegendTitleProperty()
-        title_property.SetFontSize(12)
+        title_property.SetFontSize(16)
         title_property.ShadowOff()
         title_property.ItalicOff()
         title_property.BoldOn()
@@ -220,7 +220,7 @@ class CommonRenderWidget(QFrame):
 
         label_property: vtkTextProperty
         label_property = self.scale_bar_actor.GetLegendLabelProperty()
-        label_property.SetFontSize(12)
+        label_property.SetFontSize(16)
         label_property.SetColor((0.8, 0.8, 0.8))
         label_property.ShadowOff()
         label_property.ItalicOff()
