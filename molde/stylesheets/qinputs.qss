@@ -17,11 +17,16 @@ QDoubleSpinBox::up-button {
     background-image: url("@arrow-up-image-icon");
     background-repeat: no-repeat;
     background-position: center;
+    width: 15px;       
+    height: 15px;
 }
 
 QSpinBox::up-button:hover,
-QDoubleSpinBox::up-button:hover {
+QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover,
+QDoubleSpinBox::down-button:hover {
     background-color: @hover-arrow-color;
+    border-radius: 2px;
 }
 
 QSpinBox::up-button:disabled,
@@ -37,11 +42,8 @@ QDoubleSpinBox::down-button {
     background-image: url("@arrow-down-image-icon");
     background-repeat: no-repeat;
     background-position: center;
-}
-
-QSpinBox::down-button:hover,
-QDoubleSpinBox::down-button:hover {
-    background-color: @hover-arrow-color;
+    width: 15px;       
+    height: 15px;
 }
 
 QSpinBox::down-button:disabled,
@@ -65,5 +67,7 @@ QComboBox::drop-down:hover {
     background-color: @hover-arrow-color;
 }
 
-
-
+QSpinBox,
+QDoubleSpinBox {
+    border: 2px solid @background;
+}

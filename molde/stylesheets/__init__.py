@@ -16,15 +16,15 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary-lighter": color_names.BLUE_5.to_hex(),
+            "@primary-lighter": color_names.BLUE_7.to_hex(),
             "@primary": color_names.BLUE_4.to_hex(),
             "@primary-darker": color_names.BLUE_3.to_hex(),
 
-            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color-lighter": color_names.RED_7.to_hex(),
             "@danger-color": color_names.RED_4.to_hex(),
             "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_7.to_hex(),
             "@warning-color": color_names.YELLOW_4.to_hex(),
             "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
@@ -41,14 +41,14 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@disabled-background": color_names.GRAY_8.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),
 
-            "@hover-arrow-color":  color_names.GRAY_9.to_hex(),
-            "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
-            "@arrow-down-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),
-            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_light_theme.svg").replace("\\", "/"),
-            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_light_theme.svg").replace("\\", "/"),
-            "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@hover-arrow-color":  color_names.GRAY_8.to_hex(),
+            "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-image-icon": str(MOLDE_DIR/ "icons/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_light_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_light_theme.svg").replace("\\", "/"),
+            "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
         })
 
     elif theme == "dark":
@@ -57,36 +57,34 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@primary": color_names.BLUE_6.to_hex(),
             "@primary-darker": color_names.BLUE_5.to_hex(),
 
-            "@danger-color-lighter": color_names.RED_5.to_hex(),
+            "@danger-color-lighter": color_names.RED_7.to_hex(),
             "@danger-color": color_names.RED_4.to_hex(),
             "@danger-color-darker": color_names.RED_3.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW_5.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_7.to_hex(),
             "@warning-color": color_names.YELLOW_4.to_hex(),
             "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
             "@background": color_names.GRAY_1.to_hex(),
-            "@background-variant": color_names.GRAY_2.to_hex(),
-
-            "@input-color": "#3A3A47",
+            "@background-variant": color_names.GRAY_3.to_hex(),
 
             "@on-background": color_names.WHITE.to_hex(),
-            "@on-primary": color_names.GRAY_1.to_hex(),
+            "@on-primary": color_names.WHITE.to_hex(),
 
-            "@border-color": color_names.GRAY_3.to_hex(),
-            "@input-color": color_names.GRAY_2.to_hex(),
+            "@border-color": color_names.GRAY_2.to_hex(),
+            "@input-color": color_names.GRAY_3.to_hex(),
 
             "@disabled-background": color_names.GRAY_0.to_hex(),
             "@disabled-color": color_names.GRAY_4.to_hex(),
 
-            "@hover-arrow-color": color_names.GRAY_2.to_hex(),
-            "@arrow-up-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_dark_theme.svg").replace("\\", "/"),
-            "@arrow-down-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_dark_theme.svg").replace("\\", "/"),
-            "@arrow-left-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_left_dark_theme.svg").replace("\\", "/"),
-            "@arrow-right-image-icon": str(MOLDE_DIR/ "stylesheets/arrow_right_dark_theme.svg").replace("\\", "/"),
-            "@check-box-image-icon": str(MOLDE_DIR / "stylesheets/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_up_light_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "stylesheets/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@hover-arrow-color": color_names.GRAY_1.to_hex(),
+            "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
+            "@arrow-down-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_dark_theme.svg").replace("\\", "/"),
+            "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_dark_theme.svg").replace("\\", "/"),
+            "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_light_theme.svg").replace("\\", "/"),
             
         })
 

@@ -7,3 +7,12 @@ QFrame[frameShape="2"] {
     border: 1px solid @border-color;
     padding: 0;
 }
+
+QWidget QFrame[frameShape="1"],
+QWidget QFrame[frameShape="2"] {
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    padding: 0;
+}
+
+
