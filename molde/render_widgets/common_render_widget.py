@@ -255,8 +255,8 @@ class CommonRenderWidget(QFrame):
         colorbar_title.ShadowOff()
         colorbar_title.ItalicOff()
         colorbar_title.BoldOn()
-        colorbar_title.SetFontSize(13)
-        colorbar_title.SetJustificationToLeft()
+        colorbar_title.SetFontSize(16)
+        colorbar_title.SetJustificationToRight()
         colorbar_title.SetFontFamily(VTK_FONT_FILE)
         colorbar_title.SetFontFile(font_file)
 
