@@ -125,6 +125,7 @@ class CommonRenderWidget(QFrame):
 
         ren_win = self.render_interactor.GetRenderWindow()
         if ren_win is not None:
+            self.renderer.ResetCameraClippingRange()
             ren_win.Render()
 
     def left_click_press_event(self, obj, event):
