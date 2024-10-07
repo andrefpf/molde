@@ -34,6 +34,8 @@ class Example(QMainWindow):
         self.tableWidget.setItem(0, 0, item) 
         self.show()
 
+        print(self.font)
+
     def change_theme(self):
         if self.current_theme == "light":
             self.current_theme = "dark"
