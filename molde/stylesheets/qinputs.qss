@@ -4,7 +4,7 @@ QLineEdit, QDoubleSpinBox, QSpinBox, QComboBox {
     border-radius: 5px;
     padding: 5px 5px;
     min-width: 40px;
-    min-height: 30px;
+    min-height: 15px;
 }
 
 QLineEdit::disabled,
