@@ -1,7 +1,8 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QSlider
 from PyQt5.QtGui import QColor
 from PyQt5 import uic
+from PyQt5.QtCore import Qt
 from time import time
 
 from molde import MOLDE_DIR
@@ -23,6 +24,10 @@ class Example(QMainWindow):
         self.render_widget.set_info_text("Hola\nque\ntal?")
         self.linedit = QLineEdit()
         self.toolbar_2.addWidget(self.linedit)
+
+        self.slider_teste = QSlider(Qt.Horizontal)
+        self.toolbar_2.addWidget(self.slider_teste)
+        self.slider_teste.setDisabled(True)
 
         item = QTableWidgetItem("fr")
         item.setBackground(QColor("#FF0000"))  

@@ -30,3 +30,13 @@ QToolBar QLineEdit {
     color: rgb(100, 100, 100)
 }
  */
+
+QToolBar QSlider:disabled {
+    background-color: @disabled-background;
+}
+
+QToolBar QSlider::sub-page:vertical:disabled,
+QToolBar QSlider::add-page:horizontal:disabled,
+QToolBar QSlider::handle:disabled {
+    background: @disabled-color;
+}
