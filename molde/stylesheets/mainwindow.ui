@@ -318,17 +318,17 @@ LOCO</string>
          <widget class="QSpinBox" name="spinBox_2"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>Animate</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</iconset>
-          </property>
-          <property name="default">
-           <bool>true</bool>
-          </property>
+         <widget class="QComboBox" name="comboBox_2">
+          <item>
+           <property name="text">
+            <string>Single Division</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Multiple Division</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
