@@ -31,6 +31,12 @@ QToolBar QLineEdit {
 }
  */
 
-QToolBar::disabled {
-    background: @background;
+QToolBar QSlider:disabled {
+    background-color: @disabled-background;
+}
+
+QToolBar QSlider::sub-page:vertical:disabled,
+QToolBar QSlider::add-page:horizontal:disabled,
+QToolBar QSlider::handle:disabled {
+    background: @disabled-color;
 }
