@@ -1,5 +1,5 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
 from PyQt5.QtGui import QColor
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
@@ -24,7 +24,9 @@ class Example(QMainWindow):
         self.render_widget.set_info_text("Hola\nque\ntal?")
 
         self.botao1 = QPushButton()
+        self.label = QLabel("Olha o sapooo")
         self.botao1.setText("Olha a faca")
+        self.toolbar_2.addWidget(self.label)
         self.toolbar_2.addWidget(self.botao1)
 
         item = QTableWidgetItem("fr")
