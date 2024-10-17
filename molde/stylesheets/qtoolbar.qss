@@ -18,13 +18,8 @@ QToolBar::separator:vertical {
     margin: 6px 0;
 }
 
-QToolBar QToolButton {
-    padding: 0px;
-}
-
 QToolBar QLineEdit {
     padding: 3px 4px;
-    min-height: 1em;
     border: 1px solid @background-variant;
     border-radius: @border-radius;
     background-color: @input-color;
