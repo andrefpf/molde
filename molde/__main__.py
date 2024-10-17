@@ -1,5 +1,5 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QSlider
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton
 from PyQt5.QtGui import QColor
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
@@ -22,20 +22,16 @@ class Example(QMainWindow):
         self.render_widget.create_scale_bar()
         self.render_widget.create_color_bar()
         self.render_widget.set_info_text("Hola\nque\ntal?")
-        self.linedit = QLineEdit()
-        self.toolbar_2.addWidget(self.linedit)
 
-        self.slider_teste = QSlider(Qt.Horizontal)
-        self.toolbar_2.addWidget(self.slider_teste)
-        self.slider_teste.setDisabled(True)
+        self.botao1 = QPushButton()
+        self.botao1.setText("Olha a faca")
+        self.toolbar_2.addWidget(self.botao1)
 
         item = QTableWidgetItem("fr")
         item.setBackground(QColor("#FF0000"))  
         self.tableWidget.setItem(0, 0, item) 
         self.show()
-
-        print(self.font)
-
+        
     def change_theme(self):
         if self.current_theme == "light":
             self.current_theme = "dark"

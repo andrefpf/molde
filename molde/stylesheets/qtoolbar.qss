@@ -1,5 +1,6 @@
 QToolBar {
     padding: 1px;
+    spacing: 2px; 
     margin: 1px;
 }
 
@@ -15,6 +16,10 @@ QToolBar::separator:horizontal {
 QToolBar::separator:vertical {
     height: 2px;
     margin: 6px 0;
+}
+
+QToolBar QToolButton {
+    padding: 0px;
 }
 
 QToolBar QLineEdit {
@@ -33,6 +38,10 @@ QToolBar QLineEdit {
 
 QToolBar QSlider:disabled {
     background-color: @disabled-background;
+}
+
+QToolBar QPushButton {
+    min-width: 0px;
 }
 
 QToolBar QSlider::sub-page:vertical:disabled,

@@ -558,6 +558,9 @@ LOCO</string>
    </attribute>
   </widget>
   <action name="actionMama">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Mama</string>
    </property>
