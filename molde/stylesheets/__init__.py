@@ -47,8 +47,8 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_light_theme.svg").replace("\\", "/"),
             "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_light_theme.svg").replace("\\", "/"),
             "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_dark_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_dark_theme.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon" : str(MOLDE_DIR / "icons/arrow_up_disabled_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon" : str(MOLDE_DIR / "icons/arrow_down_disabled_light_theme.svg").replace("\\", "/"),
         })
 
     elif theme == "dark":
@@ -83,8 +83,8 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@arrow-left-image-icon": str(MOLDE_DIR/ "icons/arrow_left_dark_theme.svg").replace("\\", "/"),
             "@arrow-right-image-icon": str(MOLDE_DIR/ "icons/arrow_right_dark_theme.svg").replace("\\", "/"),
             "@check-box-image-icon": str(MOLDE_DIR / "icons/check_box_image.svg").replace("\\", "/"),
-            "@arrow-up-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
-            "@arrow-down-disabled-image-icon": str(MOLDE_DIR / "icons/arrow_down_light_theme.svg").replace("\\", "/"),
+            "@arrow-up-disabled-image-icon" : str(MOLDE_DIR / "icons/arrow_up_disabled_light_theme.svg").replace("\\", "/"),
+            "@arrow-down-disabled-image-icon" : str(MOLDE_DIR / "icons/arrow_down_disabled_light_theme.svg").replace("\\", "/"),
             
         })
 
