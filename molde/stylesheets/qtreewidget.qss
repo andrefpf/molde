@@ -15,11 +15,11 @@ QTreeView::item:selected {
     color: @on-primary;
 }
 
-QTreeWidget::branch:open {
+QTreeWidget::branch:has-children:open {
     background-image: url("@arrow-down-image-icon");
 }
 
-QTreeWidget::branch:closed {
+QTreeWidget::branch:has-children:closed {
     background-image: url("@arrow-right-image-icon");
 }
 

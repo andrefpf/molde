@@ -16,7 +16,7 @@ QWidget QFrame[frameShape="2"] {
 }
 
 QFrame::disabled {
-    background: @background-color;
+    background: @background;
 }
 
 
