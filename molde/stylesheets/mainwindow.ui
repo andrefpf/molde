@@ -315,17 +315,20 @@ LOCO</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <widget class="QPushButton" name="pushButton_4">
-          <property name="text">
-           <string>Animate</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</normaloff>../../../OpenPulse/pulse/interface/data/icons/common/play_pause.png</iconset>
-          </property>
-          <property name="default">
-           <bool>true</bool>
-          </property>
+         <widget class="QSpinBox" name="spinBox_2"/>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_2">
+          <item>
+           <property name="text">
+            <string>Single Division</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Multiple Division</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
@@ -495,7 +498,7 @@ LOCO</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuproject">
@@ -555,6 +558,9 @@ LOCO</string>
    </attribute>
   </widget>
   <action name="actionMama">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Mama</string>
    </property>

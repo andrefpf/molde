@@ -1,7 +1,8 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
 from PyQt5.QtGui import QColor
 from PyQt5 import uic
+from PyQt5.QtCore import Qt
 from time import time
 
 from molde import MOLDE_DIR
@@ -21,14 +22,18 @@ class Example(QMainWindow):
         self.render_widget.create_scale_bar()
         self.render_widget.create_color_bar()
         self.render_widget.set_info_text("Hola\nque\ntal?")
-        self.linedit = QLineEdit()
-        self.toolbar_2.addWidget(self.linedit)
+
+        self.botao1 = QPushButton()
+        self.label = QLabel("Olha o sapooo")
+        self.botao1.setText("Olha a faca")
+        self.toolbar_2.addWidget(self.label)
+        self.toolbar_2.addWidget(self.botao1)
 
         item = QTableWidgetItem("fr")
         item.setBackground(QColor("#FF0000"))  
         self.tableWidget.setItem(0, 0, item) 
         self.show()
-
+        
     def change_theme(self):
         if self.current_theme == "light":
             self.current_theme = "dark"

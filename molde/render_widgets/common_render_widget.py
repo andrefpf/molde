@@ -125,6 +125,7 @@ class CommonRenderWidget(QFrame):
 
         ren_win = self.render_interactor.GetRenderWindow()
         if ren_win is not None:
+            self.renderer.ResetCameraClippingRange()
             ren_win.Render()
 
     def left_click_press_event(self, obj, event):
@@ -255,7 +256,7 @@ class CommonRenderWidget(QFrame):
         colorbar_title.ShadowOff()
         colorbar_title.ItalicOff()
         colorbar_title.BoldOn()
-        colorbar_title.SetFontSize(13)
+        colorbar_title.SetFontSize(16)
         colorbar_title.SetJustificationToLeft()
         colorbar_title.SetFontFamily(VTK_FONT_FILE)
         colorbar_title.SetFontFile(font_file)
