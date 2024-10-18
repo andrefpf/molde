@@ -54,3 +54,9 @@ QToolBar QSlider::add-page:horizontal:disabled,
 QToolBar QSlider::handle:disabled {
     background: @disabled-color;
 }
+
+QToolBar QFrame::disabled {
+    background: @disabled-background;
+}
+
+
