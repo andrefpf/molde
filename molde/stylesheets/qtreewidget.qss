@@ -14,3 +14,12 @@ QTreeView::item:selected {
     border: 1px solid @border-color;
     color: @on-primary;
 }
+
+QTreeWidget::branch:open {
+    background-image: url("@arrow-down-image-icon");
+}
+
+QTreeWidget::branch:closed {
+    background-image: url("@arrow-right-image-icon");
+}
+

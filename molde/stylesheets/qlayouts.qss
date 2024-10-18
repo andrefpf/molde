@@ -15,4 +15,8 @@ QWidget QFrame[frameShape="2"] {
     padding: 0;
 }
 
+QFrame::disabled {
+    background: @background-color;
+}
+
 
