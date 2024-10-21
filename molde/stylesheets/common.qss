@@ -11,7 +11,6 @@ QWidget::disabled {
 }
 
 QWidget:focus {
-    outline: 0;
-    border: 2px solid @primary-darker;
-    border-radius: @border-radius;
+    outline: none;
+    border-color: @primary-darker;
 }
