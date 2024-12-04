@@ -108,10 +108,23 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         self.is_panning = False
 
     def _mouse_move_event(self, obj, event):
-        if self.is_rotating:
+        zoom = self.is_mid_clicked and self.GetInteractor().GetControlKey()
+        
+        if zoom and not self.is_zooming:
+            self.is_zooming = True
+            self.StartDolly()
+
+        if not zoom:
+            self.EndDolly()
+            self.is_zooming = False
+
+        if self.is_zooming:
+            self.Dolly()
+
+        elif self.is_rotating:
             self.rotate()
 
-        if self.is_panning:
+        elif self.is_panning:
             self.Pan()
 
         self.OnMouseMove()
