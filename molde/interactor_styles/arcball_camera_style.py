@@ -41,9 +41,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         self.AddObserver("MouseWheelForwardEvent", self._mouse_wheel_forward_event)
         self.AddObserver("MouseWheelBackwardEvent", self._mouse_wheel_backward_event)
         self.AddObserver("MiddleButtonPressEvent", self._click_mid_button_press_event)
-        self.AddObserver(
-            "MiddleButtonReleaseEvent", self._click_mid_button_release_event
-        )
+        self.AddObserver("MiddleButtonReleaseEvent", self._click_mid_button_release_event)
 
     def _left_button_press_event(self, obj, event):
         # Implemented to stop the superclass movement
@@ -84,9 +82,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         distance_factor = np.sqrt(dx**2 + dy**2 + dz**2)
 
         self.cor_actor.SetPosition(self.center_of_rotation)
-        self.cor_actor.SetScale(
-            (distance_factor / 3.5, distance_factor / 3.5, distance_factor / 3.5)
-        )
+        self.cor_actor.SetScale((distance_factor / 3.5, distance_factor / 3.5, distance_factor / 3.5))
         renderer.AddActor(self.cor_actor)
 
     def _right_button_release_event(self, obj, event):
@@ -109,7 +105,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
 
     def _mouse_move_event(self, obj, event):
         zoom = self.is_mid_clicked and self.GetInteractor().GetControlKey()
-        
+
         if zoom and not self.is_zooming:
             self.is_zooming = True
             self.StartDolly()
@@ -169,9 +165,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
             return
 
         rwi = self.GetInteractor()
-        delta_mouse = np.array(rwi.GetEventPosition()) - np.array(
-            rwi.GetLastEventPosition()
-        )
+        delta_mouse = np.array(rwi.GetEventPosition()) - np.array(rwi.GetLastEventPosition())
         size = np.array(renderer.GetRenderWindow().GetSize())
         motion_factor = 10
         elevation_azimuth = -20 / size
@@ -227,29 +221,17 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         camera.Modified()
 
     def dolly(self, factor):
+        cursor = self.GetInteractor().GetEventPosition()
+        self.dolly_on_point(factor, *cursor)
+
+    def dolly_on_point(self, factor, x, y):
         renderer = self.GetDefaultRenderer() or self.GetCurrentRenderer()
         camera = renderer.GetActiveCamera()
-        cursor = self.GetInteractor().GetEventPosition()
 
-        if factor <= 0:
-            return
-
-        cam_up = np.array(camera.GetViewUp())
-        cam_in = np.array(camera.GetDirectionOfProjection())
-        cam_side = np.cross(cam_in, cam_up)
-
-        displacements = self.get_dolly_displacements(
-            factor,
-            cursor,
-            camera,
-            renderer,
-        )
-
-        camera_position = np.array(camera.GetPosition())
-        focal_point = np.array(camera.GetFocalPoint())
-        rotated_displacements = cam_side * displacements[0] + cam_up * displacements[1]
-        camera.SetPosition(camera_position + rotated_displacements)
-        camera.SetFocalPoint(focal_point + rotated_displacements)
+        view_center = np.array(renderer.GetSize()) / 2
+        distance_to_center = (x, y) - view_center
+        dx, dy = distance_to_center * (1 - 1 / factor)
+        self.move_viewport(dx, dy)
 
         if camera.GetParallelProjection():
             camera.SetParallelScale(camera.GetParallelScale() / factor)
@@ -263,19 +245,34 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
 
         self.GetInteractor().Render()
 
-    def get_dolly_displacements(self, factor, cursor, camera, renderer):
-        cursor = np.array(cursor)
-        view_center = np.array(renderer.GetSize()) / 2
-        cursor_to_center = cursor - view_center
+    def move_viewport(self, dx, dy):
+        """
+        Moves the viewport in view coordinates by some amount of pixels.
+
+        Further explanations on this link:
+        https://github.com/open-pulse/OpenPulse/blob/5f7bd4719527383b2d3ea078e5f29f214f35128d/doc/code_explanation/move_viewport.pdf
+        """
+
+        renderer = self.GetDefaultRenderer() or self.GetCurrentRenderer()
+        camera = renderer.GetActiveCamera()
+        width, heigth = renderer.GetSize()
 
         if camera.GetParallelProjection():
             view_height = 2 * camera.GetParallelScale()
         else:
             correction = camera.GetDistance()
             view_height = 2 * correction * np.tan(0.5 * camera.GetViewAngle() / 57.296)
+        scale = view_height / heigth
 
-        scale = view_height / renderer.GetSize()[1]
-        return cursor_to_center * scale * (1 - 1 / factor)
+        focal_point = np.array(camera.GetFocalPoint())
+        camera_position = np.array(camera.GetPosition())
+        camera_up = np.array(camera.GetViewUp())
+        camera_in = np.array(camera.GetDirectionOfProjection())
+        camera_right = np.cross(camera_in, camera_up)
+
+        camera_displacement = scale * (camera_right * dx + camera_up * dy)
+        camera.SetPosition(camera_position + camera_displacement)
+        camera.SetFocalPoint(focal_point + camera_displacement)
 
     def _make_default_cor_actor(self):
         actor = RoundPointsActor([(0, 0, 0)])
