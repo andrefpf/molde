@@ -22,6 +22,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         self.is_rotating = False
         self.is_panning = False
 
+        self.mid_button_click_position = (0, 0)
         # cor = center of rotation
         self.cor_actor = self._make_default_cor_actor()
         self._create_observers()
@@ -96,8 +97,9 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
     def _click_mid_button_press_event(self, obj, event):
         self.is_mid_clicked = True
         self.is_panning = True
-        int_pos = self.GetInteractor().GetEventPosition()
-        self.FindPokedRenderer(int_pos[0], int_pos[1])
+        cursor = self.GetInteractor().GetEventPosition()
+        self.mid_button_click_position = cursor
+        self.FindPokedRenderer(cursor[0], cursor[1])
 
     def _click_mid_button_release_event(self, obj, event):
         self.is_mid_clicked = False
@@ -108,14 +110,18 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
 
         if zoom and not self.is_zooming:
             self.is_zooming = True
-            self.StartDolly()
 
         if not zoom:
-            self.EndDolly()
             self.is_zooming = False
 
         if self.is_zooming:
-            self.Dolly()
+            # Implementation based on this link
+            # https://github.com/Kitware/VTK/blob/4c4cd48244eaf1a74e0b096aae773c5498f7a782/Interaction/Style/vtkInteractorStyleTrackballCamera.cxx#L352
+            y0 = self.GetInteractor().GetLastEventPosition()[1]
+            y1 = self.GetInteractor().GetEventPosition()[1]
+            dyf = 10 * (y1 - y0) / self.GetCurrentRenderer().GetCenter()[1]
+            factor = 1.1 ** dyf
+            self.dolly_on_point(factor, *self.mid_button_click_position)
 
         elif self.is_rotating:
             self.rotate()
