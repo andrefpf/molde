@@ -5,6 +5,9 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from time import time
 
+from vtkmodules.vtkFiltersSources import vtkCylinderSource
+from vtkmodules.vtkRenderingCore import vtkPolyDataMapper, vtkActor
+
 from molde import MOLDE_DIR
 from molde import stylesheets
 from molde.render_widgets.common_render_widget import CommonRenderWidget
@@ -22,6 +25,14 @@ class Example(QMainWindow):
         self.render_widget.create_scale_bar()
         self.render_widget.create_color_bar()
         self.render_widget.set_info_text("Hola\nque\ntal?")
+
+        cylinder = vtkCylinderSource()
+        cylinder.SetResolution(8)
+        cylinder_mapper = vtkPolyDataMapper()
+        cylinder_mapper.SetInputConnection(cylinder.GetOutputPort())
+        cylinder_actor = vtkActor()
+        cylinder_actor.SetMapper(cylinder_mapper)
+        self.render_widget.add_actors(cylinder_actor)
 
         self.botao1 = QPushButton()
         self.label = QLabel("Olha o sapooo")
