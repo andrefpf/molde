@@ -1,8 +1,8 @@
 import os, sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
-from PyQt5.QtGui import QColor
-from PyQt5 import uic
-from PyQt5.QtCore import Qt
+from qtpy.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
+from qtpy.QtGui import QColor
+from qtpy import uic
+from qtpy.QtCore import Qt
 from time import time
 
 from vtkmodules.vtkFiltersSources import vtkCylinderSource

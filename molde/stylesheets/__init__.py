@@ -1,5 +1,5 @@
 from typing import Literal
-from PyQt5.QtWidgets import QApplication, QWidget
+from qtpy.QtWidgets import QApplication, QWidget
 from molde import MOLDE_DIR
 from molde.colors import color_names
 

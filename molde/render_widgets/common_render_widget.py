@@ -3,8 +3,8 @@ from threading import Lock
 from typing import Literal
 
 from PIL import Image
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QFrame, QStackedLayout
+from qtpy.QtCore import Signal
+from qtpy.QtWidgets import QFrame, QStackedLayout
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 from vtkmodules.util.numpy_support import vtk_to_numpy
 from vtkmodules.vtkCommonCore import VTK_FONT_FILE, vtkLookupTable
@@ -40,10 +40,10 @@ class CommonRenderWidget(QFrame):
     A vtk widget must always have a renderer, even if it is empty.
     """
 
-    left_clicked = pyqtSignal(int, int)
-    left_released = pyqtSignal(int, int)
-    right_clicked = pyqtSignal(int, int)
-    right_released = pyqtSignal(int, int)
+    left_clicked = Signal(int, int)
+    left_released = Signal(int, int)
+    right_clicked = Signal(int, int)
+    right_released = Signal(int, int)
 
     def __init__(self, parent=None, *, theme="dark"):
         super().__init__(parent)

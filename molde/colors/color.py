@@ -1,5 +1,5 @@
 import typing
-from PyQt5.QtGui import QColor
+from qtpy.QtGui import QColor
 import numpy as np
 
 
