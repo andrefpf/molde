@@ -55,7 +55,7 @@ class LoadingWindow(QWidget):
     automated tests really hard.
     """
 
-    def __init__(self, _function, application):
+    def __init__(self, _function, application, window_icon):
         super().__init__()
 
         ui_path = UI_DIR / "messages/new_loading_window.ui"
@@ -63,10 +63,12 @@ class LoadingWindow(QWidget):
 
         self._function = _function
         self._application = application
+        self._window_icon = window_icon
+    
         self._config_window()
 
     def _config_window(self):
-        self.setWindowIcon(self._application.main_window.pulse_icon)
+        self.setWindowIcon(self._window_icon)
         self.setWindowTitle("Loading")
         self.setWindowFlags(Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint)
         self.setWindowModality(Qt.ApplicationModal)
