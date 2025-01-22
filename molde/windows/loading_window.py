@@ -4,10 +4,10 @@ from time import sleep
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QLabel, QProgressBar, QWidget
+from PyQt5 import uic
 
 from molde import UI_DIR
 
-from molde import load_ui
 
 # Catches every message that contains something like [n/N]
 PROGRESS_FRACTION_REGEX = re.compile(r"\[\d+/\d+\]")
@@ -59,7 +59,7 @@ class LoadingWindow(QWidget):
         super().__init__()
 
         ui_path = UI_DIR / "messages/new_loading_window.ui"
-        load_ui(ui_path, self)
+        uic.loadUi(ui_path, self)
 
         self._function = _function
         self._application = application
