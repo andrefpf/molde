@@ -4,5 +4,5 @@ from .colors import Color
 
 MOLDE_DIR = Path(__file__).parent
 
-def load_ui(uifile, baseinstance):
-    return loadUi(uifile, baseinstance)
+def load_ui(uifile, baseinstance, working_directory):
+    return loadUi(uifile, baseinstance, working_directory)
