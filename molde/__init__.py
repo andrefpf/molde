@@ -5,5 +5,7 @@ from PySide6.QtCore import QDir
 
 MOLDE_DIR = Path(__file__).parent
 
-def load_ui(uifile: str | Path, baseinstance, working_directory: str | Path = None):
-    return loadUi(uifile, baseinstance, QDir(working_directory))
+def load_ui(uifile: str | Path, baseinstance, working_directory: str| Path = None):
+    if working_directory is not None:
+        working_directory = QDir(working_directory)
+    return loadUi(uifile, baseinstance, working_directory)
