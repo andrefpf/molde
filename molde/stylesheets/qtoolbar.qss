@@ -41,10 +41,6 @@ QToolBar QSlider:disabled {
     background-color: @disabled-background;
 }
 
-QToolBar QPushButton {
-    min-width: 50px;
-}
-
 QToolBar QLabel {
     margin: 2px;
 }
@@ -57,10 +53,6 @@ QToolBar QSlider::handle:disabled {
 
 QToolBar QFrame::disabled {
     background: @disabled-background;
-}
-
-QToolBar QComboBox {
-    min-width: 100px;
 }
 
 
