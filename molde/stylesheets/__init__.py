@@ -31,12 +31,11 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@background": color_names.GRAY_9.to_hex(),
             "@background-variant": color_names.GRAY_8.to_hex(),
 
-            "@input-color": "#F0F0F5",
             "@on-primary": color_names.WHITE.to_hex(),
             "@on-background": color_names.BLACK.to_hex(),
 
             "@border-color": color_names.GRAY_7.to_hex(),
-            "@input-color": color_names.GRAY_9.to_hex(),
+            "@input-color": color_names.GRAY_8.to_hex(),
 
             "@disabled-background": color_names.GRAY_8.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),

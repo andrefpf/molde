@@ -71,7 +71,7 @@ QComboBox::drop-down:disabled {
     background-color: @disabled-background;
 }
 
-QSpinBox,
+/*QSpinBox,
 QDoubleSpinBox {
     border: 2px solid @background;
-}
+}*\
