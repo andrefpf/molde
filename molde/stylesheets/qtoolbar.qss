@@ -31,12 +31,6 @@ QToolBar QComboBox {
     height: 15px;
 }
 
-/* QToolBar QLineEdit:disabled {
-    background-color: @disabled-color;
-    color: rgb(100, 100, 100)
-}
- */
-
 QToolBar QSlider:disabled {
     background-color: @disabled-background;
 }
