@@ -78,5 +78,6 @@ QComboBox::drop-down:disabled {
 }
 
 QComboBox {
+    color: red;
     selection-background-color: @background-variant;
 }
