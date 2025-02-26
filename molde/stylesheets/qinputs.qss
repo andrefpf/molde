@@ -12,6 +12,12 @@ QSpinBox::disabled {
     color: @disabled-color;
 }
 
+QLineEdit[status=information] {
+    background-color: @disabled-background;
+    border: 0px;
+    color: @on-background;
+}
+
 QSpinBox::up-button,
 QDoubleSpinBox::up-button {
     background-image: url("@arrow-up-image-icon");
