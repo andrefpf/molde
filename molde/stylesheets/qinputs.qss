@@ -76,3 +76,7 @@ QComboBox::drop-down:hover {
 QComboBox::drop-down:disabled {
     background-color: @disabled-background;
 }
+
+QComboBox {
+    selection-background-color: @background-variant;
+}
