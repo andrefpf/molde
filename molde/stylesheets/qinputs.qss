@@ -78,5 +78,5 @@ QComboBox::drop-down:disabled {
 }
 
 QComboBox QAbstractItemView::item:hover{
-    selection-background-color: @background-variant;
+    background-color: @background-variant;
 }
