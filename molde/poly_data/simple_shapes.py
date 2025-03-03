@@ -1,4 +1,4 @@
-from vibra.utils.polydata_utils import transform_polydata
+from molde.utils.poly_data_utils import transform_polydata
 from vtkmodules.vtkFiltersSources import (
     vtkConeSource,
     vtkCubeSource,
