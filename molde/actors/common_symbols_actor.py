@@ -96,6 +96,18 @@ class CommonSymbolsActor(vtkActor):
         self.data.GetPointData().AddArray(scales)
         self.data.GetPointData().SetScalars(colors)
 
+    def set_zbuffer_offsets(self, factor: float, units: float):
+        """
+        This functions is usefull to make a object appear in front of the others.
+        If the object should never be hidden, the parameters should be set to
+        factor = 1 and offset = -66000.
+        """
+        self.mapper.SetResolveCoincidentTopologyToPolygonOffset()
+        self.mapper.SetRelativeCoincidentTopologyLineOffsetParameters(factor, units)
+        self.mapper.SetRelativeCoincidentTopologyPolygonOffsetParameters(factor, units)
+        self.mapper.SetRelativeCoincidentTopologyPointOffsetParameter(units)
+        self.mapper.Update()
+
 
 class CommonSymbolsActorFixedSize(CommonSymbolsActor):
     def build(self):
@@ -135,14 +147,5 @@ class CommonSymbolsActorVariableSize(CommonSymbolsActor):
         self.mapper.SetScaleModeToScaleByMagnitude()
         self.mapper.SetScalarModeToUsePointData()
         self.mapper.SetOrientationModeToDirection()
-
-        # shows the actor in front of everything else
-        # offset = -66000
-        offset = 0
-        factor = 1.3
-        self.mapper.SetResolveCoincidentTopologyToPolygonOffset()
-        self.mapper.SetRelativeCoincidentTopologyLineOffsetParameters(factor, offset)
-        self.mapper.SetRelativeCoincidentTopologyPolygonOffsetParameters(factor, offset)
-        self.mapper.SetRelativeCoincidentTopologyPointOffsetParameter(offset)
 
         self.mapper.Update()
