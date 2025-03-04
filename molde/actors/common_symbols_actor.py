@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from molde import Color
+from molde.utils import transform_polydata
 from vtkmodules.vtkCommonCore import (
     vtkDoubleArray,
     vtkIntArray,
@@ -27,8 +28,20 @@ class CommonSymbolsActor(vtkActor):
         self._shapes: dict[str, vtkPolyData] = dict()
         self._symbols: list[Symbol] = list()
 
-    def register_shape(self, name: str, shape: vtkPolyData):
-        self._shapes[name] = shape
+    def register_shape(
+        self,
+        name: str,
+        shape: vtkPolyData,
+        position: Triple = (0, 0, 0),
+        rotation: Triple = (0, 0, 0),
+        scale: Triple = (1, 1, 1),
+    ):
+        self._shapes[name] = transform_polydata(
+            shape,
+            position,
+            rotation,
+            scale,
+        )
 
     def add_symbol(
         self,
