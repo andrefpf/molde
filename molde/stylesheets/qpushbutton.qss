@@ -5,7 +5,6 @@ QPushButton {
     border-radius: 5px;
     text-align: center;
     padding: 4px 8px;
-    min-width: 50px;
 }
 
 QPushButton::hover {
@@ -89,3 +88,4 @@ QPushButton[status=danger]::disabled {
 QDialogButtonBox QPushButton {
     min-width: 65px;
 }
+

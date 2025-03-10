@@ -3,8 +3,6 @@ QLineEdit, QLineEdit::clear-button, QDoubleSpinBox, QSpinBox, QComboBox {
     border: 1px solid @border-color;
     border-radius: 5px;
     padding: 4px 4px;
-    min-width: 40px;
-    min-height: 15px;
 }
 
 QLineEdit::disabled,
@@ -12,6 +10,12 @@ QSpinBox::disabled {
     background-color: @disabled-background;
     border: 0px;
     color: @disabled-color;
+}
+
+QLineEdit[status=information] {
+    background-color: @disabled-background;
+    border: 0px;
+    color: @on-background;
 }
 
 QSpinBox::up-button,
@@ -73,7 +77,6 @@ QComboBox::drop-down:disabled {
     background-color: @disabled-background;
 }
 
-QSpinBox,
-QDoubleSpinBox {
-    border: 2px solid @background;
+QComboBox QAbstractItemView::item:hover{
+    background-color: @background-variant;
 }

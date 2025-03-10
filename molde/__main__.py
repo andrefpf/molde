@@ -20,11 +20,11 @@ class Example(QMainWindow):
         self.current_theme = "light"
 
         self.change_theme_button.clicked.connect(self.change_theme)
-        self.render_widget: CommonRenderWidget
-        self.render_widget.create_axes()
-        self.render_widget.create_scale_bar()
-        self.render_widget.create_color_bar()
-        self.render_widget.set_info_text("Hola\nque\ntal?")
+        # self.render_widget: CommonRenderWidget
+        # self.render_widget.create_axes()
+        # self.render_widget.create_scale_bar()
+        # self.render_widget.create_color_bar()
+        # self.render_widget.set_info_text("Hola\nque\ntal?")
 
         cylinder = vtkCylinderSource()
         cylinder.SetResolution(8)
@@ -32,7 +32,7 @@ class Example(QMainWindow):
         cylinder_mapper.SetInputConnection(cylinder.GetOutputPort())
         cylinder_actor = vtkActor()
         cylinder_actor.SetMapper(cylinder_mapper)
-        self.render_widget.add_actors(cylinder_actor)
+        # self.render_widget.add_actors(cylinder_actor)
 
         self.botao1 = QPushButton()
         self.label = QLabel("Olha o sapooo")
@@ -51,7 +51,7 @@ class Example(QMainWindow):
         else:
             self.current_theme = "light"
         
-        self.render_widget.set_theme(self.current_theme)
+        # self.render_widget.set_theme(self.current_theme)
         stylesheets.set_theme(self.current_theme)
     
     def closeEvent(self, event):
