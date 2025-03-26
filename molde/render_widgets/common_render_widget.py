@@ -58,22 +58,10 @@ class CommonRenderWidget(QFrame):
 
         self.renderer.ResetCamera()
 
-        self.render_interactor.AddObserver(
-            "LeftButtonPressEvent",
-            self.left_click_press_event
-        )
-        self.render_interactor.AddObserver(
-            "LeftButtonReleaseEvent",
-            self.left_click_release_event
-        )
-        self.render_interactor.AddObserver(
-            "RightButtonPressEvent",
-            self.right_click_press_event
-        )
-        self.render_interactor.AddObserver(
-            "RightButtonReleaseEvent",
-            self.right_click_release_event
-        )
+        self.render_interactor.AddObserver("LeftButtonPressEvent", self.left_click_press_event)
+        self.render_interactor.AddObserver("LeftButtonReleaseEvent", self.left_click_release_event)
+        self.render_interactor.AddObserver("RightButtonPressEvent", self.right_click_press_event)
+        self.render_interactor.AddObserver("RightButtonReleaseEvent", self.right_click_release_event)
 
         layout = QStackedLayout()
         layout.addWidget(self.render_interactor)
@@ -105,7 +93,7 @@ class CommonRenderWidget(QFrame):
 
     def remove_all_actors(self):
         self.remove_actors(*self.get_widget_actors())
-    
+
     def remove_all_props(self):
         self.renderer.RemoveAllViewProps()
 
@@ -160,14 +148,21 @@ class CommonRenderWidget(QFrame):
 
     def get_thumbnail(self) -> Image.Image:
         image = self.get_screenshot()
-        image.thumbnail((512, 512))
-        return image
+        w, h = image.size
+        s = min(w, h)
+        box = (
+            (w - s) // 2,
+            (h - s) // 2,
+            (w + s) // 2,
+            (h + s) // 2,
+        )
+        return image.crop(box).resize((512, 512))
 
     def save_image(self, path: str | Path):
-        '''
+        """
         Saves the render as an image.
         Supported formats are JPEG, JPG, PNG, BMP, ICO, TIFF, PPM and others.
-        '''
+        """
         image = self.get_screenshot()
         with open(path, "w") as file:
             image.save(file)
@@ -262,7 +257,7 @@ class CommonRenderWidget(QFrame):
         colorbar_title.SetFontFamily(VTK_FONT_FILE)
         colorbar_title.SetFontFile(font_file)
 
-        colorbar_label:vtkTextProperty = self.colorbar_actor.GetLabelTextProperty()
+        colorbar_label: vtkTextProperty = self.colorbar_actor.GetLabelTextProperty()
         colorbar_label.ShadowOff()
         colorbar_label.ItalicOff()
         colorbar_label.BoldOn()
