@@ -158,9 +158,10 @@ class CommonRenderWidget(QFrame):
         image = Image.fromarray(array).transpose(Image.FLIP_TOP_BOTTOM)
         return image
 
-    def get_thumbnail(self):
+    def get_thumbnail(self) -> Image.Image:
         image = self.get_screenshot()
-        return image.thumbnail((512, 512))
+        image.thumbnail((512, 512))
+        return image
 
     def save_image(self, path: str | Path):
         '''
