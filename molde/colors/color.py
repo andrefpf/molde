@@ -61,7 +61,7 @@ class Color:
         elif len(args) == 1 and isinstance(args[0], QColor):
             self.from_qcolor(*args)
         
-        elif len(args) == 1 and isinstance(args[0], "Color"):
+        elif len(args) == 1 and isinstance(args[0], Color):
             self.from_color(*args)
 
         elif len(args) in [3, 4] and all_int:
