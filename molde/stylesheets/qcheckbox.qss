@@ -1,5 +1,8 @@
 QCheckBox {
     padding: 5px 10px;
+}
+
+QCheckBox::indicator {
     border: 1px solid @border-color;
 }
 
