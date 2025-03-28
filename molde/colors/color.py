@@ -36,6 +36,12 @@ class Color:
         '''
     
     @typing.overload
+    def __init__(self, color: "Color"):
+        '''
+        Initialize the color class with an instance it's own class
+        '''
+    
+    @typing.overload
     def __init__(self):
         '''
         Initialize an empty black color
@@ -54,6 +60,9 @@ class Color:
         
         elif len(args) == 1 and isinstance(args[0], QColor):
             self.from_qcolor(*args)
+        
+        elif len(args) == 1 and isinstance(args[0], "Color"):
+            self.from_color(*args)
 
         elif len(args) in [3, 4] and all_int:
             self.from_rgba(*args)
@@ -98,6 +107,13 @@ class Color:
     def from_qcolor(self, color: QColor) -> "Color":
         return self.from_rgba(color.red(), color.green(), color.blue(), color.alpha())
 
+    def from_color(self, color: "Color"):
+        self.r = color.r
+        self.g = color.g
+        self.b = color.b
+        self.a = color.a
+        return self
+
     def to_rgb(self) -> tuple[int, int, int]:
         return (self.r, self.g, self.b)
 
@@ -118,3 +134,17 @@ class Color:
 
     def to_qt(self) -> QColor:
         return QColor(self.r, self.g, self.b, self.a)
+
+    def copy(self):
+        return Color(self.r, self.g, self.b, self.a)
+    
+    def apply_factor(self, factor: float|int):
+        new_color = self.copy()
+        new_color.r = int(np.clip(self.r*factor, 0, 255))
+        new_color.g = int(np.clip(self.g*factor, 0, 255))
+        new_color.b = int(np.clip(self.b*factor, 0, 255))
+
+        return new_color
+
+
+        
