@@ -3,8 +3,8 @@ from threading import Lock
 from typing import Literal
 
 from PIL import Image
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QFrame, QStackedLayout
+from qtpy.QtCore import Signal
+from qtpy.QtWidgets import QFrame, QStackedLayout
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 from vtkmodules.util.numpy_support import vtk_to_numpy
 from vtkmodules.vtkCommonCore import VTK_FONT_FILE, vtkLookupTable
@@ -40,10 +40,10 @@ class CommonRenderWidget(QFrame):
     A vtk widget must always have a renderer, even if it is empty.
     """
 
-    left_clicked = pyqtSignal(int, int)
-    left_released = pyqtSignal(int, int)
-    right_clicked = pyqtSignal(int, int)
-    right_released = pyqtSignal(int, int)
+    left_clicked = Signal(int, int)
+    left_released = Signal(int, int)
+    right_clicked = Signal(int, int)
+    right_released = Signal(int, int)
 
     def __init__(self, parent=None, *, theme="dark"):
         super().__init__(parent)
@@ -58,22 +58,10 @@ class CommonRenderWidget(QFrame):
 
         self.renderer.ResetCamera()
 
-        self.render_interactor.AddObserver(
-            "LeftButtonPressEvent",
-            self.left_click_press_event
-        )
-        self.render_interactor.AddObserver(
-            "LeftButtonReleaseEvent",
-            self.left_click_release_event
-        )
-        self.render_interactor.AddObserver(
-            "RightButtonPressEvent",
-            self.right_click_press_event
-        )
-        self.render_interactor.AddObserver(
-            "RightButtonReleaseEvent",
-            self.right_click_release_event
-        )
+        self.render_interactor.AddObserver("LeftButtonPressEvent", self.left_click_press_event)
+        self.render_interactor.AddObserver("LeftButtonReleaseEvent", self.left_click_release_event)
+        self.render_interactor.AddObserver("RightButtonPressEvent", self.right_click_press_event)
+        self.render_interactor.AddObserver("RightButtonReleaseEvent", self.right_click_release_event)
 
         layout = QStackedLayout()
         layout.addWidget(self.render_interactor)
@@ -105,7 +93,7 @@ class CommonRenderWidget(QFrame):
 
     def remove_all_actors(self):
         self.remove_actors(*self.get_widget_actors())
-    
+
     def remove_all_props(self):
         self.renderer.RemoveAllViewProps()
 
@@ -158,15 +146,23 @@ class CommonRenderWidget(QFrame):
         image = Image.fromarray(array).transpose(Image.FLIP_TOP_BOTTOM)
         return image
 
-    def get_thumbnail(self):
+    def get_thumbnail(self) -> Image.Image:
         image = self.get_screenshot()
-        return image.thumbnail((512, 512))
+        w, h = image.size
+        s = min(w, h)
+        box = (
+            (w - s) // 2,
+            (h - s) // 2,
+            (w + s) // 2,
+            (h + s) // 2,
+        )
+        return image.crop(box).resize((512, 512))
 
     def save_image(self, path: str | Path):
-        '''
+        """
         Saves the render as an image.
         Supported formats are JPEG, JPG, PNG, BMP, ICO, TIFF, PPM and others.
-        '''
+        """
         image = self.get_screenshot()
         with open(path, "w") as file:
             image.save(file)
@@ -261,7 +257,7 @@ class CommonRenderWidget(QFrame):
         colorbar_title.SetFontFamily(VTK_FONT_FILE)
         colorbar_title.SetFontFile(font_file)
 
-        colorbar_label:vtkTextProperty = self.colorbar_actor.GetLabelTextProperty()
+        colorbar_label: vtkTextProperty = self.colorbar_actor.GetLabelTextProperty()
         colorbar_label.ShadowOff()
         colorbar_label.ItalicOff()
         colorbar_label.BoldOn()

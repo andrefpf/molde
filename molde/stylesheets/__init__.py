@@ -1,5 +1,5 @@
 from typing import Literal
-from PyQt5.QtWidgets import QApplication, QWidget
+from qtpy.QtWidgets import QApplication, QWidget
 from molde import MOLDE_DIR
 from molde.colors import color_names
 
@@ -31,12 +31,12 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@background": color_names.GRAY_9.to_hex(),
             "@background-variant": color_names.GRAY_8.to_hex(),
 
-            "@input-color": "#F0F0F5",
             "@on-primary": color_names.WHITE.to_hex(),
             "@on-background": color_names.BLACK.to_hex(),
 
             "@border-color": color_names.GRAY_7.to_hex(),
-            "@input-color": color_names.GRAY_9.to_hex(),
+            "@checkbox-border-color": color_names.GRAY_6.to_hex(),
+            "@input-color": color_names.GRAY_8.to_hex(),
 
             "@disabled-background": color_names.GRAY_7.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),
@@ -73,6 +73,7 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@on-primary": color_names.WHITE.to_hex(),
 
             "@border-color": color_names.GRAY_2.to_hex(),
+            "@checkbox-border-color": color_names.GRAY_4.to_hex(),
             "@input-color": color_names.GRAY_3.to_hex(),
 
             "@disabled-background": color_names.GRAY_0.to_hex(),
