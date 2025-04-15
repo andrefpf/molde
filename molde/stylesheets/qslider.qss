@@ -27,7 +27,7 @@ QSlider::handle {
 QSlider::sub-page:horizontal:disabled,
 QSlider::add-page:vertical:disabled,
 QSlider::handle:disabled {
-    background: @disabled-background;
+    background: "@alternative-disabled-background";
 }
 
 QSlider::add-page:horizontal,
