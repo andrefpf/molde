@@ -1,5 +1,5 @@
 import os, sys
-from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel, QSlider
 from PySide6.QtGui import QColor
 from PySide6.QtCore import Qt
 from time import time
@@ -35,9 +35,13 @@ class Example(QMainWindow):
 
         self.botao1 = QPushButton()
         self.label = QLabel("Olha o sapooo")
+        self.slider = QSlider(Qt.Orientation.Horizontal)
+        self.slider.setValue(50)
         self.botao1.setText("Olha a faca")
         self.toolbar_2.addWidget(self.label)
         self.toolbar_2.addWidget(self.botao1)
+        self.toolbar_2.addWidget(self.slider)
+        self.toolbar_2.setDisabled(True)
 
         item = QTableWidgetItem("fr")
         item.setBackground(QColor("#FF0000"))  
