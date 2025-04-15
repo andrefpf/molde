@@ -1,22 +1,21 @@
 import os, sys
-from qtpy.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
-from qtpy.QtGui import QColor
-from qtpy import uic
-from qtpy.QtCore import Qt
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel
+from PySide6.QtGui import QColor
+from PySide6.QtCore import Qt
 from time import time
 
 from vtkmodules.vtkFiltersSources import vtkCylinderSource
 from vtkmodules.vtkRenderingCore import vtkPolyDataMapper, vtkActor
 
-from molde import MOLDE_DIR
+from molde import MOLDE_DIR, load_ui
 from molde import stylesheets
 from molde.render_widgets.common_render_widget import CommonRenderWidget
 
 
 class Example(QMainWindow):
     def __init__(self, parent=None) -> None:
-        super().__init__(parent)
-        uic.loadUi(MOLDE_DIR / "stylesheets/mainwindow.ui", self)
+        super().__init__()
+        load_ui(MOLDE_DIR / "stylesheets/mainwindow.ui", self, MOLDE_DIR / "stylesheets")
         self.current_theme = "light"
 
         self.change_theme_button.clicked.connect(self.change_theme)
