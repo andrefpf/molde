@@ -38,9 +38,9 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
             "@checkbox-border-color": color_names.GRAY_6.to_hex(),
             "@input-color": color_names.GRAY_8.to_hex(),
 
-            "@disabled-background": color_names.GRAY_7.to_hex(),
+            "@disabled-background": color_names.GRAY_8.to_hex(),
             "@disabled-color": color_names.GRAY_7.to_hex(),
-            "@alternative-disabled-background" : color_names.GRAY_7.to_hex(),
+            "@alternative-disabled-background" : color_names.GRAY_8.to_hex(),
 
             "@hover-arrow-color":  color_names.GRAY_8.to_hex(),
             "@arrow-up-image-icon": str(MOLDE_DIR / "icons/arrow_up_light_theme.svg").replace("\\", "/"),
