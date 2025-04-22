@@ -164,7 +164,7 @@ class CommonRenderWidget(QFrame):
         Supported formats are JPEG, JPG, PNG, BMP, ICO, TIFF, PPM and others.
         """
         image = self.get_screenshot()
-        with open(path, "w") as file:
+        with open(path, "wb") as file:
             image.save(file)
 
     def create_axes(self):
