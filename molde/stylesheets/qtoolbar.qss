@@ -49,4 +49,8 @@ QToolBar QFrame::disabled {
     background: @disabled-background;
 }
 
+QToolBar QLabel:disabled,
+QToolBar QSlider:disabled  {
+    background: transparent;
+}
 
