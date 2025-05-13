@@ -31,6 +31,10 @@ QToolBar QComboBox {
     height: 15px;
 }
 
+QToolBar QWidget:disabled {
+    background: transparent;
+}
+
 QToolBar QSlider:disabled {
     background-color: @disabled-background;
 }
@@ -50,7 +54,10 @@ QToolBar QFrame::disabled {
 }
 
 QToolBar QLabel:disabled,
-QToolBar QSlider:disabled  {
+QToolBar QSlider:disabled {
     background: transparent;
 }
+
+
+
 

@@ -214,9 +214,6 @@ LOCO</string>
         </layout>
        </item>
        <item>
-        <widget class="QDial" name="dial"/>
-       </item>
-       <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
           <widget class="QSlider" name="horizontalSlider">
@@ -293,7 +290,7 @@ LOCO</string>
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -471,7 +468,36 @@ LOCO</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
-         <widget class="CommonRenderWidget" name="render_widget" native="true"/>
+         <widget class="CommonRenderWidget" name="render_widget" native="true">
+          <widget class="QLabel" name="label">
+           <property name="geometry">
+            <rect>
+             <x>140</x>
+             <y>20</y>
+             <width>500</width>
+             <height>141</height>
+            </rect>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>500</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-family: 'MS Sans Serif';</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>../../../OpenPulse/pulse/interface/data/icons/logos/OpenPulse_logo_white.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -498,7 +524,7 @@ LOCO</string>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuproject">
@@ -560,6 +586,9 @@ LOCO</string>
   <action name="actionMama">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>Mama</string>

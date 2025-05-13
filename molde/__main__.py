@@ -1,6 +1,6 @@
 import os, sys
 from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit, QTableWidgetItem, QPushButton, QLabel, QSlider
-from PySide6.QtGui import QColor
+from PySide6.QtGui import QColor, QFont
 from PySide6.QtCore import Qt
 from time import time
 
@@ -35,13 +35,17 @@ class Example(QMainWindow):
 
         self.botao1 = QPushButton()
         self.label = QLabel("Olha o sapooo")
+        self.label.setProperty("type", "logo")
+        # font = QFont()
+        # font.setFamily("Bauhaus 93")
+        # self.label.setFont(font)
+        print(self.label.fontInfo().family())
+
         self.slider = QSlider(Qt.Orientation.Horizontal)
         self.slider.setValue(50)
         self.botao1.setText("Olha a faca")
         self.toolbar_2.addWidget(self.label)
-        self.toolbar_2.addWidget(self.botao1)
-        self.toolbar_2.addWidget(self.slider)
-        self.toolbar_2.setDisabled(True)
+        self.toolbar_2.setDisabled(False)
 
         item = QTableWidgetItem("fr")
         item.setBackground(QColor("#FF0000"))  
