@@ -24,7 +24,7 @@ QPushButton::disabled {
 
 QPushButton[status=main], 
 QPushButton::default {
-    border: 2px solid @primary;
+    border-color: @primary;
     border-radius: @border-radius;
     color: @primary;
     font-weight: bold;
@@ -44,7 +44,7 @@ QPushButton::default:pressed {
 }
 
 QPushButton[status=danger] {
-    border: 2px solid @danger-color;
+    border-color: @danger-color;
     border-radius: @border-radius;
     color: @danger-color;
     font-weight: bold;
@@ -61,7 +61,7 @@ QPushButton[status=danger]::pressed {
 }
 
 QPushButton[status=warning] {
-    border: 2px solid @warning-color;
+    border-color: @warning-color;
     border-radius: @border-radius;
     color: @warning-color;
     font-weight: bold;
