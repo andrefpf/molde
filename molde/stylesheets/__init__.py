@@ -16,15 +16,15 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     if theme == "light":
         variables.update({
-            "@primary-lighter": color_names.BLUE_7.to_hex(),
+            "@primary-lighter": color_names.BLUE_6.to_hex(),
             "@primary": color_names.BLUE_4.to_hex(),
             "@primary-darker": color_names.BLUE_3.to_hex(),
 
-            "@danger-color-lighter": color_names.RED_7.to_hex(),
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
             "@danger-color": color_names.RED_4.to_hex(),
-            "@danger-color-darker": color_names.RED_3.to_hex(),
+            "@danger-color-darker": color_names.RED_2.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW_7.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_6.to_hex(),
             "@warning-color": color_names.YELLOW_4.to_hex(),
             "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
@@ -54,15 +54,15 @@ def get_variables(theme:Literal["light", "dark"] = "light") -> dict:
 
     elif theme == "dark":
         variables.update({
-            "@primary-lighter": color_names.BLUE_7.to_hex(),
-            "@primary": color_names.BLUE_6.to_hex(),
-            "@primary-darker": color_names.BLUE_5.to_hex(),
+            "@primary-lighter": color_names.BLUE_6.to_hex(),
+            "@primary": color_names.BLUE_5.to_hex(),
+            "@primary-darker": color_names.BLUE_4.to_hex(),
 
-            "@danger-color-lighter": color_names.RED_7.to_hex(),
+            "@danger-color-lighter": color_names.RED_5.to_hex(),
             "@danger-color": color_names.RED_4.to_hex(),
-            "@danger-color-darker": color_names.RED_3.to_hex(),
+            "@danger-color-darker": color_names.RED_2.to_hex(),
 
-            "@warning-color-lighter": color_names.YELLOW_7.to_hex(),
+            "@warning-color-lighter": color_names.YELLOW_6.to_hex(),
             "@warning-color": color_names.YELLOW_4.to_hex(),
             "@warning-color-darker": color_names.YELLOW_3.to_hex(),
 
