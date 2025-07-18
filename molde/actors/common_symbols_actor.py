@@ -88,7 +88,7 @@ class CommonSymbolsActor(vtkActor):
         scales.SetName("scales")
 
         colors = vtkUnsignedCharArray()
-        colors.SetNumberOfComponents(3)
+        colors.SetNumberOfComponents(4)
         colors.SetName("colors")
 
         shape_name_to_index = dict()
@@ -99,7 +99,7 @@ class CommonSymbolsActor(vtkActor):
         for symbol in self._symbols:
             points.InsertNextPoint(symbol.position)
             rotations.InsertNextTuple(symbol.orientation)
-            colors.InsertNextTuple(symbol.color.to_rgb())
+            colors.InsertNextTuple(symbol.color.to_rgba())
             scales.InsertNextValue(symbol.scale)
             sources.InsertNextValue(shape_name_to_index[symbol.shape_name])
 
