@@ -157,8 +157,8 @@ class AnimatedRenderWidget(CommonRenderWidget):
             path,
             save_all=True,
             append_images=images[1:],
-            optimize=False,
             duration=self._animation_total_frames / self._animation_fps,
             loop=0,
-            quality=90
+            optimize=True,
+            lossless=True,
         )
