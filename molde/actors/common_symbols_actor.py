@@ -53,10 +53,6 @@ class CommonSymbolsActor(vtkActor):
     def clear_symbols(self):
         self._symbols.clear()
 
-    def clear_all(self):
-        self.clear_shapes()
-        self.clear_symbols()
-
     def common_build(self):
         self.data = vtkPolyData()
         points = vtkPoints()
