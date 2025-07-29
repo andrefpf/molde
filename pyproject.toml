@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "molde"
-version = "0.1.11"
+version = "0.1.12"
 description = ""
 authors = ["André Fernandes <fpf.andre@gmail.com>"]
 readme = "README.md"
