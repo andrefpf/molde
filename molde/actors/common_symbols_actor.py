@@ -1,7 +1,6 @@
 from dataclasses import dataclass
+from typing import Callable
 
-from molde import Color
-from molde.utils import transform_polydata
 from vtkmodules.vtkCommonCore import (
     vtkDoubleArray,
     vtkIntArray,
@@ -9,14 +8,21 @@ from vtkmodules.vtkCommonCore import (
     vtkUnsignedCharArray,
 )
 from vtkmodules.vtkCommonDataModel import vtkPolyData
-from vtkmodules.vtkRenderingCore import vtkActor, vtkDistanceToCamera, vtkGlyph3DMapper, vtkRenderer
+from vtkmodules.vtkRenderingCore import (
+    vtkActor,
+    vtkDistanceToCamera,
+    vtkGlyph3DMapper,
+    vtkRenderer,
+)
+
+from molde import Color
 
 Triple = tuple[float, float, float]
 
 
 @dataclass
 class Symbol:
-    shape_name: str
+    shape_function: Callable
     position: Triple
     orientation: Triple
     color: Color
@@ -25,43 +31,24 @@ class Symbol:
 
 class CommonSymbolsActor(vtkActor):
     def __init__(self, *args, **kwargs):
-        self._shapes: dict[str, vtkPolyData] = dict()
         self._symbols: list[Symbol] = list()
-
-    def register_shape(
-        self,
-        name: str,
-        shape: vtkPolyData,
-        position: Triple = (0, 0, 0),
-        rotation: Triple = (0, 0, 0),
-        scale: Triple = (1, 1, 1),
-    ):
-        self._shapes[name] = transform_polydata(
-            shape,
-            position,
-            rotation,
-            scale,
-        )
 
     def add_symbol(
         self,
-        shape_name: str,
+        shape_function: Callable,
         position: Triple,
         orientation: Triple,
         color: Triple,
         scale: float = 1,
     ):
         symbol = Symbol(
-            shape_name,
+            shape_function,
             position,
             orientation,
             color,
             scale,
         )
         self._symbols.append(symbol)
-
-    def clear_shapes(self):
-        self._shapes.clear()
 
     def clear_symbols(self):
         self._symbols.clear()
@@ -88,20 +75,21 @@ class CommonSymbolsActor(vtkActor):
         scales.SetName("scales")
 
         colors = vtkUnsignedCharArray()
-        colors.SetNumberOfComponents(3)
+        colors.SetNumberOfComponents(4)
         colors.SetName("colors")
 
-        shape_name_to_index = dict()
-        for index, (name, shape) in enumerate(self._shapes.items()):
-            shape_name_to_index[name] = index
-            self.mapper.SetSourceData(index, shape)
-
+        shape_function_to_index = dict()
         for symbol in self._symbols:
+            if symbol.shape_function not in shape_function_to_index:
+                index = len(shape_function_to_index)
+                shape_function_to_index[symbol.shape_function] = index
+                self.mapper.SetSourceData(index, symbol.shape_function())
+
             points.InsertNextPoint(symbol.position)
             rotations.InsertNextTuple(symbol.orientation)
-            colors.InsertNextTuple(symbol.color.to_rgb())
+            colors.InsertNextTuple(symbol.color.to_rgba())
             scales.InsertNextValue(symbol.scale)
-            sources.InsertNextValue(shape_name_to_index[symbol.shape_name])
+            sources.InsertNextValue(shape_function_to_index[symbol.shape_function])
 
         self.data.SetPoints(points)
         self.data.GetPointData().AddArray(sources)
