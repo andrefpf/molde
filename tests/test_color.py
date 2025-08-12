@@ -1,0 +1,36 @@
+from molde.colors import Color
+from random import randint
+
+
+def test_conversions():
+    color = Color().from_hex("#b5e83c")
+    assert color.to_hex().lower() == "#b5e83c"
+    assert color.to_rgb() == (181, 232, 60)
+    assert color.to_hsv() == (78, 74, 91)
+
+
+def test_color_creation():
+    a = Color().from_hex("#b5e83c")
+    b = Color().from_rgb(181, 232, 60)
+    c = Color().from_hsv(78, 74, 91)
+    assert a == b == c
+
+
+def test_in_out():
+    rgba = [randint(0, 255) for _ in range(4)]
+    reference = Color().from_rgba(*rgba)
+
+    assert reference == Color().from_rgba(*reference.to_rgba())
+    assert reference == Color().from_rgba_f(*reference.to_rgba_f())
+    
+    rgb = [randint(0, 255) for _ in range(3)]
+    reference = Color().from_rgb(*rgb)
+
+    assert reference == Color().from_rgb(*reference.to_rgb())
+    assert reference == Color().from_rgb_f(*reference.to_rgb_f())
+    assert reference == Color().from_hex(reference.to_hex())
+
+    hsv_a = (randint(0, 360), randint(0, 100), randint(0, 100))
+    hsv_b = Color().from_hsv(*hsv_a).to_hsv()
+    for a, b in zip(hsv_a, hsv_b):
+        assert abs(a - b) <= 5
