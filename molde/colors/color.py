@@ -50,10 +50,10 @@ class Color:
         """
 
     def __new__(cls, *args):
-        '''
+        """
         Calls the appropriate constructor for the class according to the
         number of arguments and their types.
-        '''
+        """
 
         all_int = all([isinstance(i, int) for i in args])
         all_float = all([isinstance(i, float) for i in args])
@@ -133,17 +133,17 @@ class Color:
         h = hue / 60
         x = c * (1 - abs(h % 2 - 1))
 
-        if 0 < h < 1:
+        if 0 <= h < 1:
             r, g, b = c, x, 0
-        elif 1 < h < 2:
+        elif 1 <= h < 2:
             r, g, b = x, c, 0
-        elif 2 < h < 3:
+        elif 2 <= h < 3:
             r, g, b = 0, c, x
-        elif 3 < h < 4:
+        elif 3 <= h < 4:
             r, g, b = 0, x, c
-        elif 4 < h < 5:
+        elif 4 <= h < 5:
             r, g, b = x, 0, c
-        elif 5 < h < 6:
+        elif 5 <= h < 6:
             r, g, b = c, 0, x
         else:
             r, g, b = 0, 0, 0
@@ -224,13 +224,47 @@ class Color:
 
         return new_color
 
-    def set_brightness(self, brightness: int) -> "Color":
+    def with_brightness(self, brightness: int) -> "Color":
+        """
+        Percentage of brightness of the new color.
+        """
         h, s, _ = self.to_hsv()
-        return self.to_hsv(h, s, brightness)
+        return self.from_hsv(h, s, brightness)
 
-    def set_saturation(self, saturation: int) -> "Color":
+    def with_saturation(self, saturation: int) -> "Color":
+        """
+        Percentage of brightness of the new color.
+        """
         h, _, v = self.to_hsv()
-        return self.to_hsv(h, saturation, v)
+        return self.from_hsv(h, saturation, v)
+
+    def with_rgba(
+        self,
+        r: int | None = None,
+        g: int | None = None,
+        b: int | None = None,
+        a: int | None = None,
+    ) -> "Color":
+        return self.from_rgba(
+            r if (r is not None) else self.r,
+            g if (g is not None) else self.g,
+            b if (b is not None) else self.b,
+            a if (a is not None) else self.a,
+        )
+
+    def with_rgba_f(
+        self,
+        r: int | None = None,
+        g: int | None = None,
+        b: int | None = None,
+        a: int | None = None,
+    ) -> "Color":
+        return self.from_rgba_f(
+            r if (r is not None) else self.r,
+            g if (g is not None) else self.g,
+            b if (b is not None) else self.b,
+            a if (a is not None) else self.a,
+        )
 
     def __repr__(self):
         return f"Color(r={self.r}, g={self.g}, b={self.b}, a={self.a})"

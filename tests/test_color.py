@@ -34,3 +34,23 @@ def test_in_out():
     hsv_b = Color.from_hsv(*hsv_a).to_hsv()
     for a, b in zip(hsv_a, hsv_b):
         assert abs(a - b) <= 5
+
+
+def test_color_modifications():
+    color = Color.from_hex("#ff0000")
+    assert color.with_brightness(50).to_rgb() == (128, 0, 0)
+
+    color = Color.from_hex("#ffffff").with_brightness(10)
+    assert color.to_rgb() == (26, 26, 26)
+
+    color = Color.from_hex("#0000ff").with_saturation(50)
+    assert color.to_rgb() == (128, 128, 255)
+
+    color = Color.from_hex("#80ff80").with_saturation(80)
+    assert color.to_rgb() == (51, 255, 51)
+
+    color = Color.from_hex("#ff0000").with_rgba(g=255)
+    assert color.to_rgb() == (255, 255, 0)
+
+    color = Color.from_hex("#ff0000").with_rgba_f(b=1)
+    assert color.to_rgb() == (255, 0, 255)
