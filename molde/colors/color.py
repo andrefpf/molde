@@ -11,44 +11,43 @@ class Color:
 
     @typing.overload
     def __init__(self, r: int, g: int, b: int, a: int = 255):
-        '''
+        """
         Initialize Colors with RGB or RGBA integer values ranging from 0 to 255.
-        '''
-    
+        """
+
     @typing.overload
     def __init__(self, r: float, g: float, b: float, a: float = 1.0):
-        '''
+        """
         Initialize Colors with RGB or RGBA floating values ranging from 0.0 to 1.0.
-        '''
-    
+        """
+
     @typing.overload
     def __init__(self, hexa: str):
-        '''
+        """
         Initialize colors from hex values.
         The valid formats incluce RGB (#FF0000 for example)
         and RGBA (#FF0000FF for example)
-        '''
+        """
 
     @typing.overload
     def __init__(self, qcolor: QColor):
-        '''
+        """
         Initialize the color class with an instance of QColor
-        '''
-    
+        """
+
     @typing.overload
     def __init__(self, color: "Color"):
-        '''
+        """
         Initialize the color class with an instance it's own class
-        '''
-    
+        """
+
     @typing.overload
     def __init__(self):
-        '''
+        """
         Initialize an empty black color
-        '''
+        """
 
     def __init__(self, *args):
-
         all_int = all([isinstance(i, int) for i in args])
         all_float = all([isinstance(i, float) for i in args])
 
@@ -57,10 +56,10 @@ class Color:
 
         elif len(args) == 1 and isinstance(args[0], str):
             self.from_hex(*args)
-        
+
         elif len(args) == 1 and isinstance(args[0], QColor):
             self.from_qcolor(*args)
-        
+
         elif len(args) == 1 and isinstance(args[0], Color):
             self.from_color(*args)
 
@@ -76,11 +75,11 @@ class Color:
     def from_rgb(self, r: int, g: int, b: int) -> "Color":
         return self.from_rgba(r, g, b)
 
-    def from_rgba(self, r: int, g: int, b: int, a: int=255) -> "Color":
-        self.r = int(np.clip(r, 0, 255))
-        self.g = int(np.clip(g, 0, 255))
-        self.b = int(np.clip(b, 0, 255))
-        self.a = int(np.clip(a, 0, 255))
+    def from_rgba(self, r: int, g: int, b: int, a: int = 255) -> "Color":
+        self.r = round(np.clip(r, 0, 255))
+        self.g = round(np.clip(g, 0, 255))
+        self.b = round(np.clip(b, 0, 255))
+        self.a = round(np.clip(a, 0, 255))
         return self
 
     def from_rgb_f(self, r: float, g: float, b: float) -> "Color":
@@ -88,14 +87,14 @@ class Color:
 
     def from_rgba_f(self, r: float, g: float, b: float, a: float = 1) -> "Color":
         return self.from_rgba(
-            int(r * 255),
-            int(g * 255),
-            int(b * 255),
-            int(a * 255),
+            round(r * 255),
+            round(g * 255),
+            round(b * 255),
+            round(a * 255),
         )
 
     def from_hex(self, color: str) -> "Color":
-        color = color.lstrip('#')
+        color = color.lstrip("#")
         if len(color) == 6:
             r, g, b = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16)
             return self.from_rgb(r, g, b)
@@ -103,6 +102,35 @@ class Color:
             r, g, b, a = int(color[0:2], 16), int(color[2:4], 16), int(color[4:6], 16), int(color[6:8], 16)
             return self.from_rgba(r, g, b, a)
         raise ValueError("Invalid hex color format")
+
+    def from_hsv(self, hue: float, saturation: float, value: float):
+        v = value / 100
+        s = saturation / 100
+
+        c = v * s
+        h = hue / 60
+        x = c * (1 - abs(h % 2 - 1))
+
+        if 0 < h < 1:
+            r, g, b = c, x, 0
+        elif 1 < h < 2:
+            r, g, b = x, c, 0
+        elif 2 < h < 3:
+            r, g, b = 0, c, x
+        elif 3 < h < 4:
+            r, g, b = 0, x, c
+        elif 4 < h < 5:
+            r, g, b = x, 0, c
+        elif 5 < h < 6:
+            r, g, b = c, 0, x
+        else:
+            r, g, b = 0, 0, 0
+
+        return self.from_rgb_f(
+            (r + v - c),
+            (g + v - c),
+            (b + v - c),
+        )
 
     def from_qcolor(self, color: QColor) -> "Color":
         return self.from_rgba(color.red(), color.green(), color.blue(), color.alpha())
@@ -127,24 +155,59 @@ class Color:
         return ((self.r / 255), (self.g / 255), (self.b / 255), (self.a / 255))
 
     def to_hex(self) -> str:
-        return (f'#{self.r:02X}{self.g:02X}{self.b:02X}')
+        return f"#{self.r:02X}{self.g:02X}{self.b:02X}"
 
     def to_hexa(self) -> str:
-        return (f'#{self.r:02X}{self.g:02X}{self.b:02X}{self.a:02X}')
+        return f"#{self.r:02X}{self.g:02X}{self.b:02X}{self.a:02X}"
+
+    def to_hsv(self) -> tuple[int, int, int]:
+        r, g, b = self.to_rgb_f()
+        min_, mid_, max_ = sorted((r, g, b))
+        delta = max_ - min_
+
+        if max_ == r:
+            hue = (g - b) / delta
+        elif max_ == g:
+            hue = (b - r) / delta + 2
+        elif max_ == b:
+            hue = (r - g) / delta + 4
+        else:
+            hue = 0
+
+        hue = round(60 * hue)
+        value = round(100 * max_)
+        saturation = round(100 * delta / max_) if (max_ != 0) else 0
+
+        return (
+            np.clip(0, 360, hue),
+            np.clip(0, 100, saturation),
+            np.clip(0, 100, value),
+        )
 
     def to_qt(self) -> QColor:
         return QColor(self.r, self.g, self.b, self.a)
 
-    def copy(self):
+    def copy(self) -> "Color":
         return Color(self.r, self.g, self.b, self.a)
-    
-    def apply_factor(self, factor: float|int):
+
+    def apply_factor(self, factor: float | int) -> "Color":
         new_color = self.copy()
-        new_color.r = int(np.clip(self.r*factor, 0, 255))
-        new_color.g = int(np.clip(self.g*factor, 0, 255))
-        new_color.b = int(np.clip(self.b*factor, 0, 255))
+        new_color.r = round(np.clip(self.r * factor, 0, 255))
+        new_color.g = round(np.clip(self.g * factor, 0, 255))
+        new_color.b = round(np.clip(self.b * factor, 0, 255))
 
         return new_color
 
+    def set_brightness(self, brightness: int) -> "Color":
+        h, s, _ = self.to_hsv()
+        return self.to_hsv(h, s, brightness)
 
-        
+    def set_saturation(self, saturation: int) -> "Color":
+        h, _, v = self.to_hsv()
+        return self.to_hsv(h, saturation, v)
+
+    def __repr__(self):
+        return f"Color(r={self.r}, g={self.g}, b={self.b}, a={self.a})"
+
+    def __eq__(self, other: "Color"):
+        return self.r == other.r and self.g == other.g and self.b == other.b and self.a == other.a
