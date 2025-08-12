@@ -1,8 +1,10 @@
 import typing
 from qtpy.QtGui import QColor
 import numpy as np
+from dataclasses import dataclass
 
 
+@dataclass(frozen=True, init=False)
 class Color:
     r: int
     g: int
@@ -10,19 +12,19 @@ class Color:
     a: int
 
     @typing.overload
-    def __init__(self, r: int, g: int, b: int, a: int = 255):
+    def __new__(self, r: int, g: int, b: int, a: int = 255):
         """
         Initialize Colors with RGB or RGBA integer values ranging from 0 to 255.
         """
 
     @typing.overload
-    def __init__(self, r: float, g: float, b: float, a: float = 1.0):
+    def __new__(self, r: float, g: float, b: float, a: float = 1.0):
         """
         Initialize Colors with RGB or RGBA floating values ranging from 0.0 to 1.0.
         """
 
     @typing.overload
-    def __init__(self, hexa: str):
+    def __new__(self, hexa: str):
         """
         Initialize colors from hex values.
         The valid formats incluce RGB (#FF0000 for example)
@@ -30,61 +32,79 @@ class Color:
         """
 
     @typing.overload
-    def __init__(self, qcolor: QColor):
+    def __new__(self, qcolor: QColor):
         """
         Initialize the color class with an instance of QColor
         """
 
     @typing.overload
-    def __init__(self, color: "Color"):
+    def __new__(self, color: "Color"):
         """
         Initialize the color class with an instance it's own class
         """
 
     @typing.overload
-    def __init__(self):
+    def __new__(self):
         """
         Initialize an empty black color
         """
 
-    def __init__(self, *args):
+    def __new__(cls, *args):
+        '''
+        Calls the appropriate constructor for the class according to the
+        number of arguments and their types.
+        '''
+
         all_int = all([isinstance(i, int) for i in args])
         all_float = all([isinstance(i, float) for i in args])
 
         if len(args) == 0:
-            self.from_rgba(0, 0, 0, 255)
+            return cls.from_rgba(0, 0, 0, 255)
 
         elif len(args) == 1 and isinstance(args[0], str):
-            self.from_hex(*args)
+            return cls.from_hex(*args)
 
         elif len(args) == 1 and isinstance(args[0], QColor):
-            self.from_qcolor(*args)
+            return cls.from_qcolor(*args)
 
         elif len(args) == 1 and isinstance(args[0], Color):
-            self.from_color(*args)
+            return cls.from_color(*args)
 
         elif len(args) in [3, 4] and all_int:
-            self.from_rgba(*args)
+            return cls.from_rgba(*args)
 
         elif len(args) in [3, 4] and all_float:
-            self.from_rgba_f(*args)
+            return cls.from_rgba_f(*args)
 
         else:
             raise ValueError("Invalid input values")
 
+    @classmethod
+    def from_rgba(cls, r: int, g: int, b: int, a: int = 255) -> "Color":
+        """
+        This is the default constructor for the class.
+        All other constructors call this one.
+
+        Since "Color" should be imutable, we use "object.__setattr__" to bypass
+        the imutability just in the constructor.
+        """
+
+        obj = super().__new__(cls)
+        object.__setattr__(obj, "r", round(np.clip(r, 0, 255)))
+        object.__setattr__(obj, "g", round(np.clip(g, 0, 255)))
+        object.__setattr__(obj, "b", round(np.clip(b, 0, 255)))
+        object.__setattr__(obj, "a", round(np.clip(a, 0, 255)))
+        return obj
+
+    @classmethod
     def from_rgb(self, r: int, g: int, b: int) -> "Color":
         return self.from_rgba(r, g, b)
 
-    def from_rgba(self, r: int, g: int, b: int, a: int = 255) -> "Color":
-        self.r = round(np.clip(r, 0, 255))
-        self.g = round(np.clip(g, 0, 255))
-        self.b = round(np.clip(b, 0, 255))
-        self.a = round(np.clip(a, 0, 255))
-        return self
-
+    @classmethod
     def from_rgb_f(self, r: float, g: float, b: float) -> "Color":
         return self.from_rgba_f(r, g, b)
 
+    @classmethod
     def from_rgba_f(self, r: float, g: float, b: float, a: float = 1) -> "Color":
         return self.from_rgba(
             round(r * 255),
@@ -93,6 +113,7 @@ class Color:
             round(a * 255),
         )
 
+    @classmethod
     def from_hex(self, color: str) -> "Color":
         color = color.lstrip("#")
         if len(color) == 6:
@@ -103,6 +124,7 @@ class Color:
             return self.from_rgba(r, g, b, a)
         raise ValueError("Invalid hex color format")
 
+    @classmethod
     def from_hsv(self, hue: float, saturation: float, value: float):
         v = value / 100
         s = saturation / 100
@@ -132,9 +154,11 @@ class Color:
             (b + v - c),
         )
 
+    @classmethod
     def from_qcolor(self, color: QColor) -> "Color":
         return self.from_rgba(color.red(), color.green(), color.blue(), color.alpha())
 
+    @classmethod
     def from_color(self, color: "Color"):
         self.r = color.r
         self.g = color.g
@@ -165,7 +189,9 @@ class Color:
         min_, mid_, max_ = sorted((r, g, b))
         delta = max_ - min_
 
-        if max_ == r:
+        if delta == 0:
+            hue = 0
+        elif max_ == r:
             hue = (g - b) / delta
         elif max_ == g:
             hue = (b - r) / delta + 2
