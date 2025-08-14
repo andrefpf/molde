@@ -263,9 +263,3 @@ class Color:
             b if (b is not None) else self.b,
             a if (a is not None) else self.a,
         )
-
-    def __repr__(self):
-        return f"Color(r={self.r}, g={self.g}, b={self.b}, a={self.a})"
-
-    def __eq__(self, other: "Color"):
-        return self.r == other.r and self.g == other.g and self.b == other.b and self.a == other.a
