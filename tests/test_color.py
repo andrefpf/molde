@@ -33,6 +33,7 @@ def test_in_out():
     hsv_a = (randint(0, 360), randint(0, 100), randint(0, 100))
     hsv_b = Color.from_hsv(*hsv_a).to_hsv()
     for a, b in zip(hsv_a, hsv_b):
+        # The conversion is not very lossless =(
         assert abs(a - b) <= 5
 
 
@@ -54,3 +55,7 @@ def test_color_modifications():
 
     color = Color.from_hex("#ff0000").with_rgba_f(b=1)
     assert color.to_rgb() == (255, 0, 255)
+
+    color = Color.from_rgba(10, 20, 200, 128).apply_factor(2)
+    assert color.to_rgba() == (20, 40, 255, 128)
+

@@ -217,12 +217,10 @@ class Color:
         return Color(self.r, self.g, self.b, self.a)
 
     def apply_factor(self, factor: float | int) -> "Color":
-        new_color = self.copy()
-        new_color.r = round(np.clip(self.r * factor, 0, 255))
-        new_color.g = round(np.clip(self.g * factor, 0, 255))
-        new_color.b = round(np.clip(self.b * factor, 0, 255))
-
-        return new_color
+        r = round(np.clip(self.r * factor, 0, 255))
+        g = round(np.clip(self.g * factor, 0, 255))
+        b = round(np.clip(self.b * factor, 0, 255))
+        return Color.from_rgba(r, g, b, self.a)
 
     def with_brightness(self, brightness: int) -> "Color":
         """
