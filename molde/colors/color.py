@@ -130,7 +130,7 @@ class Color:
         s = saturation / 100
 
         c = v * s
-        h = hue / 60
+        h = hue % 360 / 60
         x = c * (1 - abs(h % 2 - 1))
 
         if 0 <= h < 1:
