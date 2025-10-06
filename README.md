@@ -3,7 +3,7 @@
 </div>
 
 # MOLDE
-**M**OPT **L**ightweight **De**esign (MOLDE) is a library created to standardize and make easier the creation and maintainance of internal products of the Multidisciplinary Optimization Group (MOPT).
+**MO**PT **L**ightweight **De**sign (MOLDE) is a library created to standardize and make easier the creation and maintainance of internal products of the Multidisciplinary Optimization Group (MOPT).
 
 Here are the colors, icons, fonts and common interface components, that may be usefull for multiple MOPT projects.
 

@@ -15,17 +15,17 @@ class BoxSelectionInteractorStyle(ArcballCameraInteractorStyle):
         self._saved_pixels = vtkUnsignedCharArray()
         self.selection_color = (255, 0, 0, 255)
 
-    def _left_button_press_event(self, obj, event):
-        super()._left_button_press_event(obj, event)
+    def left_button_press_event(self, obj, event):
+        super().left_button_press_event(obj, event)
         self._click_position = self.GetInteractor().GetEventPosition()
         self.start_selection()
 
-    def _left_button_release_event(self, obj, event):
-        super()._left_button_release_event(obj, event)
+    def left_button_release_event(self, obj, event):
+        super().left_button_release_event(obj, event)
         self.stop_selection()
 
-    def _mouse_move_event(self, obj, event):
-        super()._mouse_move_event(obj, event)
+    def mouse_move_event(self, obj, event):
+        super().mouse_move_event(obj, event)
         self._mouse_position = self.GetInteractor().GetEventPosition()
         self.update_selection()
 
