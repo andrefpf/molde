@@ -427,3 +427,6 @@ class CommonRenderWidget(QFrame):
         self.renderer.ResetCameraClippingRange()
         self.renderer.GetActiveCamera().Modified()
         self.update()
+    
+    def add_render_tool(self, tool): 
+        self.set_interactor_style(tool)
