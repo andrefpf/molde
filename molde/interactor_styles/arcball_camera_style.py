@@ -246,7 +246,10 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
     def stop_rotating(self):
         self.is_rotating = False
         renderer = self.GetDefaultRenderer() or self.GetCurrentRenderer()
-        renderer.RemoveActor(self.cor_actor)
+
+        if renderer:
+            renderer.RemoveActor(self.cor_actor)
+            
         self.GetInteractor().Render()
         self.EndDolly()
 
