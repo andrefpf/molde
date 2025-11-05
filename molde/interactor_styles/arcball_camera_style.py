@@ -55,7 +55,7 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         self.stop_rotating()
 
     def click_mid_button_press_event(self, obj, event):
-        zoom = self.GetInteractor().GetControlKey()
+        zoom = self.GetInteractor().GetShiftKey()
 
         if zoom:
             self.start_zooming()
