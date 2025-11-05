@@ -3,8 +3,10 @@ from threading import Lock
 from typing import Literal
 
 from PIL import Image
-from qtpy.QtCore import Signal
+
+from qtpy.QtCore import Signal, Qt, QSize
 from qtpy.QtWidgets import QFrame, QStackedLayout
+from qtpy.QtGui import QPixmap, QCursor
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 from vtkmodules.util.numpy_support import vtk_to_numpy
 from vtkmodules.vtkCommonCore import VTK_FONT_FILE, vtkLookupTable
@@ -102,7 +104,8 @@ class CommonRenderWidget(QFrame):
 
     def set_interactor_style(self, interactor_style: vtkInteractorStyle):
         self.interactor_style = interactor_style
-        self.render_interactor.SetInteractorStyle(interactor_style)
+        self.interactor_style.AddObserver("CursorChangedEvent", self.update_mouse_cursor)
+        self.render_interactor.SetInteractorStyle(self.interactor_style)
 
     def get_interactor_style(self) -> vtkInteractorStyle:
         return self.render_interactor.GetInteractorStyle()
@@ -428,5 +431,19 @@ class CommonRenderWidget(QFrame):
         self.renderer.GetActiveCamera().Modified()
         self.update()
     
-    def add_render_tool(self, tool): 
+    def add_render_tool(self, tool):
         self.set_interactor_style(tool)
+        tool.update_mouse_cursor_in_render_widgets(tool.current_cursor)
+
+    def update_mouse_cursor(self, obj, event):
+        if not hasattr(self.interactor_style, "current_cursor"):
+            return
+
+        custom_pixmap = QPixmap(self.interactor_style.current_cursor)
+
+        if custom_pixmap.isNull():
+            self.setCursor(Qt.CursorShape.ArrowCursor)
+        else:
+            custom_pixmap = custom_pixmap.scaled(QSize(24, 24), Qt.KeepAspectRatio)
+            custom_cursor = QCursor(custom_pixmap, hotX=0, hotY=0)
+            self.setCursor(custom_cursor)
