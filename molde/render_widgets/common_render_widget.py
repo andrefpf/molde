@@ -444,6 +444,6 @@ class CommonRenderWidget(QFrame):
         if custom_pixmap.isNull():
             self.setCursor(Qt.CursorShape.ArrowCursor)
         else:
-            custom_pixmap = custom_pixmap.scaled(QSize(24, 24), Qt.KeepAspectRatio)
+            custom_pixmap = custom_pixmap.scaled(QSize(30, 30), Qt.KeepAspectRatio)
             custom_cursor = QCursor(custom_pixmap, hotX=0, hotY=0)
             self.setCursor(custom_cursor)
