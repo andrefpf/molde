@@ -431,7 +431,9 @@ class CommonRenderWidget(QFrame):
         self.renderer.GetActiveCamera().Modified()
         self.update()
     
-    def add_render_tool(self, tool):
+    def add_render_tool(self, tool_class):
+        tool = tool_class()
+
         self.set_interactor_style(tool)
         tool.update_mouse_cursor_in_render_widgets(tool.current_cursor)
 
