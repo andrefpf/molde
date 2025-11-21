@@ -41,6 +41,8 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
         self.AddObserver("MouseWheelBackwardEvent", self.mouse_wheel_backward_event)
         self.AddObserver("MiddleButtonPressEvent", self.click_mid_button_press_event)
         self.AddObserver("MiddleButtonReleaseEvent", self.click_mid_button_release_event)
+        self.AddObserver("KeyPressEvent", self.key_press_event)
+        self.AddObserver("KeyReleaseEvent", self.key_release_event)
 
     def left_button_press_event(self, obj, event):
        pass
@@ -83,6 +85,22 @@ class ArcballCameraInteractorStyle(vtkInteractorStyleTrackballCamera):
 
     def mouse_wheel_backward_event(self, obj, event):
         self.zoom_out()
+    
+    def key_press_event(self, obj, event):
+        if self.GetInteractor().GetKeySym() == "Shift_L":
+
+            if self.is_panning:
+                self.stop_panning()
+
+                self.start_zooming()
+    
+    def key_release_event(self, obj, event):
+        if self.GetInteractor().GetKeySym() == "Shift_L":
+
+            if self.is_zooming:
+                self.stop_zooming()
+
+                self.start_panning()
     
     def start_panning(self):
         self.is_panning = True
